@@ -1,0 +1,37 @@
+import model sm-lepton_masses
+
+set group_subprocesses False
+generate p p > p p z
+display diagrams
+output ~/ZdecayProject/output_folds/pp_ppZ
+launch
+
+# “lppX=+4(-4)” means a PDF for a muon (antimuon) beam
+set maxjetflavor 5
+set pdlabel lhapdf
+set lhaid 260000  # NNPDF31_nnlo_as_0118 (5F PDF set)
+set nevents 10000
+set ebeam1 7000.0 # for 14 TeV collisions
+set ebeam2 7000.0 
+set lpp1 1 # These are hadronic beams. Use the PDFs to sample partons inside the protons.
+set lpp2 1
+#set pdlabel eva
+set ptl 30.0
+set etal 2.5
+set ptj 25.0
+set etaj 2.5
+set mmll 0.0
+
+### non-fw: eta<2.5, pt>25 for mu ###
+
+### fw: 5<eta for mu ###
+
+set eta_max_pdg {11:2.5, 15:2.5, 13:2.5, 14:2.5, 23:2.5, 24:2.5}
+set pt_min_pdg {13:30, 14:30}
+#set eta_min_pdg {13:-1}
+#set eta_min_pdg {13:5}
+
+launch ~/ZdecayProject/output_folds/pp_ppZ -i
+   print_results --path=/home/incik/ZdecayProject/outputs/pp_ppZ.txt --format=short
+
+quit # quit interactive/advance interface mode for the MYDIRECTORY

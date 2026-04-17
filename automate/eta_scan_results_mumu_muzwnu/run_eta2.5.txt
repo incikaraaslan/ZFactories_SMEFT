@@ -1,0 +1,15 @@
+
+    import model sm-lepton_masses
+    set group_subprocesses False
+    generate mu+ mu- > mu- z vm~ w+
+    output eta_scan_results_mumu_muzwnu/proc_eta2.5
+    launch
+    set nevents 100
+    set ebeam1 5000.0 # for 10 TeV collisions
+    set ebeam2 5000.0 
+    set lpp1 0
+    set lpp2 0
+    
+    set eta_min_pdg {13:2.5}
+    quit
+    

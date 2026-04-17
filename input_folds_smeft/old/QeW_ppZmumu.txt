@@ -1,0 +1,18 @@
+import model sm-lepton_masses
+set group_subprocesses False
+
+generate p p > z > mu+ mu- / a
+output output_folds/Z_ONSHELL_ONLY
+launch
+
+set ebeam1 6500
+set ebeam2 6500
+set lpp1 1
+set lpp2 1
+set pdlabel lhapdf
+
+
+launch ./output_folds/Z_ONSHELL_ONLY -i
+   print_results --path=./output_folds/Z_ONSHELL_ONLY.txt --format=short
+
+quit # quit interactive/advance interface mode for the MYDIRECTORY

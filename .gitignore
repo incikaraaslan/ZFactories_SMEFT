@@ -1,0 +1,20 @@
+# MG5 / physics outputs
+LHEfiles/
+LePDF/
+output_folds/
+test_QeW/Events/
+*.lhe
+*.lhe.gz
+*.log
+*.dat
+
+# compiled stuff
+*.o
+*.a
+
+# python cache
+__pycache__/
+*.pyc
+
+# misc
+*.tar.gz

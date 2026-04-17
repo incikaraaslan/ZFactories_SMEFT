@@ -1,0 +1,26 @@
+import model ~/MG5_aMC_v3_6_3/models/SMEFTsim_general_MwScheme_UFO
+
+set group_subprocesses False
+
+generate p p > ve~ e- mu+ vm NP<=2 NPceB=0 NPcHe=0 NPceH=0 NPceW=0 NPcHl1=0 NPcHl3<=1
+
+display diagrams
+
+output output_folds/E2_test_cHl3
+launch
+
+set ebeam1 6500
+set ebeam2 6500
+set pdlabel lhapdf
+set lhaid 315000
+set LambdaSMEFT 1000
+set lpp1 1
+set lpp2 1
+
+# TURN ON THE RIGHT OPERATOR
+set cHl3 1
+
+launch ./output_folds/E2_test_cHl3 -i
+   print_results --path=./output_folds/E2_test_cHl3.txt --format=short
+
+quit

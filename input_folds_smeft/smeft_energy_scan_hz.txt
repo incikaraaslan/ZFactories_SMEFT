@@ -1,0 +1,102 @@
+import model SMEFTsim_U35_MwScheme_UFO-SMlimit_test
+set group_subprocesses False
+
+generate e+ e- > h z NP=1
+output ./output_folds/smeft_energy_scan_hz -f
+
+# 1000 GeV
+launch ./output_folds/smeft_energy_scan_hz --name=E240_SM
+0
+set nevents 2000
+set ebeam1 500
+set ebeam2 500
+set lpp1 0
+set lpp2 0
+set LambdaSMEFT 1000
+set cHWB 0.0
+done
+
+launch ./output_folds/smeft_energy_scan_hz --name=E240_cHWBp005
+0
+set nevents 2000
+set ebeam1 500
+set ebeam2 500
+set lpp1 0
+set lpp2 0
+set LambdaSMEFT 1000
+set cHWB 1.0
+done
+
+# 1500 GeV
+launch ./output_folds/smeft_energy_scan_hz --name=E350_SM
+0
+set nevents 2000
+set ebeam1 750
+set ebeam2 750
+set lpp1 0
+set lpp2 0
+set LambdaSMEFT 1000
+set cHWB 0.0
+done
+
+launch ./output_folds/smeft_energy_scan_hz --name=E350_cHWBp005
+0
+set nevents 2000
+set ebeam1 750
+set ebeam2 750
+set lpp1 0
+set lpp2 0
+set LambdaSMEFT 1000
+set cHWB 1.0
+done
+
+# 2000 GeV
+launch ./output_folds/smeft_energy_scan_hz --name=E500_SM
+0
+set nevents 2000
+set ebeam1 1000
+set ebeam2 1000
+set lpp1 0
+set lpp2 0
+set LambdaSMEFT 1000
+set cHWB 0.0
+done
+
+launch ./output_folds/smeft_energy_scan_hz --name=E500_cHWBp005
+0
+set nevents 2000
+set ebeam1 1000
+set ebeam2 1000
+set lpp1 0
+set lpp2 0
+set LambdaSMEFT 1000
+set cHWB 1.0
+done
+
+# 3000 GeV
+launch ./output_folds/smeft_energy_scan_hz --name=E1000_SM
+0
+set nevents 2000
+set ebeam1 1500
+set ebeam2 1500
+set lpp1 0
+set lpp2 0
+set LambdaSMEFT 1000
+set cHWB 0.0
+done
+
+launch ./output_folds/smeft_energy_scan_hz --name=E1000_cHWBp005
+0
+set nevents 2000
+set ebeam1 1500
+set ebeam2 1500
+set lpp1 0
+set lpp2 0
+set LambdaSMEFT 1000
+set cHWB 1.0
+done
+
+launch ./output_folds/smeft_energy_scan_hz -i
+   print_results --path=./output_folds/smeft_energy_scan_hz.txt --format=short
+
+quit

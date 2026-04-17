@@ -1,0 +1,20 @@
+# Import all histograms
+import selection_0
+import selection_1
+import selection_2
+import selection_3
+import selection_4
+
+# Producing each histograms
+print("BEGIN-STAMP")
+print("- Producing histo selection_0...")
+selection_0.selection_0()
+print("- Producing histo selection_1...")
+selection_1.selection_1()
+print("- Producing histo selection_2...")
+selection_2.selection_2()
+print("- Producing histo selection_3...")
+selection_3.selection_3()
+print("- Producing histo selection_4...")
+selection_4.selection_4()
+print("END-STAMP")

@@ -1,0 +1,37 @@
+import model ~/MG5_aMC_v3_6_3/models/SMEFTsim_U35_MwScheme_UFO
+
+set group_subprocesses False
+
+# Generate full final state without forcing Z topology
+generate u u~ > w+ w- NP==1 NPceB=0 NPcHe=0 NPceH=0 NPceW<=1 NPcHl3=0 NPcHl1=0
+display diagrams
+output output_folds/QeW_uuWvee_5000
+launch
+
+set nevents 10000
+set ebeam 5000
+set lpp1 0
+set lpp2 0
+
+# SMEFT scale
+set lambdasmeft 1000
+
+# Wilson coefficient (QeW)
+set ceWRe11 1
+set ceWRe12 1
+set ceWRe22 1
+
+# Basic lepton cuts
+set ptl 0
+set ptj 0
+set etal -1
+set etalmin -1
+set mmll 0
+set mmllmax -1
+set ptllmin 0
+set ptllmax -1
+
+launch ./output_folds/QeW_uuWvee_5000 -i
+print_results --path=./output_folds/QeW_uuWvee_5000.txt --format=short
+
+quit

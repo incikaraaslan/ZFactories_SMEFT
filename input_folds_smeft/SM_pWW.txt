@@ -1,0 +1,19 @@
+import model sm-lepton_masses
+
+set group_subprocesses False
+generate p p > w+ w-
+display diagrams
+output output_folds/SM_pWW
+launch
+
+set nevents 10000
+set ebeam1 5000
+set ebeam2 5000
+set pdlabel nn23lo1
+set lpp1 1
+set lpp2 1
+
+launch ./output_folds/SM_pWW -i
+   print_results --path=./output_folds/SM_pWW.txt --format=short
+
+quit # quit interactive/advance interface mode for the MYDIRECTORY

@@ -1,0 +1,23 @@
+import model ~/MG5_aMC_v3_6_3/models/SMEFTsim_general_MwScheme_UFO-SMlimit_Zfac
+set group_subprocesses False
+generate h > vm mu+ ve~ e- NP==1 NPceW<=1
+
+display diagrams
+output output_folds/QeW_HWWquad
+launch
+
+set nevents 20000
+set ebeam 6500
+# set pdlabel eva
+set lpp1 0
+set lpp2 0
+set LambdaSMEFT 1000
+
+
+set ceWRe11 1
+set ceWRe22 1
+
+launch ./output_folds/QeW_HWWquad -i
+   print_results --path=./output_folds/QeW_HWWquad.txt --format=short
+
+quit # quit interactive/advance interface mode for the MYDIRECTORY

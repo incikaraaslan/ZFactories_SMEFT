@@ -1,0 +1,20 @@
+import model sm-lepton_masses
+import model ~/MG5_aMC_v3_6_3/models/SMEFTsim_general_MwScheme_UFO-zfac
+
+set group_subprocesses False
+generate p p > w+ w-, (w+ > e+ ve), (w- > e- ve~) NP<=2
+
+launch
+
+set run_card nevents 10000
+set run_card ebeam1 6500
+set run_card ebeam2 6500
+
+set run_card pdlabel lhapdf
+set run_card lpp1 1
+set run_card lpp2 1
+
+set param_card lambdasmeft 1
+set ceWRe11 1
+
+quit

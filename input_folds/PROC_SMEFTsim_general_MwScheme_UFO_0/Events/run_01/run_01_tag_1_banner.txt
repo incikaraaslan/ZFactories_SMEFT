@@ -1,0 +1,2890 @@
+<LesHouchesEvents version="3.0">
+<header>
+<!--
+#*********************************************************************
+#                                                                    *
+#                        MadGraph5_aMC@NLO                           *
+#                                                                    *
+#                           Going Beyond                             *
+#                                                                    *
+#                   http://madgraph.hep.uiuc.edu                     *
+#                   http://madgraph.phys.ucl.ac.be                   *
+#                   http://amcatnlo.cern.ch                          *
+#                                                                    *
+#                     The MadGraph5_aMC@NLO team                     *
+#                                                                    *
+#....................................................................*
+#                                                                    *
+# This file contains all the information necessary to reproduce      *
+# the events generated:                                              *
+#                                                                    *
+# 1. software version                                                *
+# 2. proc_card          : code generation info including model       *
+# 3. param_card         : model primary parameters in the LH format  *
+# 4. run_card           : running parameters (collider and cuts)     *
+# 5. pythia_card        : present only if pythia has been run        *
+# 6. pgs_card           : present only if pgs has been run           *
+# 7. delphes_cards      : present only if delphes has been run       *
+#                                                                    *
+#                                                                    *
+#*********************************************************************
+-->
+<MGVersion>
+3.6.3
+</MGVersion>
+<MG5ProcCard>
+<![CDATA[
+#************************************************************
+#*                     MadGraph5_aMC@NLO                    *
+#*                                                          *
+#*                *                       *                 *
+#*                  *        * *        *                   *
+#*                    * * * * 5 * * * *                     *
+#*                  *        * *        *                   *
+#*                *                       *                 *
+#*                                                          *
+#*                                                          *
+#*         VERSION 3.6.3                 2025-06-12         *
+#*                                                          *
+#*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+#*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+#*                                                          *
+#************************************************************
+#*                                                          *
+#*               Command File for MadGraph5_aMC@NLO         *
+#*                                                          *
+#*     run as ./bin/mg5_aMC  filename                       *
+#*                                                          *
+#************************************************************
+set group_subprocesses Auto
+set ignore_six_quark_processes False
+set low_mem_multicore_nlo_generation False
+set complex_mass_scheme False
+set include_lepton_initiated_processes False
+set gauge unitary
+set loop_optimized_output True
+set loop_color_flows False
+set max_npoint_for_channel 0
+set default_unset_couplings 99
+set max_t_for_channel 99
+set zerowidth_tchannel True
+set nlo_mixed_expansion True
+import model sm
+define p = g u c d s u~ c~ d~ s~
+define j = g u c d s u~ c~ d~ s~
+define l+ = e+ mu+
+define l- = e- mu-
+define vl = ve vm vt
+define vl~ = ve~ vm~ vt~
+import model /home/incik/SMEFTsim/UFO_models/SMEFTsim_general_MwScheme\
+_UFO
+set group_subprocesses False
+generate z > mu+ e- NP<=1
+launch
+]]>
+</MG5ProcCard>
+<MGRunCard>
+<![CDATA[
+#*********************************************************************
+#                       MadGraph5_aMC@NLO                            *
+#                                                                    *
+#                     run_card.dat MadEvent                          *
+#                                                                    *
+#  This file is used to set the parameters of the run.               *
+#                                                                    *
+#  Some notation/conventions:                                        *
+#                                                                    *
+#   Lines starting with a '# ' are info or comments                  *
+#                                                                    *
+#   mind the format:   value    = variable     ! comment             *
+#                                                                    *
+#   To display more options, you can type the command:               *
+#      update to_full                                                *
+#*********************************************************************
+#                                                                    
+#*********************************************************************
+# Tag name for the run (one word)                                    *
+#*********************************************************************
+  tag_1     = run_tag ! name of the run 
+#*********************************************************************
+# Number of events and rnd seed                                      *
+# Warning: Do not generate more than 1M events in a single run       *
+#*********************************************************************
+  10000 = nevents ! Number of unweighted events requested 
+  0   = iseed   ! rnd seed (0=assigned automatically=default))
+#*********************************************************************
+# Collider type and energy                                           *
+# lpp: 0=No PDF, 1=proton, -1=antiproton,                            *
+#                2=elastic photon of proton/ion beam                 *
+#             +/-3=PDF of electron/positron beam                     *
+#             +/-4=PDF of muon/antimuon beam                         *
+#*********************************************************************
+     1        = lpp1    ! beam 1 type 
+     1        = lpp2    ! beam 2 type
+     6500.0     = ebeam1  ! beam 1 total energy in GeV
+     6500.0     = ebeam2  ! beam 2 total energy in GeV
+# To see polarised beam options: type "update beam_pol"
+
+#*********************************************************************
+# PDF CHOICE: this automatically fixes alpha_s and its evol.         *
+# pdlabel: lhapdf=LHAPDF (installation needed) [1412.7420]           *
+#          iww=Improved Weizsaecker-Williams Approx.[hep-ph/9310350] *
+#          eva=Effective W/Z/A Approx.       [2111.02442]            *
+#          edff=EDFF in gamma-UPC            [eq.(11) in 2207.03012] *
+#          chff=ChFF in gamma-UPC            [eq.(13) in 2207.03012] *
+#          none=No PDF, same as lhapdf with lppx=0                   *
+#*********************************************************************
+     nn23lo1    = pdlabel     ! PDF set 
+     230000    = lhaid     ! if pdlabel=lhapdf, this is the lhapdf number
+# To see heavy ion options: type "update ion_pdf"
+#*********************************************************************
+# Renormalization and factorization scales                           *
+#*********************************************************************
+ False = fixed_ren_scale  ! if .true. use fixed ren scale
+     False = fixed_fac_scale  ! if .true. use fixed fac scale
+ 91.188  = scale            ! fixed ren scale
+ 91.188  = dsqrt_q2fact1    ! fixed fact scale for pdf1
+ 91.188  = dsqrt_q2fact2    ! fixed fact scale for pdf2
+ -1 = dynamical_scale_choice ! Choose one of the preselected dynamical choices
+ 1.0  = scalefact        ! scale factor for event-by-event scales
+
+ 
+#*********************************************************************
+# Type and output format
+#*********************************************************************
+  False     = gridpack  !True = setting up the grid pack
+  -1.0 = time_of_flight ! threshold (in mm) below which the invariant livetime is not written (-1 means not written)
+  average =  event_norm       ! average/sum. Normalization of the weight in the LHEF
+# To see MLM/CKKW  merging options: type "update MLM" or "update CKKW"
+
+#*********************************************************************
+#
+#*********************************************************************
+# Phase-Space Optimization strategy (basic options)
+#*********************************************************************
+   0  = nhel          ! using helicities importance sampling or not.
+                             ! 0: sum over helicity, 1: importance sampling
+   1  = sde_strategy  ! default integration strategy (hep-ph/2021.00773)
+                             ! 1 is old strategy (using amp square)
+			     ! 2 is new strategy (using only the denominator)
+# To see advanced option for Phase-Space optimization: type "update psoptim"			     
+#*********************************************************************
+# Customization (custom cuts/scale/bias/...)                         *
+# list of files containing fortran function that overwrite default   *
+#*********************************************************************
+  = custom_fcts ! List of files containing user hook function
+#*******************************                                                 
+# Parton level cuts definition *
+#*******************************
+  0.0  = dsqrt_shat ! minimal shat for full process
+  -1  = dsqrt_shatmax ! maximum shat for full process
+#                                                                    
+#
+#*********************************************************************
+# BW cutoff (M+/-bwcutoff*Gamma) ! Define on/off-shell for "$" and decay  
+#*********************************************************************
+  15.0  = bwcutoff      ! (M+/-bwcutoff*Gamma)
+#*********************************************************************
+# Standard Cuts                                                      *
+#*********************************************************************
+# Minimum and maximum pt's (for max, -1 means no cut)                *
+#*********************************************************************
+ 0.0  = ptl       ! minimum pt for the charged leptons 
+ -1.0  = ptlmax    ! maximum pt for the charged leptons
+ {} = pt_min_pdg ! pt cut for other particles (use pdg code). Applied on particle and anti-particle
+ {}	= pt_max_pdg ! pt cut for other particles (syntax e.g. {6: 100, 25: 50}) 
+#
+# For display option for energy cut in the partonic center of mass frame type 'update ecut'
+#
+#*********************************************************************
+# Maximum and minimum absolute rapidity (for max, -1 means no cut)   *
+#*********************************************************************
+ -1.0  = etal    ! max rap for the charged leptons 
+ 0.0  = etalmin ! min rap for the charged leptons
+ {} = eta_min_pdg ! rap cut for other particles (use pdg code). Applied on particle and anti-particle
+ {} = eta_max_pdg ! rap cut for other particles (syntax e.g. {6: 2.5, 23: 5})
+#*********************************************************************
+# Minimum and maximum DeltaR distance                                *
+#*********************************************************************
+ 0.0 = drll    ! min distance between leptons 
+ -1.0  = drllmax ! max distance between leptons
+#*********************************************************************
+# Minimum and maximum invariant mass for pairs                       *
+#*********************************************************************
+ 0.0   = mmll    ! min invariant mass of l+l- (same flavour) lepton pair
+ -1.0  = mmllmax ! max invariant mass of l+l- (same flavour) lepton pair
+ {} = mxx_min_pdg ! min invariant mass of a pair of particles X/X~ (e.g. {6:250})
+ {'default': False} = mxx_only_part_antipart ! if True the invariant mass is applied only 
+                       ! to pairs of particle/antiparticle and not to pairs of the same pdg codes.  
+ #*********************************************************************
+ # Minimum and maximum invariant mass for all letpons                 *
+ #*********************************************************************
+ 0.0   = mmnl    ! min invariant mass for all letpons (l+- and vl) 
+ -1.0  = mmnlmax ! max invariant mass for all letpons (l+- and vl) 
+ #*********************************************************************
+ # Minimum and maximum pt for 4-momenta sum of leptons / neutrino     *
+ #  for pair of lepton includes only same flavor, opposite charge
+ #*********************************************************************
+ 0.0   = ptllmin  ! Minimum pt for 4-momenta sum of leptons(l and vl)
+ -1.0  = ptllmax  ! Maximum pt for 4-momenta sum of leptons(l and vl)
+#*********************************************************************
+# Inclusive cuts                                                     *
+#*********************************************************************
+ 0.0  = xptl ! minimum pt for at least one charged lepton 
+ #*********************************************************************
+ # Control the pt's of leptons sorted by pt                           *
+ #*********************************************************************
+ 0.0   = ptl1min ! minimum pt for the leading lepton in pt
+ 0.0   = ptl2min ! minimum pt for the second lepton in pt
+ -1.0  = ptl1max ! maximum pt for the leading lepton in pt 
+ -1.0  = ptl2max ! maximum pt for the second lepton in pt
+#*********************************************************************
+# maximal pdg code for quark to be considered as a light jet         *
+# (otherwise b cuts are applied)                                     *
+#*********************************************************************
+ 4 = maxjetflavor    ! Maximum jet pdg code
+#*********************************************************************
+#
+#*********************************************************************
+# Store info for systematics studies                                 *
+# WARNING: Do not use for interference type of computation           *
+#*********************************************************************
+   False  = use_syst      ! Enable systematics studies
+#
+systematics = systematics_program ! none, systematics [python], SysCalc [depreceted, C++]
+['--mur=0.5,1,2', '--muf=0.5,1,2', '--pdf=errorset'] = systematics_arguments ! see: https://cp3.irmp.ucl.ac.be/projects/madgraph/wiki/Systematics#Systematicspythonmodule
+]]>
+</MGRunCard>
+<slha>
+######################################################################
+## PARAM_CARD AUTOMATICALY GENERATED BY MG5                       ####
+######################################################################
+###################################
+## INFORMATION FOR CKMBLOCK
+###################################
+BLOCK CKMBLOCK # 
+      2 2.265000e-01 # ckmlambda
+      3 7.900000e-01 # ckma
+      4 1.410000e-01 # ckmrho
+      5 3.570000e-01 # ckmeta
+###################################
+## INFORMATION FOR MASS
+###################################
+BLOCK MASS # 
+      1 4.670000e-03 # md
+      2 2.160000e-03 # mu
+      3 9.300000e-02 # ms
+      4 1.270000e+00 # mc
+      5 4.180000e+00 # mb
+      6 1.727600e+02 # mt
+      11 5.110000e-04 # me
+      13 1.056600e-01 # mmu
+      15 1.777000e+00 # mta
+      23 9.118760e+01 # mz
+      25 1.250900e+02 # mh
+      12 0.000000e+00 # ve : 0.0
+      14 0.000000e+00 # vm : 0.0
+      16 0.000000e+00 # vt : 0.0
+      21 0.000000e+00 # g : 0.0
+      22 0.000000e+00 # a : 0.0
+      9000005 9.118760e+01 # z1 : mz
+      9000006 8.038700e+01 # w1+ : mwsm
+      9000007 1.727600e+02 # t1 : mt
+      9000008 1.250900e+02 # h1 : mh
+      24 8.038700e+01 # w+ : mw
+###################################
+## INFORMATION FOR SMEFT
+###################################
+BLOCK SMEFT # 
+      1 0.000000e+00 # cg
+      2 0.000000e+00 # cw
+      3 0.000000e+00 # ch
+      4 0.000000e+00 # chbox
+      5 0.000000e+00 # chdd
+      6 0.000000e+00 # chg
+      7 0.000000e+00 # chw
+      8 0.000000e+00 # chb
+      9 0.000000e+00 # chwb
+      10 0.000000e+00 # cehre11
+      11 0.000000e+00 # cehre22
+      12 0.000000e+00 # cehre33
+      13 0.000000e+00 # cehre12
+      14 0.000000e+00 # cehre13
+      15 0.000000e+00 # cehre23
+      16 0.000000e+00 # cehre21
+      17 0.000000e+00 # cehre31
+      18 0.000000e+00 # cehre32
+      19 0.000000e+00 # cuhre11
+      20 0.000000e+00 # cuhre22
+      21 0.000000e+00 # cuhre33
+      22 0.000000e+00 # cuhre12
+      23 0.000000e+00 # cuhre13
+      24 0.000000e+00 # cuhre23
+      25 0.000000e+00 # cuhre21
+      26 0.000000e+00 # cuhre31
+      27 0.000000e+00 # cuhre32
+      28 0.000000e+00 # cdhre11
+      29 0.000000e+00 # cdhre22
+      30 0.000000e+00 # cdhre33
+      31 0.000000e+00 # cdhre12
+      32 0.000000e+00 # cdhre13
+      33 0.000000e+00 # cdhre23
+      34 0.000000e+00 # cdhre21
+      35 0.000000e+00 # cdhre31
+      36 0.000000e+00 # cdhre32
+      37 0.000000e+00 # cewre11
+      38 0.000000e+00 # cewre22
+      39 0.000000e+00 # cewre33
+      40 0.000000e+00 # cewre12
+      41 0.000000e+00 # cewre13
+      42 0.000000e+00 # cewre23
+      43 0.000000e+00 # cewre21
+      44 0.000000e+00 # cewre31
+      45 0.000000e+00 # cewre32
+      46 0.000000e+00 # cebre11
+      47 0.000000e+00 # cebre22
+      48 0.000000e+00 # cebre33
+      49 0.000000e+00 # cebre12
+      50 0.000000e+00 # cebre13
+      51 0.000000e+00 # cebre23
+      52 0.000000e+00 # cebre21
+      53 0.000000e+00 # cebre31
+      54 0.000000e+00 # cebre32
+      55 0.000000e+00 # cugre11
+      56 0.000000e+00 # cugre22
+      57 0.000000e+00 # cugre33
+      58 0.000000e+00 # cugre12
+      59 0.000000e+00 # cugre13
+      60 0.000000e+00 # cugre23
+      61 0.000000e+00 # cugre21
+      62 0.000000e+00 # cugre31
+      63 0.000000e+00 # cugre32
+      64 0.000000e+00 # cuwre11
+      65 0.000000e+00 # cuwre22
+      66 0.000000e+00 # cuwre33
+      67 0.000000e+00 # cuwre12
+      68 0.000000e+00 # cuwre13
+      69 0.000000e+00 # cuwre23
+      70 0.000000e+00 # cuwre21
+      71 0.000000e+00 # cuwre31
+      72 0.000000e+00 # cuwre32
+      73 0.000000e+00 # cubre11
+      74 0.000000e+00 # cubre22
+      75 0.000000e+00 # cubre33
+      76 0.000000e+00 # cubre12
+      77 0.000000e+00 # cubre13
+      78 0.000000e+00 # cubre23
+      79 0.000000e+00 # cubre21
+      80 0.000000e+00 # cubre31
+      81 0.000000e+00 # cubre32
+      82 0.000000e+00 # cdgre11
+      83 0.000000e+00 # cdgre22
+      84 0.000000e+00 # cdgre33
+      85 0.000000e+00 # cdgre12
+      86 0.000000e+00 # cdgre13
+      87 0.000000e+00 # cdgre23
+      88 0.000000e+00 # cdgre21
+      89 0.000000e+00 # cdgre31
+      90 0.000000e+00 # cdgre32
+      91 0.000000e+00 # cdwre11
+      92 0.000000e+00 # cdwre22
+      93 0.000000e+00 # cdwre33
+      94 0.000000e+00 # cdwre12
+      95 0.000000e+00 # cdwre13
+      96 0.000000e+00 # cdwre23
+      97 0.000000e+00 # cdwre21
+      98 0.000000e+00 # cdwre31
+      99 0.000000e+00 # cdwre32
+      100 0.000000e+00 # cdbre11
+      101 0.000000e+00 # cdbre22
+      102 0.000000e+00 # cdbre33
+      103 0.000000e+00 # cdbre12
+      104 0.000000e+00 # cdbre13
+      105 0.000000e+00 # cdbre23
+      106 0.000000e+00 # cdbre21
+      107 0.000000e+00 # cdbre31
+      108 0.000000e+00 # cdbre32
+      109 0.000000e+00 # chl1re11
+      110 0.000000e+00 # chl1re12
+      111 0.000000e+00 # chl1re13
+      112 0.000000e+00 # chl1re22
+      113 0.000000e+00 # chl1re23
+      114 0.000000e+00 # chl1re33
+      115 0.000000e+00 # chl3re11
+      116 0.000000e+00 # chl3re12
+      117 0.000000e+00 # chl3re13
+      118 0.000000e+00 # chl3re22
+      119 0.000000e+00 # chl3re23
+      120 0.000000e+00 # chl3re33
+      121 0.000000e+00 # chq1re11
+      122 0.000000e+00 # chq1re12
+      123 0.000000e+00 # chq1re13
+      124 0.000000e+00 # chq1re22
+      125 0.000000e+00 # chq1re23
+      126 0.000000e+00 # chq1re33
+      127 0.000000e+00 # chq3re11
+      128 0.000000e+00 # chq3re12
+      129 0.000000e+00 # chq3re13
+      130 0.000000e+00 # chq3re22
+      131 0.000000e+00 # chq3re23
+      132 0.000000e+00 # chq3re33
+      133 0.000000e+00 # chere11
+      134 0.000000e+00 # chere12
+      135 0.000000e+00 # chere13
+      136 0.000000e+00 # chere22
+      137 0.000000e+00 # chere23
+      138 0.000000e+00 # chere33
+      139 0.000000e+00 # chure11
+      140 0.000000e+00 # chure12
+      141 0.000000e+00 # chure13
+      142 0.000000e+00 # chure22
+      143 0.000000e+00 # chure23
+      144 0.000000e+00 # chure33
+      145 0.000000e+00 # chdre11
+      146 0.000000e+00 # chdre12
+      147 0.000000e+00 # chdre13
+      148 0.000000e+00 # chdre22
+      149 0.000000e+00 # chdre23
+      150 0.000000e+00 # chdre33
+      151 0.000000e+00 # chudre11
+      152 0.000000e+00 # chudre22
+      153 0.000000e+00 # chudre33
+      154 0.000000e+00 # chudre12
+      155 0.000000e+00 # chudre13
+      156 0.000000e+00 # chudre23
+      157 0.000000e+00 # chudre21
+      158 0.000000e+00 # chudre31
+      159 0.000000e+00 # chudre32
+      160 0.000000e+00 # cllre1111
+      161 0.000000e+00 # cllre1122
+      162 0.000000e+00 # cllre1221
+      163 0.000000e+00 # cllre1133
+      164 0.000000e+00 # cllre1331
+      165 0.000000e+00 # cllre2222
+      166 0.000000e+00 # cllre2233
+      167 0.000000e+00 # cllre2332
+      168 0.000000e+00 # cllre3333
+      169 0.000000e+00 # cllre1112
+      170 0.000000e+00 # cllre1113
+      171 0.000000e+00 # cllre1123
+      172 0.000000e+00 # cllre1212
+      173 0.000000e+00 # cllre1213
+      174 0.000000e+00 # cllre1231
+      175 0.000000e+00 # cllre1222
+      176 0.000000e+00 # cllre1223
+      177 0.000000e+00 # cllre1232
+      178 0.000000e+00 # cllre1233
+      179 0.000000e+00 # cllre1313
+      180 0.000000e+00 # cllre1322
+      181 0.000000e+00 # cllre1332
+      182 0.000000e+00 # cllre1323
+      183 0.000000e+00 # cllre1333
+      184 0.000000e+00 # cllre2223
+      185 0.000000e+00 # cllre2323
+      186 0.000000e+00 # cllre3323
+      187 0.000000e+00 # cqq1re1111
+      188 0.000000e+00 # cqq1re1122
+      189 0.000000e+00 # cqq1re1221
+      190 0.000000e+00 # cqq1re1133
+      191 0.000000e+00 # cqq1re1331
+      192 0.000000e+00 # cqq1re2222
+      193 0.000000e+00 # cqq1re2233
+      194 0.000000e+00 # cqq1re2332
+      195 0.000000e+00 # cqq1re3333
+      196 0.000000e+00 # cqq1re1112
+      197 0.000000e+00 # cqq1re1113
+      198 0.000000e+00 # cqq1re1123
+      199 0.000000e+00 # cqq1re1212
+      200 0.000000e+00 # cqq1re1213
+      201 0.000000e+00 # cqq1re1231
+      202 0.000000e+00 # cqq1re1222
+      203 0.000000e+00 # cqq1re1223
+      204 0.000000e+00 # cqq1re1232
+      205 0.000000e+00 # cqq1re1233
+      206 0.000000e+00 # cqq1re1313
+      207 0.000000e+00 # cqq1re1322
+      208 0.000000e+00 # cqq1re1332
+      209 0.000000e+00 # cqq1re1323
+      210 0.000000e+00 # cqq1re1333
+      211 0.000000e+00 # cqq1re2223
+      212 0.000000e+00 # cqq1re2323
+      213 0.000000e+00 # cqq1re3323
+      214 0.000000e+00 # cqq3re1111
+      215 0.000000e+00 # cqq3re1122
+      216 0.000000e+00 # cqq3re1221
+      217 0.000000e+00 # cqq3re1133
+      218 0.000000e+00 # cqq3re1331
+      219 0.000000e+00 # cqq3re2222
+      220 0.000000e+00 # cqq3re2233
+      221 0.000000e+00 # cqq3re2332
+      222 0.000000e+00 # cqq3re3333
+      223 0.000000e+00 # cqq3re1112
+      224 0.000000e+00 # cqq3re1113
+      225 0.000000e+00 # cqq3re1123
+      226 0.000000e+00 # cqq3re1212
+      227 0.000000e+00 # cqq3re1213
+      228 0.000000e+00 # cqq3re1231
+      229 0.000000e+00 # cqq3re1222
+      230 0.000000e+00 # cqq3re1223
+      231 0.000000e+00 # cqq3re1232
+      232 0.000000e+00 # cqq3re1233
+      233 0.000000e+00 # cqq3re1313
+      234 0.000000e+00 # cqq3re1322
+      235 0.000000e+00 # cqq3re1332
+      236 0.000000e+00 # cqq3re1323
+      237 0.000000e+00 # cqq3re1333
+      238 0.000000e+00 # cqq3re2223
+      239 0.000000e+00 # cqq3re2323
+      240 0.000000e+00 # cqq3re3323
+      241 0.000000e+00 # clq1re1111
+      242 0.000000e+00 # clq1re1112
+      243 0.000000e+00 # clq1re1113
+      244 0.000000e+00 # clq1re1123
+      245 0.000000e+00 # clq1re1122
+      246 0.000000e+00 # clq1re1133
+      247 0.000000e+00 # clq1re1211
+      248 0.000000e+00 # clq1re1212
+      249 0.000000e+00 # clq1re1221
+      250 0.000000e+00 # clq1re1213
+      251 0.000000e+00 # clq1re1231
+      252 0.000000e+00 # clq1re1222
+      253 0.000000e+00 # clq1re1223
+      254 0.000000e+00 # clq1re1232
+      255 0.000000e+00 # clq1re1233
+      256 0.000000e+00 # clq1re1311
+      257 0.000000e+00 # clq1re1312
+      258 0.000000e+00 # clq1re1313
+      259 0.000000e+00 # clq1re1331
+      260 0.000000e+00 # clq1re1321
+      261 0.000000e+00 # clq1re1322
+      262 0.000000e+00 # clq1re1332
+      263 0.000000e+00 # clq1re1323
+      264 0.000000e+00 # clq1re1333
+      265 0.000000e+00 # clq1re2211
+      266 0.000000e+00 # clq1re2212
+      267 0.000000e+00 # clq1re2213
+      268 0.000000e+00 # clq1re2222
+      269 0.000000e+00 # clq1re2223
+      270 0.000000e+00 # clq1re2233
+      271 0.000000e+00 # clq1re2311
+      272 0.000000e+00 # clq1re2312
+      273 0.000000e+00 # clq1re2313
+      274 0.000000e+00 # clq1re2321
+      275 0.000000e+00 # clq1re2322
+      276 0.000000e+00 # clq1re2323
+      277 0.000000e+00 # clq1re2331
+      278 0.000000e+00 # clq1re2332
+      279 0.000000e+00 # clq1re2333
+      280 0.000000e+00 # clq1re3311
+      281 0.000000e+00 # clq1re3312
+      282 0.000000e+00 # clq1re3313
+      283 0.000000e+00 # clq1re3322
+      284 0.000000e+00 # clq1re3333
+      285 0.000000e+00 # clq1re3323
+      286 0.000000e+00 # clq3re1111
+      287 0.000000e+00 # clq3re1112
+      288 0.000000e+00 # clq3re1113
+      289 0.000000e+00 # clq3re1123
+      290 0.000000e+00 # clq3re1122
+      291 0.000000e+00 # clq3re1133
+      292 0.000000e+00 # clq3re1211
+      293 0.000000e+00 # clq3re1212
+      294 0.000000e+00 # clq3re1221
+      295 0.000000e+00 # clq3re1213
+      296 0.000000e+00 # clq3re1231
+      297 0.000000e+00 # clq3re1222
+      298 0.000000e+00 # clq3re1223
+      299 0.000000e+00 # clq3re1232
+      300 0.000000e+00 # clq3re1233
+      301 0.000000e+00 # clq3re1311
+      302 0.000000e+00 # clq3re1312
+      303 0.000000e+00 # clq3re1313
+      304 0.000000e+00 # clq3re1331
+      305 0.000000e+00 # clq3re1321
+      306 0.000000e+00 # clq3re1322
+      307 0.000000e+00 # clq3re1332
+      308 0.000000e+00 # clq3re1323
+      309 0.000000e+00 # clq3re1333
+      310 0.000000e+00 # clq3re2211
+      311 0.000000e+00 # clq3re2212
+      312 0.000000e+00 # clq3re2213
+      313 0.000000e+00 # clq3re2222
+      314 0.000000e+00 # clq3re2223
+      315 0.000000e+00 # clq3re2233
+      316 0.000000e+00 # clq3re2311
+      317 0.000000e+00 # clq3re2312
+      318 0.000000e+00 # clq3re2313
+      319 0.000000e+00 # clq3re2321
+      320 0.000000e+00 # clq3re2322
+      321 0.000000e+00 # clq3re2323
+      322 0.000000e+00 # clq3re2331
+      323 0.000000e+00 # clq3re2332
+      324 0.000000e+00 # clq3re2333
+      325 0.000000e+00 # clq3re3311
+      326 0.000000e+00 # clq3re3312
+      327 0.000000e+00 # clq3re3313
+      328 0.000000e+00 # clq3re3322
+      329 0.000000e+00 # clq3re3333
+      330 0.000000e+00 # clq3re3323
+      331 0.000000e+00 # ceere1111
+      332 0.000000e+00 # ceere1122
+      333 0.000000e+00 # ceere1133
+      334 0.000000e+00 # ceere2222
+      335 0.000000e+00 # ceere2233
+      336 0.000000e+00 # ceere3333
+      337 0.000000e+00 # ceere1112
+      338 0.000000e+00 # ceere1123
+      339 0.000000e+00 # ceere1113
+      340 0.000000e+00 # ceere1213
+      341 0.000000e+00 # ceere1212
+      342 0.000000e+00 # ceere1232
+      343 0.000000e+00 # ceere1222
+      344 0.000000e+00 # ceere1313
+      345 0.000000e+00 # ceere1233
+      346 0.000000e+00 # ceere1323
+      347 0.000000e+00 # ceere1322
+      348 0.000000e+00 # ceere2223
+      349 0.000000e+00 # ceere1333
+      350 0.000000e+00 # ceere3323
+      351 0.000000e+00 # ceere2323
+      352 0.000000e+00 # cuure1111
+      353 0.000000e+00 # cuure1122
+      354 0.000000e+00 # cuure1221
+      355 0.000000e+00 # cuure1133
+      356 0.000000e+00 # cuure1331
+      357 0.000000e+00 # cuure2222
+      358 0.000000e+00 # cuure2233
+      359 0.000000e+00 # cuure2332
+      360 0.000000e+00 # cuure3333
+      361 0.000000e+00 # cuure1112
+      362 0.000000e+00 # cuure1113
+      363 0.000000e+00 # cuure1123
+      364 0.000000e+00 # cuure1212
+      365 0.000000e+00 # cuure1213
+      366 0.000000e+00 # cuure1231
+      367 0.000000e+00 # cuure1222
+      368 0.000000e+00 # cuure1223
+      369 0.000000e+00 # cuure1232
+      370 0.000000e+00 # cuure1233
+      371 0.000000e+00 # cuure1313
+      372 0.000000e+00 # cuure1322
+      373 0.000000e+00 # cuure1332
+      374 0.000000e+00 # cuure1323
+      375 0.000000e+00 # cuure1333
+      376 0.000000e+00 # cuure2223
+      377 0.000000e+00 # cuure2323
+      378 0.000000e+00 # cuure3323
+      379 0.000000e+00 # cddre1111
+      380 0.000000e+00 # cddre1122
+      381 0.000000e+00 # cddre1221
+      382 0.000000e+00 # cddre1133
+      383 0.000000e+00 # cddre1331
+      384 0.000000e+00 # cddre2222
+      385 0.000000e+00 # cddre2233
+      386 0.000000e+00 # cddre2332
+      387 0.000000e+00 # cddre3333
+      388 0.000000e+00 # cddre1112
+      389 0.000000e+00 # cddre1113
+      390 0.000000e+00 # cddre1123
+      391 0.000000e+00 # cddre1212
+      392 0.000000e+00 # cddre1213
+      393 0.000000e+00 # cddre1231
+      394 0.000000e+00 # cddre1222
+      395 0.000000e+00 # cddre1223
+      396 0.000000e+00 # cddre1232
+      397 0.000000e+00 # cddre1233
+      398 0.000000e+00 # cddre1313
+      399 0.000000e+00 # cddre1322
+      400 0.000000e+00 # cddre1332
+      401 0.000000e+00 # cddre1323
+      402 0.000000e+00 # cddre1333
+      403 0.000000e+00 # cddre2223
+      404 0.000000e+00 # cddre2323
+      405 0.000000e+00 # cddre3323
+      406 0.000000e+00 # ceure1111
+      407 0.000000e+00 # ceure1112
+      408 0.000000e+00 # ceure1113
+      409 0.000000e+00 # ceure1123
+      410 0.000000e+00 # ceure1122
+      411 0.000000e+00 # ceure1133
+      412 0.000000e+00 # ceure1211
+      413 0.000000e+00 # ceure1212
+      414 0.000000e+00 # ceure1221
+      415 0.000000e+00 # ceure1213
+      416 0.000000e+00 # ceure1231
+      417 0.000000e+00 # ceure1222
+      418 0.000000e+00 # ceure1223
+      419 0.000000e+00 # ceure1232
+      420 0.000000e+00 # ceure1233
+      421 0.000000e+00 # ceure1311
+      422 0.000000e+00 # ceure1312
+      423 0.000000e+00 # ceure1313
+      424 0.000000e+00 # ceure1331
+      425 0.000000e+00 # ceure1321
+      426 0.000000e+00 # ceure1322
+      427 0.000000e+00 # ceure1332
+      428 0.000000e+00 # ceure1323
+      429 0.000000e+00 # ceure1333
+      430 0.000000e+00 # ceure2211
+      431 0.000000e+00 # ceure2212
+      432 0.000000e+00 # ceure2213
+      433 0.000000e+00 # ceure2222
+      434 0.000000e+00 # ceure2223
+      435 0.000000e+00 # ceure2233
+      436 0.000000e+00 # ceure2311
+      437 0.000000e+00 # ceure2312
+      438 0.000000e+00 # ceure2313
+      439 0.000000e+00 # ceure2321
+      440 0.000000e+00 # ceure2322
+      441 0.000000e+00 # ceure2323
+      442 0.000000e+00 # ceure2331
+      443 0.000000e+00 # ceure2332
+      444 0.000000e+00 # ceure2333
+      445 0.000000e+00 # ceure3311
+      446 0.000000e+00 # ceure3312
+      447 0.000000e+00 # ceure3313
+      448 0.000000e+00 # ceure3322
+      449 0.000000e+00 # ceure3333
+      450 0.000000e+00 # ceure3323
+      451 0.000000e+00 # cedre1111
+      452 0.000000e+00 # cedre1112
+      453 0.000000e+00 # cedre1113
+      454 0.000000e+00 # cedre1123
+      455 0.000000e+00 # cedre1122
+      456 0.000000e+00 # cedre1133
+      457 0.000000e+00 # cedre1211
+      458 0.000000e+00 # cedre1212
+      459 0.000000e+00 # cedre1221
+      460 0.000000e+00 # cedre1213
+      461 0.000000e+00 # cedre1231
+      462 0.000000e+00 # cedre1222
+      463 0.000000e+00 # cedre1223
+      464 0.000000e+00 # cedre1232
+      465 0.000000e+00 # cedre1233
+      466 0.000000e+00 # cedre1311
+      467 0.000000e+00 # cedre1312
+      468 0.000000e+00 # cedre1313
+      469 0.000000e+00 # cedre1331
+      470 0.000000e+00 # cedre1321
+      471 0.000000e+00 # cedre1322
+      472 0.000000e+00 # cedre1332
+      473 0.000000e+00 # cedre1323
+      474 0.000000e+00 # cedre1333
+      475 0.000000e+00 # cedre2211
+      476 0.000000e+00 # cedre2212
+      477 0.000000e+00 # cedre2213
+      478 0.000000e+00 # cedre2222
+      479 0.000000e+00 # cedre2223
+      480 0.000000e+00 # cedre2233
+      481 0.000000e+00 # cedre2311
+      482 0.000000e+00 # cedre2312
+      483 0.000000e+00 # cedre2313
+      484 0.000000e+00 # cedre2321
+      485 0.000000e+00 # cedre2322
+      486 0.000000e+00 # cedre2323
+      487 0.000000e+00 # cedre2331
+      488 0.000000e+00 # cedre2332
+      489 0.000000e+00 # cedre2333
+      490 0.000000e+00 # cedre3311
+      491 0.000000e+00 # cedre3312
+      492 0.000000e+00 # cedre3313
+      493 0.000000e+00 # cedre3322
+      494 0.000000e+00 # cedre3333
+      495 0.000000e+00 # cedre3323
+      496 0.000000e+00 # cud1re1111
+      497 0.000000e+00 # cud1re1112
+      498 0.000000e+00 # cud1re1113
+      499 0.000000e+00 # cud1re1123
+      500 0.000000e+00 # cud1re1122
+      501 0.000000e+00 # cud1re1133
+      502 0.000000e+00 # cud1re1211
+      503 0.000000e+00 # cud1re1212
+      504 0.000000e+00 # cud1re1221
+      505 0.000000e+00 # cud1re1213
+      506 0.000000e+00 # cud1re1231
+      507 0.000000e+00 # cud1re1222
+      508 0.000000e+00 # cud1re1223
+      509 0.000000e+00 # cud1re1232
+      510 0.000000e+00 # cud1re1233
+      511 0.000000e+00 # cud1re1311
+      512 0.000000e+00 # cud1re1312
+      513 0.000000e+00 # cud1re1313
+      514 0.000000e+00 # cud1re1331
+      515 0.000000e+00 # cud1re1321
+      516 0.000000e+00 # cud1re1322
+      517 0.000000e+00 # cud1re1332
+      518 0.000000e+00 # cud1re1323
+      519 0.000000e+00 # cud1re1333
+      520 0.000000e+00 # cud1re2211
+      521 0.000000e+00 # cud1re2212
+      522 0.000000e+00 # cud1re2213
+      523 0.000000e+00 # cud1re2222
+      524 0.000000e+00 # cud1re2223
+      525 0.000000e+00 # cud1re2233
+      526 0.000000e+00 # cud1re2311
+      527 0.000000e+00 # cud1re2312
+      528 0.000000e+00 # cud1re2313
+      529 0.000000e+00 # cud1re2321
+      530 0.000000e+00 # cud1re2322
+      531 0.000000e+00 # cud1re2323
+      532 0.000000e+00 # cud1re2331
+      533 0.000000e+00 # cud1re2332
+      534 0.000000e+00 # cud1re2333
+      535 0.000000e+00 # cud1re3311
+      536 0.000000e+00 # cud1re3312
+      537 0.000000e+00 # cud1re3313
+      538 0.000000e+00 # cud1re3322
+      539 0.000000e+00 # cud1re3333
+      540 0.000000e+00 # cud1re3323
+      541 0.000000e+00 # cud8re1111
+      542 0.000000e+00 # cud8re1112
+      543 0.000000e+00 # cud8re1113
+      544 0.000000e+00 # cud8re1123
+      545 0.000000e+00 # cud8re1122
+      546 0.000000e+00 # cud8re1133
+      547 0.000000e+00 # cud8re1211
+      548 0.000000e+00 # cud8re1212
+      549 0.000000e+00 # cud8re1221
+      550 0.000000e+00 # cud8re1213
+      551 0.000000e+00 # cud8re1231
+      552 0.000000e+00 # cud8re1222
+      553 0.000000e+00 # cud8re1223
+      554 0.000000e+00 # cud8re1232
+      555 0.000000e+00 # cud8re1233
+      556 0.000000e+00 # cud8re1311
+      557 0.000000e+00 # cud8re1312
+      558 0.000000e+00 # cud8re1313
+      559 0.000000e+00 # cud8re1331
+      560 0.000000e+00 # cud8re1321
+      561 0.000000e+00 # cud8re1322
+      562 0.000000e+00 # cud8re1332
+      563 0.000000e+00 # cud8re1323
+      564 0.000000e+00 # cud8re1333
+      565 0.000000e+00 # cud8re2211
+      566 0.000000e+00 # cud8re2212
+      567 0.000000e+00 # cud8re2213
+      568 0.000000e+00 # cud8re2222
+      569 0.000000e+00 # cud8re2223
+      570 0.000000e+00 # cud8re2233
+      571 0.000000e+00 # cud8re2311
+      572 0.000000e+00 # cud8re2312
+      573 0.000000e+00 # cud8re2313
+      574 0.000000e+00 # cud8re2321
+      575 0.000000e+00 # cud8re2322
+      576 0.000000e+00 # cud8re2323
+      577 0.000000e+00 # cud8re2331
+      578 0.000000e+00 # cud8re2332
+      579 0.000000e+00 # cud8re2333
+      580 0.000000e+00 # cud8re3311
+      581 0.000000e+00 # cud8re3312
+      582 0.000000e+00 # cud8re3313
+      583 0.000000e+00 # cud8re3322
+      584 0.000000e+00 # cud8re3333
+      585 0.000000e+00 # cud8re3323
+      586 0.000000e+00 # clere1111
+      587 0.000000e+00 # clere1112
+      588 0.000000e+00 # clere1113
+      589 0.000000e+00 # clere1123
+      590 0.000000e+00 # clere1122
+      591 0.000000e+00 # clere1133
+      592 0.000000e+00 # clere1211
+      593 0.000000e+00 # clere1212
+      594 0.000000e+00 # clere1221
+      595 0.000000e+00 # clere1213
+      596 0.000000e+00 # clere1231
+      597 0.000000e+00 # clere1222
+      598 0.000000e+00 # clere1223
+      599 0.000000e+00 # clere1232
+      600 0.000000e+00 # clere1233
+      601 0.000000e+00 # clere1311
+      602 0.000000e+00 # clere1312
+      603 0.000000e+00 # clere1313
+      604 0.000000e+00 # clere1331
+      605 0.000000e+00 # clere1321
+      606 0.000000e+00 # clere1322
+      607 0.000000e+00 # clere1332
+      608 0.000000e+00 # clere1323
+      609 0.000000e+00 # clere1333
+      610 0.000000e+00 # clere2211
+      611 0.000000e+00 # clere2212
+      612 0.000000e+00 # clere2213
+      613 0.000000e+00 # clere2222
+      614 0.000000e+00 # clere2223
+      615 0.000000e+00 # clere2233
+      616 0.000000e+00 # clere2311
+      617 0.000000e+00 # clere2312
+      618 0.000000e+00 # clere2313
+      619 0.000000e+00 # clere2321
+      620 0.000000e+00 # clere2322
+      621 0.000000e+00 # clere2323
+      622 0.000000e+00 # clere2331
+      623 0.000000e+00 # clere2332
+      624 0.000000e+00 # clere2333
+      625 0.000000e+00 # clere3311
+      626 0.000000e+00 # clere3312
+      627 0.000000e+00 # clere3313
+      628 0.000000e+00 # clere3322
+      629 0.000000e+00 # clere3333
+      630 0.000000e+00 # clere3323
+      631 0.000000e+00 # clure1111
+      632 0.000000e+00 # clure1112
+      633 0.000000e+00 # clure1113
+      634 0.000000e+00 # clure1123
+      635 0.000000e+00 # clure1122
+      636 0.000000e+00 # clure1133
+      637 0.000000e+00 # clure1211
+      638 0.000000e+00 # clure1212
+      639 0.000000e+00 # clure1221
+      640 0.000000e+00 # clure1213
+      641 0.000000e+00 # clure1231
+      642 0.000000e+00 # clure1222
+      643 0.000000e+00 # clure1223
+      644 0.000000e+00 # clure1232
+      645 0.000000e+00 # clure1233
+      646 0.000000e+00 # clure1311
+      647 0.000000e+00 # clure1312
+      648 0.000000e+00 # clure1313
+      649 0.000000e+00 # clure1331
+      650 0.000000e+00 # clure1321
+      651 0.000000e+00 # clure1322
+      652 0.000000e+00 # clure1332
+      653 0.000000e+00 # clure1323
+      654 0.000000e+00 # clure1333
+      655 0.000000e+00 # clure2211
+      656 0.000000e+00 # clure2212
+      657 0.000000e+00 # clure2213
+      658 0.000000e+00 # clure2222
+      659 0.000000e+00 # clure2223
+      660 0.000000e+00 # clure2233
+      661 0.000000e+00 # clure2311
+      662 0.000000e+00 # clure2312
+      663 0.000000e+00 # clure2313
+      664 0.000000e+00 # clure2321
+      665 0.000000e+00 # clure2322
+      666 0.000000e+00 # clure2323
+      667 0.000000e+00 # clure2331
+      668 0.000000e+00 # clure2332
+      669 0.000000e+00 # clure2333
+      670 0.000000e+00 # clure3311
+      671 0.000000e+00 # clure3312
+      672 0.000000e+00 # clure3313
+      673 0.000000e+00 # clure3322
+      674 0.000000e+00 # clure3333
+      675 0.000000e+00 # clure3323
+      676 0.000000e+00 # cldre1111
+      677 0.000000e+00 # cldre1112
+      678 0.000000e+00 # cldre1113
+      679 0.000000e+00 # cldre1123
+      680 0.000000e+00 # cldre1122
+      681 0.000000e+00 # cldre1133
+      682 0.000000e+00 # cldre1211
+      683 0.000000e+00 # cldre1212
+      684 0.000000e+00 # cldre1221
+      685 0.000000e+00 # cldre1213
+      686 0.000000e+00 # cldre1231
+      687 0.000000e+00 # cldre1222
+      688 0.000000e+00 # cldre1223
+      689 0.000000e+00 # cldre1232
+      690 0.000000e+00 # cldre1233
+      691 0.000000e+00 # cldre1311
+      692 0.000000e+00 # cldre1312
+      693 0.000000e+00 # cldre1313
+      694 0.000000e+00 # cldre1331
+      695 0.000000e+00 # cldre1321
+      696 0.000000e+00 # cldre1322
+      697 0.000000e+00 # cldre1332
+      698 0.000000e+00 # cldre1323
+      699 0.000000e+00 # cldre1333
+      700 0.000000e+00 # cldre2211
+      701 0.000000e+00 # cldre2212
+      702 0.000000e+00 # cldre2213
+      703 0.000000e+00 # cldre2222
+      704 0.000000e+00 # cldre2223
+      705 0.000000e+00 # cldre2233
+      706 0.000000e+00 # cldre2311
+      707 0.000000e+00 # cldre2312
+      708 0.000000e+00 # cldre2313
+      709 0.000000e+00 # cldre2321
+      710 0.000000e+00 # cldre2322
+      711 0.000000e+00 # cldre2323
+      712 0.000000e+00 # cldre2331
+      713 0.000000e+00 # cldre2332
+      714 0.000000e+00 # cldre2333
+      715 0.000000e+00 # cldre3311
+      716 0.000000e+00 # cldre3312
+      717 0.000000e+00 # cldre3313
+      718 0.000000e+00 # cldre3322
+      719 0.000000e+00 # cldre3333
+      720 0.000000e+00 # cldre3323
+      721 0.000000e+00 # cqere1111
+      722 0.000000e+00 # cqere1112
+      723 0.000000e+00 # cqere1113
+      724 0.000000e+00 # cqere1123
+      725 0.000000e+00 # cqere1122
+      726 0.000000e+00 # cqere1133
+      727 0.000000e+00 # cqere1211
+      728 0.000000e+00 # cqere1212
+      729 0.000000e+00 # cqere1221
+      730 0.000000e+00 # cqere1213
+      731 0.000000e+00 # cqere1231
+      732 0.000000e+00 # cqere1222
+      733 0.000000e+00 # cqere1223
+      734 0.000000e+00 # cqere1232
+      735 0.000000e+00 # cqere1233
+      736 0.000000e+00 # cqere1311
+      737 0.000000e+00 # cqere1312
+      738 0.000000e+00 # cqere1313
+      739 0.000000e+00 # cqere1331
+      740 0.000000e+00 # cqere1321
+      741 0.000000e+00 # cqere1322
+      742 0.000000e+00 # cqere1332
+      743 0.000000e+00 # cqere1323
+      744 0.000000e+00 # cqere1333
+      745 0.000000e+00 # cqere2211
+      746 0.000000e+00 # cqere2212
+      747 0.000000e+00 # cqere2213
+      748 0.000000e+00 # cqere2222
+      749 0.000000e+00 # cqere2223
+      750 0.000000e+00 # cqere2233
+      751 0.000000e+00 # cqere2311
+      752 0.000000e+00 # cqere2312
+      753 0.000000e+00 # cqere2313
+      754 0.000000e+00 # cqere2321
+      755 0.000000e+00 # cqere2322
+      756 0.000000e+00 # cqere2323
+      757 0.000000e+00 # cqere2331
+      758 0.000000e+00 # cqere2332
+      759 0.000000e+00 # cqere2333
+      760 0.000000e+00 # cqere3311
+      761 0.000000e+00 # cqere3312
+      762 0.000000e+00 # cqere3313
+      763 0.000000e+00 # cqere3322
+      764 0.000000e+00 # cqere3333
+      765 0.000000e+00 # cqere3323
+      766 0.000000e+00 # cqu1re1111
+      767 0.000000e+00 # cqu1re1112
+      768 0.000000e+00 # cqu1re1113
+      769 0.000000e+00 # cqu1re1123
+      770 0.000000e+00 # cqu1re1122
+      771 0.000000e+00 # cqu1re1133
+      772 0.000000e+00 # cqu1re1211
+      773 0.000000e+00 # cqu1re1212
+      774 0.000000e+00 # cqu1re1221
+      775 0.000000e+00 # cqu1re1213
+      776 0.000000e+00 # cqu1re1231
+      777 0.000000e+00 # cqu1re1222
+      778 0.000000e+00 # cqu1re1223
+      779 0.000000e+00 # cqu1re1232
+      780 0.000000e+00 # cqu1re1233
+      781 0.000000e+00 # cqu1re1311
+      782 0.000000e+00 # cqu1re1312
+      783 0.000000e+00 # cqu1re1313
+      784 0.000000e+00 # cqu1re1331
+      785 0.000000e+00 # cqu1re1321
+      786 0.000000e+00 # cqu1re1322
+      787 0.000000e+00 # cqu1re1332
+      788 0.000000e+00 # cqu1re1323
+      789 0.000000e+00 # cqu1re1333
+      790 0.000000e+00 # cqu1re2211
+      791 0.000000e+00 # cqu1re2212
+      792 0.000000e+00 # cqu1re2213
+      793 0.000000e+00 # cqu1re2222
+      794 0.000000e+00 # cqu1re2223
+      795 0.000000e+00 # cqu1re2233
+      796 0.000000e+00 # cqu1re2311
+      797 0.000000e+00 # cqu1re2312
+      798 0.000000e+00 # cqu1re2313
+      799 0.000000e+00 # cqu1re2321
+      800 0.000000e+00 # cqu1re2322
+      801 0.000000e+00 # cqu1re2323
+      802 0.000000e+00 # cqu1re2331
+      803 0.000000e+00 # cqu1re2332
+      804 0.000000e+00 # cqu1re2333
+      805 0.000000e+00 # cqu1re3311
+      806 0.000000e+00 # cqu1re3312
+      807 0.000000e+00 # cqu1re3313
+      808 0.000000e+00 # cqu1re3322
+      809 0.000000e+00 # cqu1re3333
+      810 0.000000e+00 # cqu1re3323
+      811 0.000000e+00 # cqu8re1111
+      812 0.000000e+00 # cqu8re1112
+      813 0.000000e+00 # cqu8re1113
+      814 0.000000e+00 # cqu8re1123
+      815 0.000000e+00 # cqu8re1122
+      816 0.000000e+00 # cqu8re1133
+      817 0.000000e+00 # cqu8re1211
+      818 0.000000e+00 # cqu8re1212
+      819 0.000000e+00 # cqu8re1221
+      820 0.000000e+00 # cqu8re1213
+      821 0.000000e+00 # cqu8re1231
+      822 0.000000e+00 # cqu8re1222
+      823 0.000000e+00 # cqu8re1223
+      824 0.000000e+00 # cqu8re1232
+      825 0.000000e+00 # cqu8re1233
+      826 0.000000e+00 # cqu8re1311
+      827 0.000000e+00 # cqu8re1312
+      828 0.000000e+00 # cqu8re1313
+      829 0.000000e+00 # cqu8re1331
+      830 0.000000e+00 # cqu8re1321
+      831 0.000000e+00 # cqu8re1322
+      832 0.000000e+00 # cqu8re1332
+      833 0.000000e+00 # cqu8re1323
+      834 0.000000e+00 # cqu8re1333
+      835 0.000000e+00 # cqu8re2211
+      836 0.000000e+00 # cqu8re2212
+      837 0.000000e+00 # cqu8re2213
+      838 0.000000e+00 # cqu8re2222
+      839 0.000000e+00 # cqu8re2223
+      840 0.000000e+00 # cqu8re2233
+      841 0.000000e+00 # cqu8re2311
+      842 0.000000e+00 # cqu8re2312
+      843 0.000000e+00 # cqu8re2313
+      844 0.000000e+00 # cqu8re2321
+      845 0.000000e+00 # cqu8re2322
+      846 0.000000e+00 # cqu8re2323
+      847 0.000000e+00 # cqu8re2331
+      848 0.000000e+00 # cqu8re2332
+      849 0.000000e+00 # cqu8re2333
+      850 0.000000e+00 # cqu8re3311
+      851 0.000000e+00 # cqu8re3312
+      852 0.000000e+00 # cqu8re3313
+      853 0.000000e+00 # cqu8re3322
+      854 0.000000e+00 # cqu8re3333
+      855 0.000000e+00 # cqu8re3323
+      856 0.000000e+00 # cqd1re1111
+      857 0.000000e+00 # cqd1re1112
+      858 0.000000e+00 # cqd1re1113
+      859 0.000000e+00 # cqd1re1123
+      860 0.000000e+00 # cqd1re1122
+      861 0.000000e+00 # cqd1re1133
+      862 0.000000e+00 # cqd1re1211
+      863 0.000000e+00 # cqd1re1212
+      864 0.000000e+00 # cqd1re1221
+      865 0.000000e+00 # cqd1re1213
+      866 0.000000e+00 # cqd1re1231
+      867 0.000000e+00 # cqd1re1222
+      868 0.000000e+00 # cqd1re1223
+      869 0.000000e+00 # cqd1re1232
+      870 0.000000e+00 # cqd1re1233
+      871 0.000000e+00 # cqd1re1311
+      872 0.000000e+00 # cqd1re1312
+      873 0.000000e+00 # cqd1re1313
+      874 0.000000e+00 # cqd1re1331
+      875 0.000000e+00 # cqd1re1321
+      876 0.000000e+00 # cqd1re1322
+      877 0.000000e+00 # cqd1re1332
+      878 0.000000e+00 # cqd1re1323
+      879 0.000000e+00 # cqd1re1333
+      880 0.000000e+00 # cqd1re2211
+      881 0.000000e+00 # cqd1re2212
+      882 0.000000e+00 # cqd1re2213
+      883 0.000000e+00 # cqd1re2222
+      884 0.000000e+00 # cqd1re2223
+      885 0.000000e+00 # cqd1re2233
+      886 0.000000e+00 # cqd1re2311
+      887 0.000000e+00 # cqd1re2312
+      888 0.000000e+00 # cqd1re2313
+      889 0.000000e+00 # cqd1re2321
+      890 0.000000e+00 # cqd1re2322
+      891 0.000000e+00 # cqd1re2323
+      892 0.000000e+00 # cqd1re2331
+      893 0.000000e+00 # cqd1re2332
+      894 0.000000e+00 # cqd1re2333
+      895 0.000000e+00 # cqd1re3311
+      896 0.000000e+00 # cqd1re3312
+      897 0.000000e+00 # cqd1re3313
+      898 0.000000e+00 # cqd1re3322
+      899 0.000000e+00 # cqd1re3333
+      900 0.000000e+00 # cqd1re3323
+      901 0.000000e+00 # cqd8re1111
+      902 0.000000e+00 # cqd8re1112
+      903 0.000000e+00 # cqd8re1113
+      904 0.000000e+00 # cqd8re1123
+      905 0.000000e+00 # cqd8re1122
+      906 0.000000e+00 # cqd8re1133
+      907 0.000000e+00 # cqd8re1211
+      908 0.000000e+00 # cqd8re1212
+      909 0.000000e+00 # cqd8re1221
+      910 0.000000e+00 # cqd8re1213
+      911 0.000000e+00 # cqd8re1231
+      912 0.000000e+00 # cqd8re1222
+      913 0.000000e+00 # cqd8re1223
+      914 0.000000e+00 # cqd8re1232
+      915 0.000000e+00 # cqd8re1233
+      916 0.000000e+00 # cqd8re1311
+      917 0.000000e+00 # cqd8re1312
+      918 0.000000e+00 # cqd8re1313
+      919 0.000000e+00 # cqd8re1331
+      920 0.000000e+00 # cqd8re1321
+      921 0.000000e+00 # cqd8re1322
+      922 0.000000e+00 # cqd8re1332
+      923 0.000000e+00 # cqd8re1323
+      924 0.000000e+00 # cqd8re1333
+      925 0.000000e+00 # cqd8re2211
+      926 0.000000e+00 # cqd8re2212
+      927 0.000000e+00 # cqd8re2213
+      928 0.000000e+00 # cqd8re2222
+      929 0.000000e+00 # cqd8re2223
+      930 0.000000e+00 # cqd8re2233
+      931 0.000000e+00 # cqd8re2311
+      932 0.000000e+00 # cqd8re2312
+      933 0.000000e+00 # cqd8re2313
+      934 0.000000e+00 # cqd8re2321
+      935 0.000000e+00 # cqd8re2322
+      936 0.000000e+00 # cqd8re2323
+      937 0.000000e+00 # cqd8re2331
+      938 0.000000e+00 # cqd8re2332
+      939 0.000000e+00 # cqd8re2333
+      940 0.000000e+00 # cqd8re3311
+      941 0.000000e+00 # cqd8re3312
+      942 0.000000e+00 # cqd8re3313
+      943 0.000000e+00 # cqd8re3322
+      944 0.000000e+00 # cqd8re3333
+      945 0.000000e+00 # cqd8re3323
+      946 0.000000e+00 # cledqre1111
+      947 0.000000e+00 # cledqre1112
+      948 0.000000e+00 # cledqre1113
+      949 0.000000e+00 # cledqre1121
+      950 0.000000e+00 # cledqre1122
+      951 0.000000e+00 # cledqre1123
+      952 0.000000e+00 # cledqre1131
+      953 0.000000e+00 # cledqre1132
+      954 0.000000e+00 # cledqre1133
+      955 0.000000e+00 # cledqre2211
+      956 0.000000e+00 # cledqre2212
+      957 0.000000e+00 # cledqre2213
+      958 0.000000e+00 # cledqre2221
+      959 0.000000e+00 # cledqre2222
+      960 0.000000e+00 # cledqre2223
+      961 0.000000e+00 # cledqre2231
+      962 0.000000e+00 # cledqre2232
+      963 0.000000e+00 # cledqre2233
+      964 0.000000e+00 # cledqre3311
+      965 0.000000e+00 # cledqre3312
+      966 0.000000e+00 # cledqre3313
+      967 0.000000e+00 # cledqre3321
+      968 0.000000e+00 # cledqre3322
+      969 0.000000e+00 # cledqre3323
+      970 0.000000e+00 # cledqre3331
+      971 0.000000e+00 # cledqre3332
+      972 0.000000e+00 # cledqre3333
+      973 0.000000e+00 # cledqre1211
+      974 0.000000e+00 # cledqre1212
+      975 0.000000e+00 # cledqre1213
+      976 0.000000e+00 # cledqre1221
+      977 0.000000e+00 # cledqre1222
+      978 0.000000e+00 # cledqre1223
+      979 0.000000e+00 # cledqre1231
+      980 0.000000e+00 # cledqre1232
+      981 0.000000e+00 # cledqre1233
+      982 0.000000e+00 # cledqre1311
+      983 0.000000e+00 # cledqre1312
+      984 0.000000e+00 # cledqre1313
+      985 0.000000e+00 # cledqre1321
+      986 0.000000e+00 # cledqre1322
+      987 0.000000e+00 # cledqre1323
+      988 0.000000e+00 # cledqre1331
+      989 0.000000e+00 # cledqre1332
+      990 0.000000e+00 # cledqre1333
+      991 0.000000e+00 # cledqre2311
+      992 0.000000e+00 # cledqre2312
+      993 0.000000e+00 # cledqre2313
+      994 0.000000e+00 # cledqre2321
+      995 0.000000e+00 # cledqre2322
+      996 0.000000e+00 # cledqre2323
+      997 0.000000e+00 # cledqre2331
+      998 0.000000e+00 # cledqre2332
+      999 0.000000e+00 # cledqre2333
+      1000 0.000000e+00 # cledqre2111
+      1001 0.000000e+00 # cledqre2112
+      1002 0.000000e+00 # cledqre2113
+      1003 0.000000e+00 # cledqre2121
+      1004 0.000000e+00 # cledqre2122
+      1005 0.000000e+00 # cledqre2123
+      1006 0.000000e+00 # cledqre2131
+      1007 0.000000e+00 # cledqre2132
+      1008 0.000000e+00 # cledqre2133
+      1009 0.000000e+00 # cledqre3111
+      1010 0.000000e+00 # cledqre3112
+      1011 0.000000e+00 # cledqre3113
+      1012 0.000000e+00 # cledqre3121
+      1013 0.000000e+00 # cledqre3122
+      1014 0.000000e+00 # cledqre3123
+      1015 0.000000e+00 # cledqre3131
+      1016 0.000000e+00 # cledqre3132
+      1017 0.000000e+00 # cledqre3133
+      1018 0.000000e+00 # cledqre3211
+      1019 0.000000e+00 # cledqre3212
+      1020 0.000000e+00 # cledqre3213
+      1021 0.000000e+00 # cledqre3221
+      1022 0.000000e+00 # cledqre3222
+      1023 0.000000e+00 # cledqre3223
+      1024 0.000000e+00 # cledqre3231
+      1025 0.000000e+00 # cledqre3232
+      1026 0.000000e+00 # cledqre3233
+      1027 0.000000e+00 # cquqd1re1111
+      1028 0.000000e+00 # cquqd1re1112
+      1029 0.000000e+00 # cquqd1re1113
+      1030 0.000000e+00 # cquqd1re1121
+      1031 0.000000e+00 # cquqd1re1122
+      1032 0.000000e+00 # cquqd1re1123
+      1033 0.000000e+00 # cquqd1re1131
+      1034 0.000000e+00 # cquqd1re1132
+      1035 0.000000e+00 # cquqd1re1133
+      1036 0.000000e+00 # cquqd1re2211
+      1037 0.000000e+00 # cquqd1re2212
+      1038 0.000000e+00 # cquqd1re2213
+      1039 0.000000e+00 # cquqd1re2221
+      1040 0.000000e+00 # cquqd1re2222
+      1041 0.000000e+00 # cquqd1re2223
+      1042 0.000000e+00 # cquqd1re2231
+      1043 0.000000e+00 # cquqd1re2232
+      1044 0.000000e+00 # cquqd1re2233
+      1045 0.000000e+00 # cquqd1re3311
+      1046 0.000000e+00 # cquqd1re3312
+      1047 0.000000e+00 # cquqd1re3313
+      1048 0.000000e+00 # cquqd1re3321
+      1049 0.000000e+00 # cquqd1re3322
+      1050 0.000000e+00 # cquqd1re3323
+      1051 0.000000e+00 # cquqd1re3331
+      1052 0.000000e+00 # cquqd1re3332
+      1053 0.000000e+00 # cquqd1re3333
+      1054 0.000000e+00 # cquqd1re1211
+      1055 0.000000e+00 # cquqd1re1212
+      1056 0.000000e+00 # cquqd1re1213
+      1057 0.000000e+00 # cquqd1re1221
+      1058 0.000000e+00 # cquqd1re1222
+      1059 0.000000e+00 # cquqd1re1223
+      1060 0.000000e+00 # cquqd1re1231
+      1061 0.000000e+00 # cquqd1re1232
+      1062 0.000000e+00 # cquqd1re1233
+      1063 0.000000e+00 # cquqd1re1311
+      1064 0.000000e+00 # cquqd1re1312
+      1065 0.000000e+00 # cquqd1re1313
+      1066 0.000000e+00 # cquqd1re1321
+      1067 0.000000e+00 # cquqd1re1322
+      1068 0.000000e+00 # cquqd1re1323
+      1069 0.000000e+00 # cquqd1re1331
+      1070 0.000000e+00 # cquqd1re1332
+      1071 0.000000e+00 # cquqd1re1333
+      1072 0.000000e+00 # cquqd1re2311
+      1073 0.000000e+00 # cquqd1re2312
+      1074 0.000000e+00 # cquqd1re2313
+      1075 0.000000e+00 # cquqd1re2321
+      1076 0.000000e+00 # cquqd1re2322
+      1077 0.000000e+00 # cquqd1re2323
+      1078 0.000000e+00 # cquqd1re2331
+      1079 0.000000e+00 # cquqd1re2332
+      1080 0.000000e+00 # cquqd1re2333
+      1081 0.000000e+00 # cquqd1re2111
+      1082 0.000000e+00 # cquqd1re2112
+      1083 0.000000e+00 # cquqd1re2113
+      1084 0.000000e+00 # cquqd1re2121
+      1085 0.000000e+00 # cquqd1re2122
+      1086 0.000000e+00 # cquqd1re2123
+      1087 0.000000e+00 # cquqd1re2131
+      1088 0.000000e+00 # cquqd1re2132
+      1089 0.000000e+00 # cquqd1re2133
+      1090 0.000000e+00 # cquqd1re3111
+      1091 0.000000e+00 # cquqd1re3112
+      1092 0.000000e+00 # cquqd1re3113
+      1093 0.000000e+00 # cquqd1re3121
+      1094 0.000000e+00 # cquqd1re3122
+      1095 0.000000e+00 # cquqd1re3123
+      1096 0.000000e+00 # cquqd1re3131
+      1097 0.000000e+00 # cquqd1re3132
+      1098 0.000000e+00 # cquqd1re3133
+      1099 0.000000e+00 # cquqd1re3211
+      1100 0.000000e+00 # cquqd1re3212
+      1101 0.000000e+00 # cquqd1re3213
+      1102 0.000000e+00 # cquqd1re3221
+      1103 0.000000e+00 # cquqd1re3222
+      1104 0.000000e+00 # cquqd1re3223
+      1105 0.000000e+00 # cquqd1re3231
+      1106 0.000000e+00 # cquqd1re3232
+      1107 0.000000e+00 # cquqd1re3233
+      1108 0.000000e+00 # cquqd8re1111
+      1109 0.000000e+00 # cquqd8re1112
+      1110 0.000000e+00 # cquqd8re1113
+      1111 0.000000e+00 # cquqd8re1121
+      1112 0.000000e+00 # cquqd8re1122
+      1113 0.000000e+00 # cquqd8re1123
+      1114 0.000000e+00 # cquqd8re1131
+      1115 0.000000e+00 # cquqd8re1132
+      1116 0.000000e+00 # cquqd8re1133
+      1117 0.000000e+00 # cquqd8re2211
+      1118 0.000000e+00 # cquqd8re2212
+      1119 0.000000e+00 # cquqd8re2213
+      1120 0.000000e+00 # cquqd8re2221
+      1121 0.000000e+00 # cquqd8re2222
+      1122 0.000000e+00 # cquqd8re2223
+      1123 0.000000e+00 # cquqd8re2231
+      1124 0.000000e+00 # cquqd8re2232
+      1125 0.000000e+00 # cquqd8re2233
+      1126 0.000000e+00 # cquqd8re3311
+      1127 0.000000e+00 # cquqd8re3312
+      1128 0.000000e+00 # cquqd8re3313
+      1129 0.000000e+00 # cquqd8re3321
+      1130 0.000000e+00 # cquqd8re3322
+      1131 0.000000e+00 # cquqd8re3323
+      1132 0.000000e+00 # cquqd8re3331
+      1133 0.000000e+00 # cquqd8re3332
+      1134 0.000000e+00 # cquqd8re3333
+      1135 0.000000e+00 # cquqd8re1211
+      1136 0.000000e+00 # cquqd8re1212
+      1137 0.000000e+00 # cquqd8re1213
+      1138 0.000000e+00 # cquqd8re1221
+      1139 0.000000e+00 # cquqd8re1222
+      1140 0.000000e+00 # cquqd8re1223
+      1141 0.000000e+00 # cquqd8re1231
+      1142 0.000000e+00 # cquqd8re1232
+      1143 0.000000e+00 # cquqd8re1233
+      1144 0.000000e+00 # cquqd8re1311
+      1145 0.000000e+00 # cquqd8re1312
+      1146 0.000000e+00 # cquqd8re1313
+      1147 0.000000e+00 # cquqd8re1321
+      1148 0.000000e+00 # cquqd8re1322
+      1149 0.000000e+00 # cquqd8re1323
+      1150 0.000000e+00 # cquqd8re1331
+      1151 0.000000e+00 # cquqd8re1332
+      1152 0.000000e+00 # cquqd8re1333
+      1153 0.000000e+00 # cquqd8re2311
+      1154 0.000000e+00 # cquqd8re2312
+      1155 0.000000e+00 # cquqd8re2313
+      1156 0.000000e+00 # cquqd8re2321
+      1157 0.000000e+00 # cquqd8re2322
+      1158 0.000000e+00 # cquqd8re2323
+      1159 0.000000e+00 # cquqd8re2331
+      1160 0.000000e+00 # cquqd8re2332
+      1161 0.000000e+00 # cquqd8re2333
+      1162 0.000000e+00 # cquqd8re2111
+      1163 0.000000e+00 # cquqd8re2112
+      1164 0.000000e+00 # cquqd8re2113
+      1165 0.000000e+00 # cquqd8re2121
+      1166 0.000000e+00 # cquqd8re2122
+      1167 0.000000e+00 # cquqd8re2123
+      1168 0.000000e+00 # cquqd8re2131
+      1169 0.000000e+00 # cquqd8re2132
+      1170 0.000000e+00 # cquqd8re2133
+      1171 0.000000e+00 # cquqd8re3111
+      1172 0.000000e+00 # cquqd8re3112
+      1173 0.000000e+00 # cquqd8re3113
+      1174 0.000000e+00 # cquqd8re3121
+      1175 0.000000e+00 # cquqd8re3122
+      1176 0.000000e+00 # cquqd8re3123
+      1177 0.000000e+00 # cquqd8re3131
+      1178 0.000000e+00 # cquqd8re3132
+      1179 0.000000e+00 # cquqd8re3133
+      1180 0.000000e+00 # cquqd8re3211
+      1181 0.000000e+00 # cquqd8re3212
+      1182 0.000000e+00 # cquqd8re3213
+      1183 0.000000e+00 # cquqd8re3221
+      1184 0.000000e+00 # cquqd8re3222
+      1185 0.000000e+00 # cquqd8re3223
+      1186 0.000000e+00 # cquqd8re3231
+      1187 0.000000e+00 # cquqd8re3232
+      1188 0.000000e+00 # cquqd8re3233
+      1189 0.000000e+00 # clequ1re1111
+      1190 0.000000e+00 # clequ1re1112
+      1191 0.000000e+00 # clequ1re1113
+      1192 0.000000e+00 # clequ1re1121
+      1193 0.000000e+00 # clequ1re1122
+      1194 0.000000e+00 # clequ1re1123
+      1195 0.000000e+00 # clequ1re1131
+      1196 0.000000e+00 # clequ1re1132
+      1197 0.000000e+00 # clequ1re1133
+      1198 0.000000e+00 # clequ1re2211
+      1199 0.000000e+00 # clequ1re2212
+      1200 0.000000e+00 # clequ1re2213
+      1201 0.000000e+00 # clequ1re2221
+      1202 0.000000e+00 # clequ1re2222
+      1203 0.000000e+00 # clequ1re2223
+      1204 0.000000e+00 # clequ1re2231
+      1205 0.000000e+00 # clequ1re2232
+      1206 0.000000e+00 # clequ1re2233
+      1207 0.000000e+00 # clequ1re3311
+      1208 0.000000e+00 # clequ1re3312
+      1209 0.000000e+00 # clequ1re3313
+      1210 0.000000e+00 # clequ1re3321
+      1211 0.000000e+00 # clequ1re3322
+      1212 0.000000e+00 # clequ1re3323
+      1213 0.000000e+00 # clequ1re3331
+      1214 0.000000e+00 # clequ1re3332
+      1215 0.000000e+00 # clequ1re3333
+      1216 0.000000e+00 # clequ1re1211
+      1217 0.000000e+00 # clequ1re1212
+      1218 0.000000e+00 # clequ1re1213
+      1219 0.000000e+00 # clequ1re1221
+      1220 0.000000e+00 # clequ1re1222
+      1221 0.000000e+00 # clequ1re1223
+      1222 0.000000e+00 # clequ1re1231
+      1223 0.000000e+00 # clequ1re1232
+      1224 0.000000e+00 # clequ1re1233
+      1225 0.000000e+00 # clequ1re1311
+      1226 0.000000e+00 # clequ1re1312
+      1227 0.000000e+00 # clequ1re1313
+      1228 0.000000e+00 # clequ1re1321
+      1229 0.000000e+00 # clequ1re1322
+      1230 0.000000e+00 # clequ1re1323
+      1231 0.000000e+00 # clequ1re1331
+      1232 0.000000e+00 # clequ1re1332
+      1233 0.000000e+00 # clequ1re1333
+      1234 0.000000e+00 # clequ1re2311
+      1235 0.000000e+00 # clequ1re2312
+      1236 0.000000e+00 # clequ1re2313
+      1237 0.000000e+00 # clequ1re2321
+      1238 0.000000e+00 # clequ1re2322
+      1239 0.000000e+00 # clequ1re2323
+      1240 0.000000e+00 # clequ1re2331
+      1241 0.000000e+00 # clequ1re2332
+      1242 0.000000e+00 # clequ1re2333
+      1243 0.000000e+00 # clequ1re2111
+      1244 0.000000e+00 # clequ1re2112
+      1245 0.000000e+00 # clequ1re2113
+      1246 0.000000e+00 # clequ1re2121
+      1247 0.000000e+00 # clequ1re2122
+      1248 0.000000e+00 # clequ1re2123
+      1249 0.000000e+00 # clequ1re2131
+      1250 0.000000e+00 # clequ1re2132
+      1251 0.000000e+00 # clequ1re2133
+      1252 0.000000e+00 # clequ1re3111
+      1253 0.000000e+00 # clequ1re3112
+      1254 0.000000e+00 # clequ1re3113
+      1255 0.000000e+00 # clequ1re3121
+      1256 0.000000e+00 # clequ1re3122
+      1257 0.000000e+00 # clequ1re3123
+      1258 0.000000e+00 # clequ1re3131
+      1259 0.000000e+00 # clequ1re3132
+      1260 0.000000e+00 # clequ1re3133
+      1261 0.000000e+00 # clequ1re3211
+      1262 0.000000e+00 # clequ1re3212
+      1263 0.000000e+00 # clequ1re3213
+      1264 0.000000e+00 # clequ1re3221
+      1265 0.000000e+00 # clequ1re3222
+      1266 0.000000e+00 # clequ1re3223
+      1267 0.000000e+00 # clequ1re3231
+      1268 0.000000e+00 # clequ1re3232
+      1269 0.000000e+00 # clequ1re3233
+      1270 0.000000e+00 # clequ3re1111
+      1271 0.000000e+00 # clequ3re1112
+      1272 0.000000e+00 # clequ3re1113
+      1273 0.000000e+00 # clequ3re1121
+      1274 0.000000e+00 # clequ3re1122
+      1275 0.000000e+00 # clequ3re1123
+      1276 0.000000e+00 # clequ3re1131
+      1277 0.000000e+00 # clequ3re1132
+      1278 0.000000e+00 # clequ3re1133
+      1279 0.000000e+00 # clequ3re2211
+      1280 0.000000e+00 # clequ3re2212
+      1281 0.000000e+00 # clequ3re2213
+      1282 0.000000e+00 # clequ3re2221
+      1283 0.000000e+00 # clequ3re2222
+      1284 0.000000e+00 # clequ3re2223
+      1285 0.000000e+00 # clequ3re2231
+      1286 0.000000e+00 # clequ3re2232
+      1287 0.000000e+00 # clequ3re2233
+      1288 0.000000e+00 # clequ3re3311
+      1289 0.000000e+00 # clequ3re3312
+      1290 0.000000e+00 # clequ3re3313
+      1291 0.000000e+00 # clequ3re3321
+      1292 0.000000e+00 # clequ3re3322
+      1293 0.000000e+00 # clequ3re3323
+      1294 0.000000e+00 # clequ3re3331
+      1295 0.000000e+00 # clequ3re3332
+      1296 0.000000e+00 # clequ3re3333
+      1297 0.000000e+00 # clequ3re1211
+      1298 0.000000e+00 # clequ3re1212
+      1299 0.000000e+00 # clequ3re1213
+      1300 0.000000e+00 # clequ3re1221
+      1301 0.000000e+00 # clequ3re1222
+      1302 0.000000e+00 # clequ3re1223
+      1303 0.000000e+00 # clequ3re1231
+      1304 0.000000e+00 # clequ3re1232
+      1305 0.000000e+00 # clequ3re1233
+      1306 0.000000e+00 # clequ3re1311
+      1307 0.000000e+00 # clequ3re1312
+      1308 0.000000e+00 # clequ3re1313
+      1309 0.000000e+00 # clequ3re1321
+      1310 0.000000e+00 # clequ3re1322
+      1311 0.000000e+00 # clequ3re1323
+      1312 0.000000e+00 # clequ3re1331
+      1313 0.000000e+00 # clequ3re1332
+      1314 0.000000e+00 # clequ3re1333
+      1315 0.000000e+00 # clequ3re2311
+      1316 0.000000e+00 # clequ3re2312
+      1317 0.000000e+00 # clequ3re2313
+      1318 0.000000e+00 # clequ3re2321
+      1319 0.000000e+00 # clequ3re2322
+      1320 0.000000e+00 # clequ3re2323
+      1321 0.000000e+00 # clequ3re2331
+      1322 0.000000e+00 # clequ3re2332
+      1323 0.000000e+00 # clequ3re2333
+      1324 0.000000e+00 # clequ3re2111
+      1325 0.000000e+00 # clequ3re2112
+      1326 0.000000e+00 # clequ3re2113
+      1327 0.000000e+00 # clequ3re2121
+      1328 0.000000e+00 # clequ3re2122
+      1329 0.000000e+00 # clequ3re2123
+      1330 0.000000e+00 # clequ3re2131
+      1331 0.000000e+00 # clequ3re2132
+      1332 0.000000e+00 # clequ3re2133
+      1333 0.000000e+00 # clequ3re3111
+      1334 0.000000e+00 # clequ3re3112
+      1335 0.000000e+00 # clequ3re3113
+      1336 0.000000e+00 # clequ3re3121
+      1337 0.000000e+00 # clequ3re3122
+      1338 0.000000e+00 # clequ3re3123
+      1339 0.000000e+00 # clequ3re3131
+      1340 0.000000e+00 # clequ3re3132
+      1341 0.000000e+00 # clequ3re3133
+      1342 0.000000e+00 # clequ3re3211
+      1343 0.000000e+00 # clequ3re3212
+      1344 0.000000e+00 # clequ3re3213
+      1345 0.000000e+00 # clequ3re3221
+      1346 0.000000e+00 # clequ3re3222
+      1347 0.000000e+00 # clequ3re3223
+      1348 0.000000e+00 # clequ3re3231
+      1349 0.000000e+00 # clequ3re3232
+      1350 0.000000e+00 # clequ3re3233
+###################################
+## INFORMATION FOR SMEFTCPV
+###################################
+BLOCK SMEFTCPV # 
+      1 0.000000e+00 # cgtil
+      2 0.000000e+00 # cwtil
+      3 0.000000e+00 # chgtil
+      4 0.000000e+00 # chwtil
+      5 0.000000e+00 # chbtil
+      6 0.000000e+00 # chwbtil
+      7 0.000000e+00 # cehim22
+      8 0.000000e+00 # cehim11
+      9 0.000000e+00 # cehim33
+      10 0.000000e+00 # cehim12
+      11 0.000000e+00 # cehim13
+      12 0.000000e+00 # cehim23
+      13 0.000000e+00 # cehim21
+      14 0.000000e+00 # cehim31
+      15 0.000000e+00 # cehim32
+      16 0.000000e+00 # cuhim11
+      17 0.000000e+00 # cuhim22
+      18 0.000000e+00 # cuhim33
+      19 0.000000e+00 # cuhim12
+      20 0.000000e+00 # cuhim13
+      21 0.000000e+00 # cuhim23
+      22 0.000000e+00 # cuhim21
+      23 0.000000e+00 # cuhim31
+      24 0.000000e+00 # cuhim32
+      25 0.000000e+00 # cdhim11
+      26 0.000000e+00 # cdhim22
+      27 0.000000e+00 # cdhim33
+      28 0.000000e+00 # cdhim12
+      29 0.000000e+00 # cdhim13
+      30 0.000000e+00 # cdhim23
+      31 0.000000e+00 # cdhim21
+      32 0.000000e+00 # cdhim31
+      33 0.000000e+00 # cdhim32
+      34 0.000000e+00 # cewim11
+      35 0.000000e+00 # cewim22
+      36 0.000000e+00 # cewim33
+      37 0.000000e+00 # cewim12
+      38 0.000000e+00 # cewim13
+      39 0.000000e+00 # cewim23
+      40 0.000000e+00 # cewim21
+      41 0.000000e+00 # cewim31
+      42 0.000000e+00 # cewim32
+      43 0.000000e+00 # cebim11
+      44 0.000000e+00 # cebim22
+      45 0.000000e+00 # cebim33
+      46 0.000000e+00 # cebim12
+      47 0.000000e+00 # cebim13
+      48 0.000000e+00 # cebim23
+      49 0.000000e+00 # cebim21
+      50 0.000000e+00 # cebim31
+      51 0.000000e+00 # cebim32
+      52 0.000000e+00 # cugim11
+      53 0.000000e+00 # cugim22
+      54 0.000000e+00 # cugim33
+      55 0.000000e+00 # cugim12
+      56 0.000000e+00 # cugim13
+      57 0.000000e+00 # cugim23
+      58 0.000000e+00 # cugim21
+      59 0.000000e+00 # cugim31
+      60 0.000000e+00 # cugim32
+      61 0.000000e+00 # cuwim11
+      62 0.000000e+00 # cuwim22
+      63 0.000000e+00 # cuwim33
+      64 0.000000e+00 # cuwim12
+      65 0.000000e+00 # cuwim13
+      66 0.000000e+00 # cuwim23
+      67 0.000000e+00 # cuwim21
+      68 0.000000e+00 # cuwim31
+      69 0.000000e+00 # cuwim32
+      70 0.000000e+00 # cubim11
+      71 0.000000e+00 # cubim22
+      72 0.000000e+00 # cubim33
+      73 0.000000e+00 # cubim12
+      74 0.000000e+00 # cubim13
+      75 0.000000e+00 # cubim23
+      76 0.000000e+00 # cubim21
+      77 0.000000e+00 # cubim31
+      78 0.000000e+00 # cubim32
+      79 0.000000e+00 # cdgim11
+      80 0.000000e+00 # cdgim22
+      81 0.000000e+00 # cdgim33
+      82 0.000000e+00 # cdgim12
+      83 0.000000e+00 # cdgim13
+      84 0.000000e+00 # cdgim23
+      85 0.000000e+00 # cdgim21
+      86 0.000000e+00 # cdgim31
+      87 0.000000e+00 # cdgim32
+      88 0.000000e+00 # cdwim11
+      89 0.000000e+00 # cdwim22
+      90 0.000000e+00 # cdwim33
+      91 0.000000e+00 # cdwim12
+      92 0.000000e+00 # cdwim13
+      93 0.000000e+00 # cdwim23
+      94 0.000000e+00 # cdwim21
+      95 0.000000e+00 # cdwim31
+      96 0.000000e+00 # cdwim32
+      97 0.000000e+00 # cdbim11
+      98 0.000000e+00 # cdbim22
+      99 0.000000e+00 # cdbim33
+      100 0.000000e+00 # cdbim12
+      101 0.000000e+00 # cdbim13
+      102 0.000000e+00 # cdbim23
+      103 0.000000e+00 # cdbim21
+      104 0.000000e+00 # cdbim31
+      105 0.000000e+00 # cdbim32
+      106 0.000000e+00 # chl1im12
+      107 0.000000e+00 # chl1im13
+      108 0.000000e+00 # chl1im23
+      109 0.000000e+00 # chl3im12
+      110 0.000000e+00 # chl3im13
+      111 0.000000e+00 # chl3im23
+      112 0.000000e+00 # cheim12
+      113 0.000000e+00 # cheim13
+      114 0.000000e+00 # cheim23
+      115 0.000000e+00 # chq1im12
+      116 0.000000e+00 # chq1im13
+      117 0.000000e+00 # chq1im23
+      118 0.000000e+00 # chq3im12
+      119 0.000000e+00 # chq3im13
+      120 0.000000e+00 # chq3im23
+      121 0.000000e+00 # chuim12
+      122 0.000000e+00 # chuim13
+      123 0.000000e+00 # chuim23
+      124 0.000000e+00 # chdim12
+      125 0.000000e+00 # chdim13
+      126 0.000000e+00 # chdim23
+      127 0.000000e+00 # chudim11
+      128 0.000000e+00 # chudim22
+      129 0.000000e+00 # chudim33
+      130 0.000000e+00 # chudim12
+      131 0.000000e+00 # chudim13
+      132 0.000000e+00 # chudim23
+      133 0.000000e+00 # chudim21
+      134 0.000000e+00 # chudim31
+      135 0.000000e+00 # chudim32
+      136 0.000000e+00 # cllim1112
+      137 0.000000e+00 # cllim1113
+      138 0.000000e+00 # cllim1123
+      139 0.000000e+00 # cllim1212
+      140 0.000000e+00 # cllim1213
+      141 0.000000e+00 # cllim1231
+      142 0.000000e+00 # cllim1222
+      143 0.000000e+00 # cllim1223
+      144 0.000000e+00 # cllim1232
+      145 0.000000e+00 # cllim1233
+      146 0.000000e+00 # cllim1313
+      147 0.000000e+00 # cllim1322
+      148 0.000000e+00 # cllim1332
+      149 0.000000e+00 # cllim1323
+      150 0.000000e+00 # cllim1333
+      151 0.000000e+00 # cllim2223
+      152 0.000000e+00 # cllim2323
+      153 0.000000e+00 # cllim3323
+      154 0.000000e+00 # cqq1im1112
+      155 0.000000e+00 # cqq1im1113
+      156 0.000000e+00 # cqq1im1123
+      157 0.000000e+00 # cqq1im1212
+      158 0.000000e+00 # cqq1im1213
+      159 0.000000e+00 # cqq1im1231
+      160 0.000000e+00 # cqq1im1222
+      161 0.000000e+00 # cqq1im1223
+      162 0.000000e+00 # cqq1im1232
+      163 0.000000e+00 # cqq1im1233
+      164 0.000000e+00 # cqq1im1313
+      165 0.000000e+00 # cqq1im1322
+      166 0.000000e+00 # cqq1im1332
+      167 0.000000e+00 # cqq1im1323
+      168 0.000000e+00 # cqq1im1333
+      169 0.000000e+00 # cqq1im2223
+      170 0.000000e+00 # cqq1im2323
+      171 0.000000e+00 # cqq1im3323
+      172 0.000000e+00 # cqq3im1112
+      173 0.000000e+00 # cqq3im1113
+      174 0.000000e+00 # cqq3im1123
+      175 0.000000e+00 # cqq3im1212
+      176 0.000000e+00 # cqq3im1213
+      177 0.000000e+00 # cqq3im1231
+      178 0.000000e+00 # cqq3im1222
+      179 0.000000e+00 # cqq3im1223
+      180 0.000000e+00 # cqq3im1232
+      181 0.000000e+00 # cqq3im1233
+      182 0.000000e+00 # cqq3im1313
+      183 0.000000e+00 # cqq3im1322
+      184 0.000000e+00 # cqq3im1332
+      185 0.000000e+00 # cqq3im1323
+      186 0.000000e+00 # cqq3im1333
+      187 0.000000e+00 # cqq3im2223
+      188 0.000000e+00 # cqq3im2323
+      189 0.000000e+00 # cqq3im3323
+      190 0.000000e+00 # cuuim1112
+      191 0.000000e+00 # cuuim1113
+      192 0.000000e+00 # cuuim1123
+      193 0.000000e+00 # cuuim1212
+      194 0.000000e+00 # cuuim1213
+      195 0.000000e+00 # cuuim1231
+      196 0.000000e+00 # cuuim1222
+      197 0.000000e+00 # cuuim1223
+      198 0.000000e+00 # cuuim1232
+      199 0.000000e+00 # cuuim1233
+      200 0.000000e+00 # cuuim1313
+      201 0.000000e+00 # cuuim1322
+      202 0.000000e+00 # cuuim1332
+      203 0.000000e+00 # cuuim1323
+      204 0.000000e+00 # cuuim1333
+      205 0.000000e+00 # cuuim2223
+      206 0.000000e+00 # cuuim2323
+      207 0.000000e+00 # cuuim3323
+      208 0.000000e+00 # cddim1112
+      209 0.000000e+00 # cddim1113
+      210 0.000000e+00 # cddim1123
+      211 0.000000e+00 # cddim1212
+      212 0.000000e+00 # cddim1213
+      213 0.000000e+00 # cddim1231
+      214 0.000000e+00 # cddim1222
+      215 0.000000e+00 # cddim1223
+      216 0.000000e+00 # cddim1232
+      217 0.000000e+00 # cddim1233
+      218 0.000000e+00 # cddim1313
+      219 0.000000e+00 # cddim1322
+      220 0.000000e+00 # cddim1332
+      221 0.000000e+00 # cddim1323
+      222 0.000000e+00 # cddim1333
+      223 0.000000e+00 # cddim2223
+      224 0.000000e+00 # cddim2323
+      225 0.000000e+00 # cddim3323
+      226 0.000000e+00 # ceeim1112
+      227 0.000000e+00 # ceeim1113
+      228 0.000000e+00 # ceeim1123
+      229 0.000000e+00 # ceeim1212
+      230 0.000000e+00 # ceeim1213
+      231 0.000000e+00 # ceeim1222
+      232 0.000000e+00 # ceeim1232
+      233 0.000000e+00 # ceeim1233
+      234 0.000000e+00 # ceeim1313
+      235 0.000000e+00 # ceeim1322
+      236 0.000000e+00 # ceeim1323
+      237 0.000000e+00 # ceeim1333
+      238 0.000000e+00 # ceeim2223
+      239 0.000000e+00 # ceeim2323
+      240 0.000000e+00 # ceeim3323
+      241 0.000000e+00 # clq1im1112
+      242 0.000000e+00 # clq1im1113
+      243 0.000000e+00 # clq1im1123
+      244 0.000000e+00 # clq1im1211
+      245 0.000000e+00 # clq1im1212
+      246 0.000000e+00 # clq1im1221
+      247 0.000000e+00 # clq1im1213
+      248 0.000000e+00 # clq1im1231
+      249 0.000000e+00 # clq1im1222
+      250 0.000000e+00 # clq1im1223
+      251 0.000000e+00 # clq1im1232
+      252 0.000000e+00 # clq1im1233
+      253 0.000000e+00 # clq1im1311
+      254 0.000000e+00 # clq1im1312
+      255 0.000000e+00 # clq1im1313
+      256 0.000000e+00 # clq1im1331
+      257 0.000000e+00 # clq1im1321
+      258 0.000000e+00 # clq1im1322
+      259 0.000000e+00 # clq1im1332
+      260 0.000000e+00 # clq1im1323
+      261 0.000000e+00 # clq1im1333
+      262 0.000000e+00 # clq1im2212
+      263 0.000000e+00 # clq1im2213
+      264 0.000000e+00 # clq1im2223
+      265 0.000000e+00 # clq1im2311
+      266 0.000000e+00 # clq1im2312
+      267 0.000000e+00 # clq1im2313
+      268 0.000000e+00 # clq1im2321
+      269 0.000000e+00 # clq1im2322
+      270 0.000000e+00 # clq1im2323
+      271 0.000000e+00 # clq1im2331
+      272 0.000000e+00 # clq1im2332
+      273 0.000000e+00 # clq1im2333
+      274 0.000000e+00 # clq1im3312
+      275 0.000000e+00 # clq1im3313
+      276 0.000000e+00 # clq1im3323
+      277 0.000000e+00 # clq3im1112
+      278 0.000000e+00 # clq3im1113
+      279 0.000000e+00 # clq3im1123
+      280 0.000000e+00 # clq3im1211
+      281 0.000000e+00 # clq3im1212
+      282 0.000000e+00 # clq3im1221
+      283 0.000000e+00 # clq3im1213
+      284 0.000000e+00 # clq3im1231
+      285 0.000000e+00 # clq3im1222
+      286 0.000000e+00 # clq3im1223
+      287 0.000000e+00 # clq3im1232
+      288 0.000000e+00 # clq3im1233
+      289 0.000000e+00 # clq3im1311
+      290 0.000000e+00 # clq3im1312
+      291 0.000000e+00 # clq3im1313
+      292 0.000000e+00 # clq3im1331
+      293 0.000000e+00 # clq3im1321
+      294 0.000000e+00 # clq3im1322
+      295 0.000000e+00 # clq3im1332
+      296 0.000000e+00 # clq3im1323
+      297 0.000000e+00 # clq3im1333
+      298 0.000000e+00 # clq3im2212
+      299 0.000000e+00 # clq3im2213
+      300 0.000000e+00 # clq3im2223
+      301 0.000000e+00 # clq3im2311
+      302 0.000000e+00 # clq3im2312
+      303 0.000000e+00 # clq3im2313
+      304 0.000000e+00 # clq3im2321
+      305 0.000000e+00 # clq3im2322
+      306 0.000000e+00 # clq3im2323
+      307 0.000000e+00 # clq3im2331
+      308 0.000000e+00 # clq3im2332
+      309 0.000000e+00 # clq3im2333
+      310 0.000000e+00 # clq3im3312
+      311 0.000000e+00 # clq3im3313
+      312 0.000000e+00 # clq3im3323
+      313 0.000000e+00 # ceuim1112
+      314 0.000000e+00 # ceuim1113
+      315 0.000000e+00 # ceuim1123
+      316 0.000000e+00 # ceuim1211
+      317 0.000000e+00 # ceuim1212
+      318 0.000000e+00 # ceuim1221
+      319 0.000000e+00 # ceuim1213
+      320 0.000000e+00 # ceuim1231
+      321 0.000000e+00 # ceuim1222
+      322 0.000000e+00 # ceuim1223
+      323 0.000000e+00 # ceuim1232
+      324 0.000000e+00 # ceuim1233
+      325 0.000000e+00 # ceuim1311
+      326 0.000000e+00 # ceuim1312
+      327 0.000000e+00 # ceuim1313
+      328 0.000000e+00 # ceuim1331
+      329 0.000000e+00 # ceuim1321
+      330 0.000000e+00 # ceuim1322
+      331 0.000000e+00 # ceuim1332
+      332 0.000000e+00 # ceuim1323
+      333 0.000000e+00 # ceuim1333
+      334 0.000000e+00 # ceuim2212
+      335 0.000000e+00 # ceuim2213
+      336 0.000000e+00 # ceuim2223
+      337 0.000000e+00 # ceuim2311
+      338 0.000000e+00 # ceuim2312
+      339 0.000000e+00 # ceuim2313
+      340 0.000000e+00 # ceuim2321
+      341 0.000000e+00 # ceuim2322
+      342 0.000000e+00 # ceuim2323
+      343 0.000000e+00 # ceuim2331
+      344 0.000000e+00 # ceuim2332
+      345 0.000000e+00 # ceuim2333
+      346 0.000000e+00 # ceuim3312
+      347 0.000000e+00 # ceuim3313
+      348 0.000000e+00 # ceuim3323
+      349 0.000000e+00 # cedim1112
+      350 0.000000e+00 # cedim1113
+      351 0.000000e+00 # cedim1123
+      352 0.000000e+00 # cedim1211
+      353 0.000000e+00 # cedim1212
+      354 0.000000e+00 # cedim1221
+      355 0.000000e+00 # cedim1213
+      356 0.000000e+00 # cedim1231
+      357 0.000000e+00 # cedim1222
+      358 0.000000e+00 # cedim1223
+      359 0.000000e+00 # cedim1232
+      360 0.000000e+00 # cedim1233
+      361 0.000000e+00 # cedim1311
+      362 0.000000e+00 # cedim1312
+      363 0.000000e+00 # cedim1313
+      364 0.000000e+00 # cedim1331
+      365 0.000000e+00 # cedim1321
+      366 0.000000e+00 # cedim1322
+      367 0.000000e+00 # cedim1332
+      368 0.000000e+00 # cedim1323
+      369 0.000000e+00 # cedim1333
+      370 0.000000e+00 # cedim2212
+      371 0.000000e+00 # cedim2213
+      372 0.000000e+00 # cedim2223
+      373 0.000000e+00 # cedim2311
+      374 0.000000e+00 # cedim2312
+      375 0.000000e+00 # cedim2313
+      376 0.000000e+00 # cedim2321
+      377 0.000000e+00 # cedim2322
+      378 0.000000e+00 # cedim2323
+      379 0.000000e+00 # cedim2331
+      380 0.000000e+00 # cedim2332
+      381 0.000000e+00 # cedim2333
+      382 0.000000e+00 # cedim3312
+      383 0.000000e+00 # cedim3313
+      384 0.000000e+00 # cedim3323
+      385 0.000000e+00 # cud1im1112
+      386 0.000000e+00 # cud1im1113
+      387 0.000000e+00 # cud1im1123
+      388 0.000000e+00 # cud1im1211
+      389 0.000000e+00 # cud1im1212
+      390 0.000000e+00 # cud1im1221
+      391 0.000000e+00 # cud1im1213
+      392 0.000000e+00 # cud1im1231
+      393 0.000000e+00 # cud1im1222
+      394 0.000000e+00 # cud1im1223
+      395 0.000000e+00 # cud1im1232
+      396 0.000000e+00 # cud1im1233
+      397 0.000000e+00 # cud1im1311
+      398 0.000000e+00 # cud1im1312
+      399 0.000000e+00 # cud1im1313
+      400 0.000000e+00 # cud1im1331
+      401 0.000000e+00 # cud1im1321
+      402 0.000000e+00 # cud1im1322
+      403 0.000000e+00 # cud1im1332
+      404 0.000000e+00 # cud1im1323
+      405 0.000000e+00 # cud1im1333
+      406 0.000000e+00 # cud1im2212
+      407 0.000000e+00 # cud1im2213
+      408 0.000000e+00 # cud1im2223
+      409 0.000000e+00 # cud1im2311
+      410 0.000000e+00 # cud1im2312
+      411 0.000000e+00 # cud1im2313
+      412 0.000000e+00 # cud1im2321
+      413 0.000000e+00 # cud1im2322
+      414 0.000000e+00 # cud1im2323
+      415 0.000000e+00 # cud1im2331
+      416 0.000000e+00 # cud1im2332
+      417 0.000000e+00 # cud1im2333
+      418 0.000000e+00 # cud1im3312
+      419 0.000000e+00 # cud1im3313
+      420 0.000000e+00 # cud1im3323
+      421 0.000000e+00 # cud8im1112
+      422 0.000000e+00 # cud8im1113
+      423 0.000000e+00 # cud8im1123
+      424 0.000000e+00 # cud8im1211
+      425 0.000000e+00 # cud8im1212
+      426 0.000000e+00 # cud8im1221
+      427 0.000000e+00 # cud8im1213
+      428 0.000000e+00 # cud8im1231
+      429 0.000000e+00 # cud8im1222
+      430 0.000000e+00 # cud8im1223
+      431 0.000000e+00 # cud8im1232
+      432 0.000000e+00 # cud8im1233
+      433 0.000000e+00 # cud8im1311
+      434 0.000000e+00 # cud8im1312
+      435 0.000000e+00 # cud8im1313
+      436 0.000000e+00 # cud8im1331
+      437 0.000000e+00 # cud8im1321
+      438 0.000000e+00 # cud8im1322
+      439 0.000000e+00 # cud8im1332
+      440 0.000000e+00 # cud8im1323
+      441 0.000000e+00 # cud8im1333
+      442 0.000000e+00 # cud8im2212
+      443 0.000000e+00 # cud8im2213
+      444 0.000000e+00 # cud8im2223
+      445 0.000000e+00 # cud8im2311
+      446 0.000000e+00 # cud8im2312
+      447 0.000000e+00 # cud8im2313
+      448 0.000000e+00 # cud8im2321
+      449 0.000000e+00 # cud8im2322
+      450 0.000000e+00 # cud8im2323
+      451 0.000000e+00 # cud8im2331
+      452 0.000000e+00 # cud8im2332
+      453 0.000000e+00 # cud8im2333
+      454 0.000000e+00 # cud8im3312
+      455 0.000000e+00 # cud8im3313
+      456 0.000000e+00 # cud8im3323
+      457 0.000000e+00 # cleim1112
+      458 0.000000e+00 # cleim1113
+      459 0.000000e+00 # cleim1123
+      460 0.000000e+00 # cleim1211
+      461 0.000000e+00 # cleim1212
+      462 0.000000e+00 # cleim1221
+      463 0.000000e+00 # cleim1213
+      464 0.000000e+00 # cleim1231
+      465 0.000000e+00 # cleim1222
+      466 0.000000e+00 # cleim1223
+      467 0.000000e+00 # cleim1232
+      468 0.000000e+00 # cleim1233
+      469 0.000000e+00 # cleim1311
+      470 0.000000e+00 # cleim1312
+      471 0.000000e+00 # cleim1313
+      472 0.000000e+00 # cleim1331
+      473 0.000000e+00 # cleim1321
+      474 0.000000e+00 # cleim1322
+      475 0.000000e+00 # cleim1332
+      476 0.000000e+00 # cleim1323
+      477 0.000000e+00 # cleim1333
+      478 0.000000e+00 # cleim2212
+      479 0.000000e+00 # cleim2213
+      480 0.000000e+00 # cleim2223
+      481 0.000000e+00 # cleim2311
+      482 0.000000e+00 # cleim2312
+      483 0.000000e+00 # cleim2313
+      484 0.000000e+00 # cleim2321
+      485 0.000000e+00 # cleim2322
+      486 0.000000e+00 # cleim2323
+      487 0.000000e+00 # cleim2331
+      488 0.000000e+00 # cleim2332
+      489 0.000000e+00 # cleim2333
+      490 0.000000e+00 # cleim3312
+      491 0.000000e+00 # cleim3313
+      492 0.000000e+00 # cleim3323
+      493 0.000000e+00 # cluim1112
+      494 0.000000e+00 # cluim1113
+      495 0.000000e+00 # cluim1123
+      496 0.000000e+00 # cluim1211
+      497 0.000000e+00 # cluim1212
+      498 0.000000e+00 # cluim1221
+      499 0.000000e+00 # cluim1213
+      500 0.000000e+00 # cluim1231
+      501 0.000000e+00 # cluim1222
+      502 0.000000e+00 # cluim1223
+      503 0.000000e+00 # cluim1232
+      504 0.000000e+00 # cluim1233
+      505 0.000000e+00 # cluim1311
+      506 0.000000e+00 # cluim1312
+      507 0.000000e+00 # cluim1313
+      508 0.000000e+00 # cluim1331
+      509 0.000000e+00 # cluim1321
+      510 0.000000e+00 # cluim1322
+      511 0.000000e+00 # cluim1332
+      512 0.000000e+00 # cluim1323
+      513 0.000000e+00 # cluim1333
+      514 0.000000e+00 # cluim2212
+      515 0.000000e+00 # cluim2213
+      516 0.000000e+00 # cluim2223
+      517 0.000000e+00 # cluim2311
+      518 0.000000e+00 # cluim2312
+      519 0.000000e+00 # cluim2313
+      520 0.000000e+00 # cluim2321
+      521 0.000000e+00 # cluim2322
+      522 0.000000e+00 # cluim2323
+      523 0.000000e+00 # cluim2331
+      524 0.000000e+00 # cluim2332
+      525 0.000000e+00 # cluim2333
+      526 0.000000e+00 # cluim3312
+      527 0.000000e+00 # cluim3313
+      528 0.000000e+00 # cluim3323
+      529 0.000000e+00 # cldim1112
+      530 0.000000e+00 # cldim1113
+      531 0.000000e+00 # cldim1123
+      532 0.000000e+00 # cldim1211
+      533 0.000000e+00 # cldim1212
+      534 0.000000e+00 # cldim1221
+      535 0.000000e+00 # cldim1213
+      536 0.000000e+00 # cldim1231
+      537 0.000000e+00 # cldim1222
+      538 0.000000e+00 # cldim1223
+      539 0.000000e+00 # cldim1232
+      540 0.000000e+00 # cldim1233
+      541 0.000000e+00 # cldim1311
+      542 0.000000e+00 # cldim1312
+      543 0.000000e+00 # cldim1313
+      544 0.000000e+00 # cldim1331
+      545 0.000000e+00 # cldim1321
+      546 0.000000e+00 # cldim1322
+      547 0.000000e+00 # cldim1332
+      548 0.000000e+00 # cldim1323
+      549 0.000000e+00 # cldim1333
+      550 0.000000e+00 # cldim2212
+      551 0.000000e+00 # cldim2213
+      552 0.000000e+00 # cldim2223
+      553 0.000000e+00 # cldim2311
+      554 0.000000e+00 # cldim2312
+      555 0.000000e+00 # cldim2313
+      556 0.000000e+00 # cldim2321
+      557 0.000000e+00 # cldim2322
+      558 0.000000e+00 # cldim2323
+      559 0.000000e+00 # cldim2331
+      560 0.000000e+00 # cldim2332
+      561 0.000000e+00 # cldim2333
+      562 0.000000e+00 # cldim3312
+      563 0.000000e+00 # cldim3313
+      564 0.000000e+00 # cldim3323
+      565 0.000000e+00 # cqeim1112
+      566 0.000000e+00 # cqeim1113
+      567 0.000000e+00 # cqeim1123
+      568 0.000000e+00 # cqeim1211
+      569 0.000000e+00 # cqeim1212
+      570 0.000000e+00 # cqeim1221
+      571 0.000000e+00 # cqeim1213
+      572 0.000000e+00 # cqeim1231
+      573 0.000000e+00 # cqeim1222
+      574 0.000000e+00 # cqeim1223
+      575 0.000000e+00 # cqeim1232
+      576 0.000000e+00 # cqeim1233
+      577 0.000000e+00 # cqeim1311
+      578 0.000000e+00 # cqeim1312
+      579 0.000000e+00 # cqeim1313
+      580 0.000000e+00 # cqeim1331
+      581 0.000000e+00 # cqeim1321
+      582 0.000000e+00 # cqeim1322
+      583 0.000000e+00 # cqeim1332
+      584 0.000000e+00 # cqeim1323
+      585 0.000000e+00 # cqeim1333
+      586 0.000000e+00 # cqeim2212
+      587 0.000000e+00 # cqeim2213
+      588 0.000000e+00 # cqeim2223
+      589 0.000000e+00 # cqeim2311
+      590 0.000000e+00 # cqeim2312
+      591 0.000000e+00 # cqeim2313
+      592 0.000000e+00 # cqeim2321
+      593 0.000000e+00 # cqeim2322
+      594 0.000000e+00 # cqeim2323
+      595 0.000000e+00 # cqeim2331
+      596 0.000000e+00 # cqeim2332
+      597 0.000000e+00 # cqeim2333
+      598 0.000000e+00 # cqeim3312
+      599 0.000000e+00 # cqeim3313
+      600 0.000000e+00 # cqeim3323
+      601 0.000000e+00 # cqu1im1112
+      602 0.000000e+00 # cqu1im1113
+      603 0.000000e+00 # cqu1im1123
+      604 0.000000e+00 # cqu1im1211
+      605 0.000000e+00 # cqu1im1212
+      606 0.000000e+00 # cqu1im1221
+      607 0.000000e+00 # cqu1im1213
+      608 0.000000e+00 # cqu1im1231
+      609 0.000000e+00 # cqu1im1222
+      610 0.000000e+00 # cqu1im1223
+      611 0.000000e+00 # cqu1im1232
+      612 0.000000e+00 # cqu1im1233
+      613 0.000000e+00 # cqu1im1311
+      614 0.000000e+00 # cqu1im1312
+      615 0.000000e+00 # cqu1im1313
+      616 0.000000e+00 # cqu1im1331
+      617 0.000000e+00 # cqu1im1321
+      618 0.000000e+00 # cqu1im1322
+      619 0.000000e+00 # cqu1im1332
+      620 0.000000e+00 # cqu1im1323
+      621 0.000000e+00 # cqu1im1333
+      622 0.000000e+00 # cqu1im2212
+      623 0.000000e+00 # cqu1im2213
+      624 0.000000e+00 # cqu1im2223
+      625 0.000000e+00 # cqu1im2311
+      626 0.000000e+00 # cqu1im2312
+      627 0.000000e+00 # cqu1im2313
+      628 0.000000e+00 # cqu1im2321
+      629 0.000000e+00 # cqu1im2322
+      630 0.000000e+00 # cqu1im2323
+      631 0.000000e+00 # cqu1im2331
+      632 0.000000e+00 # cqu1im2332
+      633 0.000000e+00 # cqu1im2333
+      634 0.000000e+00 # cqu1im3312
+      635 0.000000e+00 # cqu1im3313
+      636 0.000000e+00 # cqu1im3323
+      637 0.000000e+00 # cqd1im1112
+      638 0.000000e+00 # cqd1im1113
+      639 0.000000e+00 # cqd1im1123
+      640 0.000000e+00 # cqd1im1211
+      641 0.000000e+00 # cqd1im1212
+      642 0.000000e+00 # cqd1im1221
+      643 0.000000e+00 # cqd1im1213
+      644 0.000000e+00 # cqd1im1231
+      645 0.000000e+00 # cqd1im1222
+      646 0.000000e+00 # cqd1im1223
+      647 0.000000e+00 # cqd1im1232
+      648 0.000000e+00 # cqd1im1233
+      649 0.000000e+00 # cqd1im1311
+      650 0.000000e+00 # cqd1im1312
+      651 0.000000e+00 # cqd1im1313
+      652 0.000000e+00 # cqd1im1331
+      653 0.000000e+00 # cqd1im1321
+      654 0.000000e+00 # cqd1im1322
+      655 0.000000e+00 # cqd1im1332
+      656 0.000000e+00 # cqd1im1323
+      657 0.000000e+00 # cqd1im1333
+      658 0.000000e+00 # cqd1im2212
+      659 0.000000e+00 # cqd1im2213
+      660 0.000000e+00 # cqd1im2223
+      661 0.000000e+00 # cqd1im2311
+      662 0.000000e+00 # cqd1im2312
+      663 0.000000e+00 # cqd1im2313
+      664 0.000000e+00 # cqd1im2321
+      665 0.000000e+00 # cqd1im2322
+      666 0.000000e+00 # cqd1im2323
+      667 0.000000e+00 # cqd1im2331
+      668 0.000000e+00 # cqd1im2332
+      669 0.000000e+00 # cqd1im2333
+      670 0.000000e+00 # cqd1im3312
+      671 0.000000e+00 # cqd1im3313
+      672 0.000000e+00 # cqd1im3323
+      673 0.000000e+00 # cqu8im1112
+      674 0.000000e+00 # cqu8im1113
+      675 0.000000e+00 # cqu8im1123
+      676 0.000000e+00 # cqu8im1211
+      677 0.000000e+00 # cqu8im1212
+      678 0.000000e+00 # cqu8im1221
+      679 0.000000e+00 # cqu8im1213
+      680 0.000000e+00 # cqu8im1231
+      681 0.000000e+00 # cqu8im1222
+      682 0.000000e+00 # cqu8im1223
+      683 0.000000e+00 # cqu8im1232
+      684 0.000000e+00 # cqu8im1233
+      685 0.000000e+00 # cqu8im1311
+      686 0.000000e+00 # cqu8im1312
+      687 0.000000e+00 # cqu8im1313
+      688 0.000000e+00 # cqu8im1331
+      689 0.000000e+00 # cqu8im1321
+      690 0.000000e+00 # cqu8im1322
+      691 0.000000e+00 # cqu8im1332
+      692 0.000000e+00 # cqu8im1323
+      693 0.000000e+00 # cqu8im1333
+      694 0.000000e+00 # cqu8im2212
+      695 0.000000e+00 # cqu8im2213
+      696 0.000000e+00 # cqu8im2223
+      697 0.000000e+00 # cqu8im2311
+      698 0.000000e+00 # cqu8im2312
+      699 0.000000e+00 # cqu8im2313
+      700 0.000000e+00 # cqu8im2321
+      701 0.000000e+00 # cqu8im2322
+      702 0.000000e+00 # cqu8im2323
+      703 0.000000e+00 # cqu8im2331
+      704 0.000000e+00 # cqu8im2332
+      705 0.000000e+00 # cqu8im2333
+      706 0.000000e+00 # cqu8im3312
+      707 0.000000e+00 # cqu8im3313
+      708 0.000000e+00 # cqu8im3323
+      709 0.000000e+00 # cqd8im1112
+      710 0.000000e+00 # cqd8im1113
+      711 0.000000e+00 # cqd8im1123
+      712 0.000000e+00 # cqd8im1211
+      713 0.000000e+00 # cqd8im1212
+      714 0.000000e+00 # cqd8im1221
+      715 0.000000e+00 # cqd8im1213
+      716 0.000000e+00 # cqd8im1231
+      717 0.000000e+00 # cqd8im1222
+      718 0.000000e+00 # cqd8im1223
+      719 0.000000e+00 # cqd8im1232
+      720 0.000000e+00 # cqd8im1233
+      721 0.000000e+00 # cqd8im1311
+      722 0.000000e+00 # cqd8im1312
+      723 0.000000e+00 # cqd8im1313
+      724 0.000000e+00 # cqd8im1331
+      725 0.000000e+00 # cqd8im1321
+      726 0.000000e+00 # cqd8im1322
+      727 0.000000e+00 # cqd8im1332
+      728 0.000000e+00 # cqd8im1323
+      729 0.000000e+00 # cqd8im1333
+      730 0.000000e+00 # cqd8im2212
+      731 0.000000e+00 # cqd8im2213
+      732 0.000000e+00 # cqd8im2223
+      733 0.000000e+00 # cqd8im2311
+      734 0.000000e+00 # cqd8im2312
+      735 0.000000e+00 # cqd8im2313
+      736 0.000000e+00 # cqd8im2321
+      737 0.000000e+00 # cqd8im2322
+      738 0.000000e+00 # cqd8im2323
+      739 0.000000e+00 # cqd8im2331
+      740 0.000000e+00 # cqd8im2332
+      741 0.000000e+00 # cqd8im2333
+      742 0.000000e+00 # cqd8im3312
+      743 0.000000e+00 # cqd8im3313
+      744 0.000000e+00 # cqd8im3323
+      745 0.000000e+00 # cledqim1111
+      746 0.000000e+00 # cledqim1211
+      747 0.000000e+00 # cledqim1311
+      748 0.000000e+00 # cledqim1112
+      749 0.000000e+00 # cledqim1212
+      750 0.000000e+00 # cledqim1312
+      751 0.000000e+00 # cledqim1113
+      752 0.000000e+00 # cledqim1213
+      753 0.000000e+00 # cledqim1313
+      754 0.000000e+00 # cledqim1121
+      755 0.000000e+00 # cledqim1221
+      756 0.000000e+00 # cledqim1321
+      757 0.000000e+00 # cledqim1122
+      758 0.000000e+00 # cledqim1222
+      759 0.000000e+00 # cledqim1322
+      760 0.000000e+00 # cledqim1123
+      761 0.000000e+00 # cledqim1223
+      762 0.000000e+00 # cledqim1323
+      763 0.000000e+00 # cledqim1131
+      764 0.000000e+00 # cledqim1231
+      765 0.000000e+00 # cledqim1331
+      766 0.000000e+00 # cledqim1132
+      767 0.000000e+00 # cledqim1232
+      768 0.000000e+00 # cledqim1332
+      769 0.000000e+00 # cledqim1133
+      770 0.000000e+00 # cledqim1233
+      771 0.000000e+00 # cledqim1333
+      772 0.000000e+00 # cledqim2211
+      773 0.000000e+00 # cledqim2111
+      774 0.000000e+00 # cledqim2311
+      775 0.000000e+00 # cledqim2212
+      776 0.000000e+00 # cledqim2112
+      777 0.000000e+00 # cledqim2312
+      778 0.000000e+00 # cledqim2213
+      779 0.000000e+00 # cledqim2113
+      780 0.000000e+00 # cledqim2313
+      781 0.000000e+00 # cledqim2221
+      782 0.000000e+00 # cledqim2121
+      783 0.000000e+00 # cledqim2321
+      784 0.000000e+00 # cledqim2222
+      785 0.000000e+00 # cledqim2122
+      786 0.000000e+00 # cledqim2322
+      787 0.000000e+00 # cledqim2223
+      788 0.000000e+00 # cledqim2123
+      789 0.000000e+00 # cledqim2323
+      790 0.000000e+00 # cledqim2231
+      791 0.000000e+00 # cledqim2131
+      792 0.000000e+00 # cledqim2331
+      793 0.000000e+00 # cledqim2232
+      794 0.000000e+00 # cledqim2132
+      795 0.000000e+00 # cledqim2332
+      796 0.000000e+00 # cledqim2233
+      797 0.000000e+00 # cledqim2133
+      798 0.000000e+00 # cledqim2333
+      799 0.000000e+00 # cledqim3311
+      800 0.000000e+00 # cledqim3111
+      801 0.000000e+00 # cledqim3211
+      802 0.000000e+00 # cledqim3312
+      803 0.000000e+00 # cledqim3112
+      804 0.000000e+00 # cledqim3212
+      805 0.000000e+00 # cledqim3313
+      806 0.000000e+00 # cledqim3113
+      807 0.000000e+00 # cledqim3213
+      808 0.000000e+00 # cledqim3321
+      809 0.000000e+00 # cledqim3121
+      810 0.000000e+00 # cledqim3221
+      811 0.000000e+00 # cledqim3322
+      812 0.000000e+00 # cledqim3122
+      813 0.000000e+00 # cledqim3222
+      814 0.000000e+00 # cledqim3323
+      815 0.000000e+00 # cledqim3123
+      816 0.000000e+00 # cledqim3223
+      817 0.000000e+00 # cledqim3331
+      818 0.000000e+00 # cledqim3131
+      819 0.000000e+00 # cledqim3231
+      820 0.000000e+00 # cledqim3332
+      821 0.000000e+00 # cledqim3132
+      822 0.000000e+00 # cledqim3232
+      823 0.000000e+00 # cledqim3333
+      824 0.000000e+00 # cledqim3133
+      825 0.000000e+00 # cledqim3233
+      826 0.000000e+00 # cquqd1im1111
+      827 0.000000e+00 # cquqd1im1211
+      828 0.000000e+00 # cquqd1im1311
+      829 0.000000e+00 # cquqd1im1112
+      830 0.000000e+00 # cquqd1im1212
+      831 0.000000e+00 # cquqd1im1312
+      832 0.000000e+00 # cquqd1im1113
+      833 0.000000e+00 # cquqd1im1213
+      834 0.000000e+00 # cquqd1im1313
+      835 0.000000e+00 # cquqd1im1121
+      836 0.000000e+00 # cquqd1im1221
+      837 0.000000e+00 # cquqd1im1321
+      838 0.000000e+00 # cquqd1im1122
+      839 0.000000e+00 # cquqd1im1222
+      840 0.000000e+00 # cquqd1im1322
+      841 0.000000e+00 # cquqd1im1123
+      842 0.000000e+00 # cquqd1im1223
+      843 0.000000e+00 # cquqd1im1323
+      844 0.000000e+00 # cquqd1im1131
+      845 0.000000e+00 # cquqd1im1231
+      846 0.000000e+00 # cquqd1im1331
+      847 0.000000e+00 # cquqd1im1132
+      848 0.000000e+00 # cquqd1im1232
+      849 0.000000e+00 # cquqd1im1332
+      850 0.000000e+00 # cquqd1im1133
+      851 0.000000e+00 # cquqd1im1233
+      852 0.000000e+00 # cquqd1im1333
+      853 0.000000e+00 # cquqd1im2211
+      854 0.000000e+00 # cquqd1im2111
+      855 0.000000e+00 # cquqd1im2311
+      856 0.000000e+00 # cquqd1im2212
+      857 0.000000e+00 # cquqd1im2112
+      858 0.000000e+00 # cquqd1im2312
+      859 0.000000e+00 # cquqd1im2213
+      860 0.000000e+00 # cquqd1im2113
+      861 0.000000e+00 # cquqd1im2313
+      862 0.000000e+00 # cquqd1im2221
+      863 0.000000e+00 # cquqd1im2121
+      864 0.000000e+00 # cquqd1im2321
+      865 0.000000e+00 # cquqd1im2222
+      866 0.000000e+00 # cquqd1im2122
+      867 0.000000e+00 # cquqd1im2322
+      868 0.000000e+00 # cquqd1im2223
+      869 0.000000e+00 # cquqd1im2123
+      870 0.000000e+00 # cquqd1im2323
+      871 0.000000e+00 # cquqd1im2231
+      872 0.000000e+00 # cquqd1im2131
+      873 0.000000e+00 # cquqd1im2331
+      874 0.000000e+00 # cquqd1im2232
+      875 0.000000e+00 # cquqd1im2132
+      876 0.000000e+00 # cquqd1im2332
+      877 0.000000e+00 # cquqd1im2233
+      878 0.000000e+00 # cquqd1im2133
+      879 0.000000e+00 # cquqd1im2333
+      880 0.000000e+00 # cquqd1im3311
+      881 0.000000e+00 # cquqd1im3111
+      882 0.000000e+00 # cquqd1im3211
+      883 0.000000e+00 # cquqd1im3312
+      884 0.000000e+00 # cquqd1im3112
+      885 0.000000e+00 # cquqd1im3212
+      886 0.000000e+00 # cquqd1im3313
+      887 0.000000e+00 # cquqd1im3113
+      888 0.000000e+00 # cquqd1im3213
+      889 0.000000e+00 # cquqd1im3321
+      890 0.000000e+00 # cquqd1im3121
+      891 0.000000e+00 # cquqd1im3221
+      892 0.000000e+00 # cquqd1im3322
+      893 0.000000e+00 # cquqd1im3122
+      894 0.000000e+00 # cquqd1im3222
+      895 0.000000e+00 # cquqd1im3323
+      896 0.000000e+00 # cquqd1im3123
+      897 0.000000e+00 # cquqd1im3223
+      898 0.000000e+00 # cquqd1im3331
+      899 0.000000e+00 # cquqd1im3131
+      900 0.000000e+00 # cquqd1im3231
+      901 0.000000e+00 # cquqd1im3332
+      902 0.000000e+00 # cquqd1im3132
+      903 0.000000e+00 # cquqd1im3232
+      904 0.000000e+00 # cquqd1im3333
+      905 0.000000e+00 # cquqd1im3133
+      906 0.000000e+00 # cquqd1im3233
+      907 0.000000e+00 # cquqd8im1111
+      908 0.000000e+00 # cquqd8im1211
+      909 0.000000e+00 # cquqd8im1311
+      910 0.000000e+00 # cquqd8im1112
+      911 0.000000e+00 # cquqd8im1212
+      912 0.000000e+00 # cquqd8im1312
+      913 0.000000e+00 # cquqd8im1113
+      914 0.000000e+00 # cquqd8im1213
+      915 0.000000e+00 # cquqd8im1313
+      916 0.000000e+00 # cquqd8im1121
+      917 0.000000e+00 # cquqd8im1221
+      918 0.000000e+00 # cquqd8im1321
+      919 0.000000e+00 # cquqd8im1122
+      920 0.000000e+00 # cquqd8im1222
+      921 0.000000e+00 # cquqd8im1322
+      922 0.000000e+00 # cquqd8im1123
+      923 0.000000e+00 # cquqd8im1223
+      924 0.000000e+00 # cquqd8im1323
+      925 0.000000e+00 # cquqd8im1131
+      926 0.000000e+00 # cquqd8im1231
+      927 0.000000e+00 # cquqd8im1331
+      928 0.000000e+00 # cquqd8im1132
+      929 0.000000e+00 # cquqd8im1232
+      930 0.000000e+00 # cquqd8im1332
+      931 0.000000e+00 # cquqd8im1133
+      932 0.000000e+00 # cquqd8im1233
+      933 0.000000e+00 # cquqd8im1333
+      934 0.000000e+00 # cquqd8im2211
+      935 0.000000e+00 # cquqd8im2111
+      936 0.000000e+00 # cquqd8im2311
+      937 0.000000e+00 # cquqd8im2212
+      938 0.000000e+00 # cquqd8im2112
+      939 0.000000e+00 # cquqd8im2312
+      940 0.000000e+00 # cquqd8im2213
+      941 0.000000e+00 # cquqd8im2113
+      942 0.000000e+00 # cquqd8im2313
+      943 0.000000e+00 # cquqd8im2221
+      944 0.000000e+00 # cquqd8im2121
+      945 0.000000e+00 # cquqd8im2321
+      946 0.000000e+00 # cquqd8im2222
+      947 0.000000e+00 # cquqd8im2122
+      948 0.000000e+00 # cquqd8im2322
+      949 0.000000e+00 # cquqd8im2223
+      950 0.000000e+00 # cquqd8im2123
+      951 0.000000e+00 # cquqd8im2323
+      952 0.000000e+00 # cquqd8im2231
+      953 0.000000e+00 # cquqd8im2131
+      954 0.000000e+00 # cquqd8im2331
+      955 0.000000e+00 # cquqd8im2232
+      956 0.000000e+00 # cquqd8im2132
+      957 0.000000e+00 # cquqd8im2332
+      958 0.000000e+00 # cquqd8im2233
+      959 0.000000e+00 # cquqd8im2133
+      960 0.000000e+00 # cquqd8im2333
+      961 0.000000e+00 # cquqd8im3311
+      962 0.000000e+00 # cquqd8im3111
+      963 0.000000e+00 # cquqd8im3211
+      964 0.000000e+00 # cquqd8im3312
+      965 0.000000e+00 # cquqd8im3112
+      966 0.000000e+00 # cquqd8im3212
+      967 0.000000e+00 # cquqd8im3313
+      968 0.000000e+00 # cquqd8im3113
+      969 0.000000e+00 # cquqd8im3213
+      970 0.000000e+00 # cquqd8im3321
+      971 0.000000e+00 # cquqd8im3121
+      972 0.000000e+00 # cquqd8im3221
+      973 0.000000e+00 # cquqd8im3322
+      974 0.000000e+00 # cquqd8im3122
+      975 0.000000e+00 # cquqd8im3222
+      976 0.000000e+00 # cquqd8im3323
+      977 0.000000e+00 # cquqd8im3123
+      978 0.000000e+00 # cquqd8im3223
+      979 0.000000e+00 # cquqd8im3331
+      980 0.000000e+00 # cquqd8im3131
+      981 0.000000e+00 # cquqd8im3231
+      982 0.000000e+00 # cquqd8im3332
+      983 0.000000e+00 # cquqd8im3132
+      984 0.000000e+00 # cquqd8im3232
+      985 0.000000e+00 # cquqd8im3333
+      986 0.000000e+00 # cquqd8im3133
+      987 0.000000e+00 # cquqd8im3233
+      988 0.000000e+00 # clequ1im1111
+      989 0.000000e+00 # clequ1im1211
+      990 0.000000e+00 # clequ1im1311
+      991 0.000000e+00 # clequ1im1112
+      992 0.000000e+00 # clequ1im1212
+      993 0.000000e+00 # clequ1im1312
+      994 0.000000e+00 # clequ1im1113
+      995 0.000000e+00 # clequ1im1213
+      996 0.000000e+00 # clequ1im1313
+      997 0.000000e+00 # clequ1im1121
+      998 0.000000e+00 # clequ1im1221
+      999 0.000000e+00 # clequ1im1321
+      1000 0.000000e+00 # clequ1im1122
+      1001 0.000000e+00 # clequ1im1222
+      1002 0.000000e+00 # clequ1im1322
+      1003 0.000000e+00 # clequ1im1123
+      1004 0.000000e+00 # clequ1im1223
+      1005 0.000000e+00 # clequ1im1323
+      1006 0.000000e+00 # clequ1im1131
+      1007 0.000000e+00 # clequ1im1231
+      1008 0.000000e+00 # clequ1im1331
+      1009 0.000000e+00 # clequ1im1132
+      1010 0.000000e+00 # clequ1im1232
+      1011 0.000000e+00 # clequ1im1332
+      1012 0.000000e+00 # clequ1im1133
+      1013 0.000000e+00 # clequ1im1233
+      1014 0.000000e+00 # clequ1im1333
+      1015 0.000000e+00 # clequ1im2211
+      1016 0.000000e+00 # clequ1im2111
+      1017 0.000000e+00 # clequ1im2311
+      1018 0.000000e+00 # clequ1im2212
+      1019 0.000000e+00 # clequ1im2112
+      1020 0.000000e+00 # clequ1im2312
+      1021 0.000000e+00 # clequ1im2213
+      1022 0.000000e+00 # clequ1im2113
+      1023 0.000000e+00 # clequ1im2313
+      1024 0.000000e+00 # clequ1im2221
+      1025 0.000000e+00 # clequ1im2121
+      1026 0.000000e+00 # clequ1im2321
+      1027 0.000000e+00 # clequ1im2222
+      1028 0.000000e+00 # clequ1im2122
+      1029 0.000000e+00 # clequ1im2322
+      1030 0.000000e+00 # clequ1im2223
+      1031 0.000000e+00 # clequ1im2123
+      1032 0.000000e+00 # clequ1im2323
+      1033 0.000000e+00 # clequ1im2231
+      1034 0.000000e+00 # clequ1im2131
+      1035 0.000000e+00 # clequ1im2331
+      1036 0.000000e+00 # clequ1im2232
+      1037 0.000000e+00 # clequ1im2132
+      1038 0.000000e+00 # clequ1im2332
+      1039 0.000000e+00 # clequ1im2233
+      1040 0.000000e+00 # clequ1im2133
+      1041 0.000000e+00 # clequ1im2333
+      1042 0.000000e+00 # clequ1im3311
+      1043 0.000000e+00 # clequ1im3111
+      1044 0.000000e+00 # clequ1im3211
+      1045 0.000000e+00 # clequ1im3312
+      1046 0.000000e+00 # clequ1im3112
+      1047 0.000000e+00 # clequ1im3212
+      1048 0.000000e+00 # clequ1im3313
+      1049 0.000000e+00 # clequ1im3113
+      1050 0.000000e+00 # clequ1im3213
+      1051 0.000000e+00 # clequ1im3321
+      1052 0.000000e+00 # clequ1im3121
+      1053 0.000000e+00 # clequ1im3221
+      1054 0.000000e+00 # clequ1im3322
+      1055 0.000000e+00 # clequ1im3122
+      1056 0.000000e+00 # clequ1im3222
+      1057 0.000000e+00 # clequ1im3323
+      1058 0.000000e+00 # clequ1im3123
+      1059 0.000000e+00 # clequ1im3223
+      1060 0.000000e+00 # clequ1im3331
+      1061 0.000000e+00 # clequ1im3131
+      1062 0.000000e+00 # clequ1im3231
+      1063 0.000000e+00 # clequ1im3332
+      1064 0.000000e+00 # clequ1im3132
+      1065 0.000000e+00 # clequ1im3232
+      1066 0.000000e+00 # clequ1im3333
+      1067 0.000000e+00 # clequ1im3133
+      1068 0.000000e+00 # clequ1im3233
+      1069 0.000000e+00 # clequ3im1111
+      1070 0.000000e+00 # clequ3im1211
+      1071 0.000000e+00 # clequ3im1311
+      1072 0.000000e+00 # clequ3im1112
+      1073 0.000000e+00 # clequ3im1212
+      1074 0.000000e+00 # clequ3im1312
+      1075 0.000000e+00 # clequ3im1113
+      1076 0.000000e+00 # clequ3im1213
+      1077 0.000000e+00 # clequ3im1313
+      1078 0.000000e+00 # clequ3im1121
+      1079 0.000000e+00 # clequ3im1221
+      1080 0.000000e+00 # clequ3im1321
+      1081 0.000000e+00 # clequ3im1122
+      1082 0.000000e+00 # clequ3im1222
+      1083 0.000000e+00 # clequ3im1322
+      1084 0.000000e+00 # clequ3im1123
+      1085 0.000000e+00 # clequ3im1223
+      1086 0.000000e+00 # clequ3im1323
+      1087 0.000000e+00 # clequ3im1131
+      1088 0.000000e+00 # clequ3im1231
+      1089 0.000000e+00 # clequ3im1331
+      1090 0.000000e+00 # clequ3im1132
+      1091 0.000000e+00 # clequ3im1232
+      1092 0.000000e+00 # clequ3im1332
+      1093 0.000000e+00 # clequ3im1133
+      1094 0.000000e+00 # clequ3im1233
+      1095 0.000000e+00 # clequ3im1333
+      1096 0.000000e+00 # clequ3im2211
+      1097 0.000000e+00 # clequ3im2111
+      1098 0.000000e+00 # clequ3im2311
+      1099 0.000000e+00 # clequ3im2212
+      1100 0.000000e+00 # clequ3im2112
+      1101 0.000000e+00 # clequ3im2312
+      1102 0.000000e+00 # clequ3im2213
+      1103 0.000000e+00 # clequ3im2113
+      1104 0.000000e+00 # clequ3im2313
+      1105 0.000000e+00 # clequ3im2221
+      1106 0.000000e+00 # clequ3im2121
+      1107 0.000000e+00 # clequ3im2321
+      1108 0.000000e+00 # clequ3im2222
+      1109 0.000000e+00 # clequ3im2122
+      1110 0.000000e+00 # clequ3im2322
+      1111 0.000000e+00 # clequ3im2223
+      1112 0.000000e+00 # clequ3im2123
+      1113 0.000000e+00 # clequ3im2323
+      1114 0.000000e+00 # clequ3im2231
+      1115 0.000000e+00 # clequ3im2131
+      1116 0.000000e+00 # clequ3im2331
+      1117 0.000000e+00 # clequ3im2232
+      1118 0.000000e+00 # clequ3im2132
+      1119 0.000000e+00 # clequ3im2332
+      1120 0.000000e+00 # clequ3im2233
+      1121 0.000000e+00 # clequ3im2133
+      1122 0.000000e+00 # clequ3im2333
+      1123 0.000000e+00 # clequ3im3311
+      1124 0.000000e+00 # clequ3im3111
+      1125 0.000000e+00 # clequ3im3211
+      1126 0.000000e+00 # clequ3im3312
+      1127 0.000000e+00 # clequ3im3112
+      1128 0.000000e+00 # clequ3im3212
+      1129 0.000000e+00 # clequ3im3313
+      1130 0.000000e+00 # clequ3im3113
+      1131 0.000000e+00 # clequ3im3213
+      1132 0.000000e+00 # clequ3im3321
+      1133 0.000000e+00 # clequ3im3121
+      1134 0.000000e+00 # clequ3im3221
+      1135 0.000000e+00 # clequ3im3322
+      1136 0.000000e+00 # clequ3im3122
+      1137 0.000000e+00 # clequ3im3222
+      1138 0.000000e+00 # clequ3im3323
+      1139 0.000000e+00 # clequ3im3123
+      1140 0.000000e+00 # clequ3im3223
+      1141 0.000000e+00 # clequ3im3331
+      1142 0.000000e+00 # clequ3im3131
+      1143 0.000000e+00 # clequ3im3231
+      1144 0.000000e+00 # clequ3im3332
+      1145 0.000000e+00 # clequ3im3132
+      1146 0.000000e+00 # clequ3im3232
+      1147 0.000000e+00 # clequ3im3333
+      1148 0.000000e+00 # clequ3im3133
+      1149 0.000000e+00 # clequ3im3233
+###################################
+## INFORMATION FOR SMEFTCUTOFF
+###################################
+BLOCK SMEFTCUTOFF # 
+      1 1.000000e+03 # lambdasmeft
+###################################
+## INFORMATION FOR SMINPUTS
+###################################
+BLOCK SMINPUTS # 
+      1 8.038700e+01 # mw
+      2 1.166379e-05 # gf
+      3 1.300000e-01 # as (note: this parameter is not used if you use a pdf set)
+###################################
+## INFORMATION FOR SWITCHES
+###################################
+BLOCK SWITCHES # 
+      1 0.000000e+00 # linearpropcorrections
+###################################
+## INFORMATION FOR YUKAWA
+###################################
+BLOCK YUKAWA # 
+      1 4.670000e-03 # ymdo
+      2 2.160000e-03 # ymup
+      3 9.300000e-02 # yms
+      4 1.270000e+00 # ymc
+      5 4.180000e+00 # ymb
+      6 1.727600e+02 # ymt
+      11 5.110000e-04 # yme
+      13 1.056600e-01 # ymm
+      15 1.777000e+00 # ymtau
+###################################
+## INFORMATION FOR DECAY
+###################################
+DECAY 6 1.330000e+00 # wt
+DECAY 23 2.495200e+00 # wz
+DECAY 24 2.085000e+00 # ww
+DECAY 25 4.070000e-03 # wh
+DECAY 1 0.000000e+00 # d : 0.0
+DECAY 2 0.000000e+00 # u : 0.0
+DECAY 3 0.000000e+00 # s : 0.0
+DECAY 4 0.000000e+00 # c : 0.0
+DECAY 5 0.000000e+00 # b : 0.0
+DECAY 11 0.000000e+00 # e- : 0.0
+DECAY 12 0.000000e+00 # ve : 0.0
+DECAY 13 0.000000e+00 # mu- : 0.0
+DECAY 14 0.000000e+00 # vm : 0.0
+DECAY 15 0.000000e+00 # ta- : 0.0
+DECAY 16 0.000000e+00 # vt : 0.0
+DECAY 21 0.000000e+00 # g : 0.0
+DECAY 22 0.000000e+00 # a : 0.0
+DECAY 9000005 2.495200e+00 # z1 : wz
+DECAY 9000006 2.085000e+00 # w1+ : ww
+DECAY 9000007 1.330000e+00 # t1 : wt
+DECAY 9000008 4.070000e-03 # h1 : wh
+###################################
+## INFORMATION FOR QNUMBERS 9000005
+###################################
+BLOCK QNUMBERS 9000005 #  z1
+      1 0 # 3 times electric charge
+      2 3 # number of spin states (2s+1)
+      3 1 # colour rep (1: singlet, 3: triplet, 8: octet)
+      4 0 # particle/antiparticle distinction (0=own anti)
+###################################
+## INFORMATION FOR QNUMBERS 9000006
+###################################
+BLOCK QNUMBERS 9000006 #  w1+
+      1 3 # 3 times electric charge
+      2 3 # number of spin states (2s+1)
+      3 1 # colour rep (1: singlet, 3: triplet, 8: octet)
+      4 1 # particle/antiparticle distinction (0=own anti)
+###################################
+## INFORMATION FOR QNUMBERS 9000007
+###################################
+BLOCK QNUMBERS 9000007 #  t1
+      1 2 # 3 times electric charge
+      2 2 # number of spin states (2s+1)
+      3 3 # colour rep (1: singlet, 3: triplet, 8: octet)
+      4 1 # particle/antiparticle distinction (0=own anti)
+###################################
+## INFORMATION FOR QNUMBERS 9000008
+###################################
+BLOCK QNUMBERS 9000008 #  h1
+      1 0 # 3 times electric charge
+      2 1 # number of spin states (2s+1)
+      3 1 # colour rep (1: singlet, 3: triplet, 8: octet)
+      4 0 # particle/antiparticle distinction (0=own anti)
+</slha>
+</header>
+</LesHouchesEvents>

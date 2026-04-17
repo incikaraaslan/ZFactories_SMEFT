@@ -1,0 +1,19 @@
+import model sm-lepton_masses
+import model ~/SMEFTsim/UFO_models/SMEFTsim_general_MwScheme_UFO-zfac
+
+set group_subprocesses False
+generate z > ve~ e- mu+ vm NPceB=0 NPcHe=0 NPceH=0 NPceW<=1 NPcHl3=0 NPcHl1=0
+display diagrams
+output output_folds/QeW_Zvmmvee
+launch
+
+set ebeam 6500
+set fixed_fac_scale False
+
+set ceWRe11 1
+set ceWRe12 1
+
+launch ./output_folds/QeW_Zvmmvee -i
+   print_results --path=./output_folds/QeW_Zvmmvee.txt --format=short
+
+quit # quit interactive/advance interface mode for the MYDIRECTORY

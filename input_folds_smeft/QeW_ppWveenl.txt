@@ -1,0 +1,31 @@
+import model sm-lepton_masses
+import model /home/incik/SMEFTsim/UFO_models/SMEFTsim_general_MwScheme_UFO-zfac
+
+set group_subprocesses False
+generate p p > w+ ve~ e- NP<=2 NPceB=0 NPcHe=0 NPceH=0 NPceW<=1 NPcHl3=0 NPcHl1=0, (w+ > vm mu+)
+display diagrams
+output output_folds/QeW_ppWvee2
+launch
+# “lppX=+4(-4)” means a PDF for a muon (antimuon) beam
+set nevents 10000
+set ebeam1 6500.0 # for 10 TeV collisions
+set ebeam2 6500.0 
+set pdlabel lhapdf # set pdlabel nn23lo1
+set lpp1 1 # 0 no PDFs
+set lpp2 1
+
+set LambdaSMEFT 1000
+
+# FIX 3: EXPLICITLY REMOVE CUTS
+# If you comment these out, they default to 10 GeV and 2.5
+set ptl 0.0      # Allow soft electrons (Crucial!)
+set etal -1.0    # Allow electrons anywhere (or set to 10.0)
+set drll 0.0     # Allow leptons to be close
+set ptj 0.0      # Just in case
+set mmll 0.0     # Allow low invariant mass pairs
+
+set ceWRe11 1
+
+launch ./output_folds/QeW_ppWvee2 -i
+   print_results --path=./output_folds/QeW_ppWvee2.txt --format=short
+quit # quit interactive/advance interface mode for the MYDIRECTORY

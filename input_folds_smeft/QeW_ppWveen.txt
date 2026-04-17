@@ -1,0 +1,55 @@
+# ./bin/mg5_aMC /Users/hengameh/Downloads/Z_factory_madgraph/inputs/z_emu.txt
+#generate p p > z NPceB=0 NPcHe=0 NPceH=0 NPceW<=1 NPcHl3=0 NPcHl1=0, z > w+ ve~ #e- NPceB=0 NPcHe=0 NPceH=0 NPceW<=1 NPcHl3=0 NPcHl1=0, w+ > vm mu+
+#import model sm-lepton_masses
+import model ~/MG5_aMC_v3_6_3/models/SMEFTsim_general_MwScheme_UFO
+#import model SMEFTsim_U35_MwScheme_UFO
+set group_subprocesses False
+# set complex_mass_scheme True
+# to remove neutrino propagation add / vm at the end of process
+#generate  p p > z, (z > w+ ve~ e- NPceB=0 NPcHe=0 NPceH=0 NPceW=0 NPcHl3=0 NPcHl1=0 , (w+ > vm mu+))
+#generate  p p > z, (z > w+ ve~ e-, (w+ > vm mu+))
+generate p p > w+ ve~ e-, (w+ > vm mu+)
+display diagrams
+output output_folds/QeW_ppWveenoZfac
+launch
+# “lppX=+4(-4)” means a PDF for a muon (antimuon) beam
+set nevents 10000
+set ebeam1 6500.0 # for 10 TeV collisions
+set ebeam2 6500.0 
+set pdlabel lhapdf
+# set pdlabel nn23lo1
+set lpp1 1 # 0 no PDFs
+set lpp2 1
+#set fixed_fac_scale True
+#set dsqrt_shat 500
+set LambdaSMEFT 1000
+#set pdlabel eva
+#set ptl 30.0
+#set etal 2.5
+#set ptj 25.0
+#set etaj 2.5
+#set mmll 0.0
+# FIX 3: EXPLICITLY REMOVE CUTS
+# If you comment these out, they default to 10 GeV and 2.5
+set ptl 0.0      # Allow soft electrons (Crucial!)
+set etal -1.0    # Allow electrons anywhere (or set to 10.0)
+set drll 0.0     # Allow leptons to be close
+set ptj 0.0      # Just in case
+set mmll 0.0     # Allow low invariant mass pairs
+#set sqrt_s_min 80.0
+#set sqrt_s_max 100.0
+#set mmxx_min 80.0
+#set mmxx_max 100.0
+#set bwcutoff 5.0
+### non-fw: eta<2.5, pt>25 for mu ###
+### fw: 5<eta for mu ###
+#set eta_max_pdg {11:2.5, 15:2.5, 13:2.5, 14:2.5, 23:2.5, 24:2.5}
+#set pt_min_pdg {13:40, 14:50}
+#set eta_min_pdg {13:-1}
+#set eta_min_pdg {13:5}
+set ceWRe11 1
+set ceWRe12 1
+set ceWRe22 1
+launch ../output_folds/QeW_ppWveenoZfac -i
+   print_results --path=../output_folds/QeW_ppWveenoZfac.txt --format=short
+quit # quit interactive/advance interface mode for the MYDIRECTORY

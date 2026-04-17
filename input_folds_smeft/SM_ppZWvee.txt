@@ -1,0 +1,33 @@
+import model sm-lepton_masses
+
+set group_subprocesses False
+set complex_mass_scheme True
+generate p p > z, (z > e- w+ ve~, (w+ > mu+ vm))
+display diagrams
+output output_folds/SM_ppZWvee
+launch
+
+set ebeam1 6500
+set ebeam2 6500
+set pdlabel lhapdf
+set lpp1 1
+set lpp2 1
+
+set ptl 0
+set ptj 0
+set ptlmax -1
+set etal -1
+set etalmin -1
+set drll 0
+set mmll 0
+set mmllmax -1
+set mmnl 0
+set mmnlmax -1
+set ptllmin 0
+set ptllmax -1
+
+
+launch ./output_folds/SM_ppZWvee -i
+   print_results --path=./output_folds/SM_ppZWvee.txt --format=short
+
+quit # quit interactive/advance interface mode for the MYDIRECTORY

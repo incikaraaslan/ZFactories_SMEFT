@@ -1,0 +1,25 @@
+#import model SMEFTsim-lfv
+import model sm-lepton_masses
+set group_subprocesses False
+generate mu+ z > mu+ z h
+display diagrams
+output ~/ZdecayProject/output_folds/test_Z
+launch
+# “lppX=+4(-4)” means a PDF for a muon (antimuon) beam
+set nevents 10000
+set ebeam1 5000.0 # for 10 TeV collisions
+set ebeam2 5000.0 
+set lpp1 0 # no PDFs
+set lpp2 0 
+set ptl 30.0
+set etal 2.5
+set ptj 25.0
+set etaj 2.5
+set mmll 0.0
+### non-fw: eta<2.5, pt>25 for mu ###
+#set eta_max_pdg {11:2.5, 15:2.5, 13:2.5}
+set pt_min_pdg {15:300}
+#set eta_min_pdg {13:-1}
+launch ~/ZdecayProject/output_folds/test_Z -i
+   print_results --path=./outputs/test_Z.txt --format=short
+quit # quit interactive/advance interface mode for the MYDIRECTORY

@@ -1,0 +1,37 @@
+import model sm-lepton_masses
+# import model SMEFTsim_general_MwScheme_UFO-zfac
+import model ~/SMEFTsim/UFO_models/SMEFTsim_general_MwScheme_UFO-zfac
+
+set group_subprocesses False
+generate z h > mu- e+ NPceB=0 NPcHe=0 NPceH=0 NPceW<=1 NPcHl3=0 NPcHl1=0
+display diagrams
+output output_folds/QeW_Zhmue
+launch
+
+# “lppX=+4(-4)” means a PDF for a muon (antimuon) beam
+set ebeam 5000
+set pdlabel eva
+set lpp1 0
+set lpp2 0
+set fixed_fac_scale True
+set dsqrt_shat 500
+set LambdaSMEFT 10000
+
+
+### fw: 5<eta for mu & upper bound on pt###
+### e and tau have eta<2.5, pt>25 ###
+
+#set eta_max_pdg {11:2.5, 15:2.5, 13:-1}
+#set etal -1
+#Removed muon pt cuts
+#set pt_min_pdg {15:300}
+#Set ptl 0
+#set eta_min_pdg {13:5}
+
+set ceWRe21 1
+set ceWRe12 1
+
+launch ./output_folds/QeW_Zhmue -i
+   print_results --path=./output_folds/QeW_Zee/QeW_Zhmue.txt --format=short
+
+quit # quit interactive/advance interface mode for the MYDIRECTORY

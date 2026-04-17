@@ -1,0 +1,10 @@
+import model ~/MG5_aMC_v3_6_3/models/SMEFTsim_general_MwScheme_UFO-zfac_mass
+
+generate p p > z, (z > e- w+ ve~ NP<=1 NPceW<=1, (w+ > mu+ vm))
+display diagrams
+output test_QeW
+launch
+
+set ceW11 1e-6
+set ceW22 0
+set ceW33 0

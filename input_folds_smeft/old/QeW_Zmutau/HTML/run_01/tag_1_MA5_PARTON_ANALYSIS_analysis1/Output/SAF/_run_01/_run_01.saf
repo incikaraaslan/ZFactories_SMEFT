@@ -1,0 +1,19 @@
+<SAFheader>
+</SAFheader>
+
+<SampleGlobalInfo>
+# xsection     xsection_error nevents        sum_weight+    sum_weight-    
+9.470000e-08   1.469100e-10   10000          9.470000e-04   0.000000e+00   
+</SampleGlobalInfo>
+
+<FileInfo>
+"/home/incik/ZdecayProject/input_folds_smeft/output_folds/QeW_Zmutau/Events/run_01/unweighted_events.lhe.gz" # file 1 / 1
+</FileInfo>
+
+<SampleDetailedInfo>
+# xsection     xsection_error nevents        sum_weight+    sum_weight-    
+9.470000e-08   1.469100e-10   10000          9.470000e-04   0.000000e+00    # file 1 / 1
+</SampleDetailedInfo>
+
+<SAFfooter>
+</SAFfooter>

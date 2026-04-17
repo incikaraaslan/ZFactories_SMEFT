@@ -1,0 +1,36 @@
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+c      written by the UFO converter
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+
+      SUBROUTINE COUP1( )
+
+      IMPLICIT NONE
+
+      INCLUDE 'model_functions.inc'
+      INCLUDE '../vector.inc'
+
+
+      DOUBLE PRECISION PI, ZERO
+      PARAMETER  (PI=3.141592653589793D0)
+      PARAMETER  (ZERO=0D0)
+      INCLUDE 'input.inc'
+      INCLUDE 'coupl.inc'
+      GC_5909 = -(MDL_EE*MDL_COMPLEXI)/(2.000000D+00*MDL_CTH*MDL_STH)
+      GC_6186 = (2.000000D+00*MDL_EE*MDL_COMPLEXI*MDL_STH)/(3.000000D
+     $ +00*MDL_CTH)
+      GC_6635 = (MDL_CTH*MDL_CUWRE11*MDL_COMPLEXI*MDL_VEVHAT)
+     $ /(MDL_LAMBDASMEFT__EXP__2*MDL_SQRT__2)
+      GC_6636 = (MDL_CTH*MDL_CUWRE12*MDL_COMPLEXI*MDL_VEVHAT)
+     $ /(MDL_LAMBDASMEFT__EXP__2*MDL_SQRT__2)
+      GC_6638 = (MDL_CTH*MDL_CUWRE21*MDL_COMPLEXI*MDL_VEVHAT)
+     $ /(MDL_LAMBDASMEFT__EXP__2*MDL_SQRT__2)
+      GC_7674 = -(MDL_CHL3RE11*MDL_EE*MDL_COMPLEXI*MDL_VEVHAT__EXP__2)
+     $ /(4.000000D+00*MDL_CTH*MDL_LAMBDASMEFT__EXP__2*MDL_STH)
+     $ -(MDL_CHL3RE22*MDL_EE*MDL_COMPLEXI*MDL_VEVHAT__EXP__2)
+     $ /(4.000000D+00*MDL_CTH*MDL_LAMBDASMEFT__EXP__2*MDL_STH)
+      GC_7694 = -(MDL_CHL3RE11*MDL_EE*MDL_COMPLEXI*MDL_STH
+     $ *MDL_VEVHAT__EXP__2)/(3.000000D+00*MDL_CTH
+     $ *MDL_LAMBDASMEFT__EXP__2)-(MDL_CHL3RE22*MDL_EE*MDL_COMPLEXI
+     $ *MDL_STH*MDL_VEVHAT__EXP__2)/(3.000000D+00*MDL_CTH
+     $ *MDL_LAMBDASMEFT__EXP__2)
+      END

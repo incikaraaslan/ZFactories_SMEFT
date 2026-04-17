@@ -1,0 +1,13 @@
+set main.currentdir = /home/incik/ZdecayProject/input_folds_smeft
+import /home/incik/ZdecayProject/input_folds_smeft/output_folds/QeW_ZWmuve/bin/internal/ufomodel
+import /home/incik/ZdecayProject/input_folds_smeft/output_folds/QeW_ZWmuve/Events/run_01/unweighted_events.lhe.gz as run_01
+define vl = 12 14 16
+define vl~ = -16 -14 -12
+define invisible = vt~ ve~ vm~ vm vt ve vl vl~
+set main.graphic_render = matplotlib
+plot THT   40 0 500 [logY]
+plot MET   40 0 500 [logY]
+plot SQRTS 40 0 500 [logY]
+plot  PT(mu-[1]) 40 0  500 [logY]
+plot ETA(mu-[1]) 40 -10 10 [logY]
+plot MT_MET(mu-[1]) 40 0  500 [logY]

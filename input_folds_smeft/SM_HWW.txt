@@ -1,0 +1,20 @@
+import model sm-lepton_masses
+# import model heft
+
+set group_subprocesses False
+generate h > vm mu+ ve~ e-
+
+
+display diagrams
+output output_folds/SM_HWW
+launch
+
+set nevents 10000
+set ebeam 6500
+set lpp1 0
+set lpp2 0
+
+launch ./output_folds/SM_HWW -i
+   print_results --path=./output_folds/SM_HWW.txt --format=short
+
+quit # quit interactive/advance interface mode for the MYDIRECTORY

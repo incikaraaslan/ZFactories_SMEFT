@@ -1,0 +1,4 @@
+P1_uux_wmwp_wm_emvex_wp_mupvm
+P1_ddx_wmwp_wm_emvex_wp_mupvm
+P1_uxu_wmwp_wm_emvex_wp_mupvm
+P1_dxd_wmwp_wm_emvex_wp_mupvm
