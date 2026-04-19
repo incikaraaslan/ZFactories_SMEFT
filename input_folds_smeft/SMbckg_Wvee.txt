@@ -1,0 +1,18 @@
+set group_subprocesses False
+generate p p > w- w+, (w+ > mu+ vm), (w- > e- ve~)
+display diagrams
+output output_folds/SMbckg_Wvee
+launch
+
+set nevents 200000
+set ebeam1 6500
+set ebeam2 6500
+set pdlabel lhapdf
+set lpp1 1
+set lpp2 1
+
+launch ./output_folds/SMbckg_Wvee -i
+   print_results --path=./output_folds/SMbckg_Wvee.txt --format=short
+
+
+quit

@@ -7,7 +7,7 @@ display diagrams
 output output_folds/QeW_ppZWveenr
 launch
 
-set nevents 10000
+set nevents 200000
 set ebeam1 6500
 set ebeam2 6500
 set pdlabel lhapdf

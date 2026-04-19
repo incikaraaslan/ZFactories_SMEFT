@@ -41,7 +41,7 @@ define l- = e- mu-
 define vl = ve vm vt
 define vl~ = ve~ vm~ vt~
 set group_subprocesses False
-generate p p > w+ ve~ e- NP==1 NPceW<=1, (w+ > mu+ vm)
+generate p p > z, (z > e- w+ ve~ NP==1 NPceW<=1, (w+ > mu+ vm))
 Traceback (most recent call last):
   File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/extended_cmd.py", line 1548, in onecmd
     return self.onecmd_orig(line, **opt)
