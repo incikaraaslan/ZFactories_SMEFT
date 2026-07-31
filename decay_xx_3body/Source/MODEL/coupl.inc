@@ -1,0 +1,63 @@
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+c      written by the UFO converter
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+
+C     
+C     NB: VECSIZE_MEMMAX is defined in vector.inc
+C     NB: vector.inc must be included before coupl.inc
+C     
+
+      DOUBLE PRECISION G, ALL_G(1)
+      COMMON/STRONG/ G, ALL_G
+
+      DOUBLE COMPLEX GAL(2)
+      COMMON/WEAK/ GAL
+
+      DOUBLE PRECISION MU_R, ALL_MU_R(1)
+      COMMON/RSCALE/ MU_R, ALL_MU_R
+
+      DOUBLE PRECISION NF
+      PARAMETER(NF=0D0)
+      DOUBLE PRECISION NL
+      PARAMETER(NL=0D0)
+
+      DOUBLE PRECISION MDL_MB,MDL_MC,MDL_MD,MDL_MH,MDL_MMU,MDL_MS
+     $ ,MDL_MT,MDL_MTA,MDL_MU,MDL_MW,MDL_MX,MDL_MZ,MDL_ME
+
+      COMMON/MASSES/ MDL_MB,MDL_MC,MDL_MD,MDL_MH,MDL_MMU,MDL_MS,MDL_MT
+     $ ,MDL_MTA,MDL_MU,MDL_MW,MDL_MX,MDL_MZ,MDL_ME
+
+
+      DOUBLE PRECISION MDL_WH,MDL_WT,MDL_WW,MDL_WZ
+
+      COMMON/WIDTHS/ MDL_WH,MDL_WT,MDL_WW,MDL_WZ
+
+
+      DOUBLE COMPLEX GC_1, GC_2, GC_3, GC_39, GC_40, GC_49, GC_51,
+     $  GC_52, GC_53, GC_107, GC_109, GC_126, GC_127, GC_130, GC_131,
+     $  GC_132, GC_133, GC_134, GC_135, GC_142, GC_178, GC_179, GC_180
+     $ , GC_181, GC_182, GC_183, GC_184, GC_188, GC_189, GC_190,
+     $  GC_191, GC_192, GC_193, GC_194, GC_195, GC_196, GC_197, GC_198
+     $ , GC_199, GC_212, GC_213, GC_215, GC_216, GC_217, GC_219,
+     $  GC_220, GC_221, GC_222, GC_223, GC_224, GC_225, GC_226, GC_238
+     $ , GC_239, GC_241, GC_243, GC_244, GC_246, GC_247, GC_248,
+     $  GC_249, GC_250, GC_251, GC_252, GC_253, GC_254, GC_255, GC_256
+     $ , GC_257, GC_266, GC_267, GC_268, GC_269, GC_278, GC_279,
+     $  GC_280, GC_281, GC_363, GC_364, GC_365, GC_366, GC_10, GC_11,
+     $  GC_12, GC_13, GC_26, GC_27, GC_29, GC_30, GC_31, GC_33, GC_34,
+     $  GC_35, GC_36, GC_260, GC_261, GC_272, GC_273, GC_357, GC_358
+
+      COMMON/COUPLINGS/ GC_1, GC_2, GC_3, GC_39, GC_40, GC_49, GC_51,
+     $  GC_52, GC_53, GC_107, GC_109, GC_126, GC_127, GC_130, GC_131,
+     $  GC_132, GC_133, GC_134, GC_135, GC_142, GC_178, GC_179, GC_180
+     $ , GC_181, GC_182, GC_183, GC_184, GC_188, GC_189, GC_190,
+     $  GC_191, GC_192, GC_193, GC_194, GC_195, GC_196, GC_197, GC_198
+     $ , GC_199, GC_212, GC_213, GC_215, GC_216, GC_217, GC_219,
+     $  GC_220, GC_221, GC_222, GC_223, GC_224, GC_225, GC_226, GC_238
+     $ , GC_239, GC_241, GC_243, GC_244, GC_246, GC_247, GC_248,
+     $  GC_249, GC_250, GC_251, GC_252, GC_253, GC_254, GC_255, GC_256
+     $ , GC_257, GC_266, GC_267, GC_268, GC_269, GC_278, GC_279,
+     $  GC_280, GC_281, GC_363, GC_364, GC_365, GC_366, GC_10, GC_11,
+     $  GC_12, GC_13, GC_26, GC_27, GC_29, GC_30, GC_31, GC_33, GC_34,
+     $  GC_35, GC_36, GC_260, GC_261, GC_272, GC_273, GC_357, GC_358
+

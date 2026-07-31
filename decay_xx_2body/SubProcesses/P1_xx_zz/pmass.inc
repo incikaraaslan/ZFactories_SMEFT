@@ -1,0 +1,3 @@
+      PMASS(1)=ABS(MDL_MX)
+      PMASS(2)=ABS(MDL_MZ)
+      PMASS(3)=ABS(MDL_MZ)

@@ -1,0 +1,23 @@
+import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-Zfac
+
+set group_subprocesses False
+generate z > xx xx xx VBEFT==1
+display diagrams
+output output_folds/cxb3_ZXXX_BSMEFT
+launch
+
+set nevents 10000
+set ebeam1 7000
+set ebeam2 7000
+set pdlabel lhapdf
+set lhaid 315000
+set LamX 1000
+set lpp1 0
+set lpp2 0
+set cxb3 1.0
+set MX 10.0
+
+launch ./output_folds/cxb3_ZXXX_BSMEFT -i
+   print_results --path=./output_folds/cxb3_ZXXX_BSMEFT.txt --format=short
+
+quit # quit interactive/advance interface mode for the MYDIRECTORY

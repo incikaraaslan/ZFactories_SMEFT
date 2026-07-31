@@ -1,0 +1,22 @@
+import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO
+
+set group_subprocesses False
+define f = e- mu- ta- e+ mu+ ta- ve vm vt ve~ vm~ vt~
+generate xx > f f f f VBEFT=1
+display diagrams
+output output_folds/Xffff_BSMEFT
+launch
+
+set nevents 10000
+set ebeam1 6500
+set ebeam2 6500
+set pdlabel lhapdf
+set lhaid 315000
+set LamX 1000
+set lpp1 0
+set lpp2 0
+
+launch ./output_folds/Xffff_BSMEFT -i
+   print_results --path=./output_folds/Xffff_BSMEFT.txt --format=short
+
+quit # quit interactive/advance interface mode for the MYDIRECTORY

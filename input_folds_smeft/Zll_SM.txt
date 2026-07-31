@@ -1,0 +1,20 @@
+set group_subprocesses False
+generate z > e+ e-
+add process z > mu+ mu-
+add process z > ta+ ta-
+display diagrams
+output output_folds/Zll_SM
+launch
+
+set nevents 10000
+set ebeam1 50000
+set ebeam2 50000
+set pdlabel lhapdf
+set lhaid 315000
+set lpp1 0
+set lpp2 0
+
+launch ./output_folds/Zll_SM -i
+   print_results --path=./output_folds/Zll_SM.txt --format=short
+
+quit # quit interactive/advance interface mode for the MYDIRECTORY

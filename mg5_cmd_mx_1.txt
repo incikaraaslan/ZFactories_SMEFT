@@ -1,0 +1,13 @@
+
+    import model ~/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended
+    define f = e- mu- ta- e+ mu+ ta- ve vm vt ve~ vm~ vt~
+    generate z > u u~ f f f f VBEFT=1
+    add process z > d d~ f f f f VBEFT=1
+    add process z > s s~ f f f f VBEFT=1
+    add process z > c c~ f f f f VBEFT=1
+    output mg5_z_decay_scan_run_mx_1 -f
+    launch mg5_z_decay_scan_run_mx_1
+    set MX 1
+    set LamX 1000.0
+    0
+    

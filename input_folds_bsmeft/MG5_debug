@@ -1,0 +1,67 @@
+#************************************************************
+#*                     MadGraph5_aMC@NLO                    *
+#*                                                          *
+#*                *                       *                 *
+#*                  *        * *        *                   *
+#*                    * * * * 5 * * * *                     *
+#*                  *        * *        *                   *
+#*                *                       *                 *
+#*                                                          *
+#*                                                          *
+#*         VERSION 3.6.3                 2025-06-12         *
+#*                                                          *
+#*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+#*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+#*                                                          *
+#************************************************************
+#*                                                          *
+#*               Command File for MadGraph5_aMC@NLO         *
+#*                                                          *
+#*     run as ./bin/mg5_aMC  filename                       *
+#*                                                          *
+#************************************************************
+set group_subprocesses Auto
+set ignore_six_quark_processes False
+set low_mem_multicore_nlo_generation False
+set complex_mass_scheme False
+set include_lepton_initiated_processes False
+set gauge unitary
+set loop_optimized_output True
+set loop_color_flows False
+set max_npoint_for_channel 0
+set default_unset_couplings 99
+set max_t_for_channel 99
+set zerowidth_tchannel True
+set nlo_mixed_expansion True
+import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended
+Traceback (most recent call last):
+  File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/extended_cmd.py", line 1548, in onecmd
+    return self.onecmd_orig(line, **opt)
+  File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/extended_cmd.py", line 1497, in onecmd_orig
+    return func(arg, **opt)
+  File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/master_interface.py", line 281, in do_import
+    self.cmd.do_import(self, *args, **opts)
+  File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/madgraph_interface.py", line 5744, in do_import
+    self.import_command_file(args[1])
+  File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/extended_cmd.py", line 1696, in import_command_file
+    self.exec_cmd(line, precmd=True)
+  File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/extended_cmd.py", line 1577, in exec_cmd
+    stop = Cmd.onecmd_orig(current_interface, line, **opt)
+  File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/extended_cmd.py", line 1497, in onecmd_orig
+    return func(arg, **opt)
+  File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/master_interface.py", line 281, in do_import
+    self.cmd.do_import(self, *args, **opts)
+  File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/madgraph_interface.py", line 5668, in do_import
+    self._curr_model = import_ufo.import_model(args[1], prefix=prefix,
+  File "/home/incik/MG5_aMC_v3_6_3/models/import_ufo.py", line 253, in import_model
+    model = import_full_model(model_path, decay, prefix)
+  File "/home/incik/MG5_aMC_v3_6_3/models/import_ufo.py", line 413, in import_full_model
+    model = ufo2mg5_converter.load_model()
+  File "/home/incik/MG5_aMC_v3_6_3/models/import_ufo.py", line 603, in load_model
+    self.add_interaction(interaction_info, color_info)
+  File "/home/incik/MG5_aMC_v3_6_3/models/import_ufo.py", line 1830, in add_interaction
+    raise InvalidModel('''Some couplings have \'1\' order.
+models.import_ufo.InvalidModel: Some couplings have '1' order. 
+                    This is not allowed in MG. 
+                    Please defines an additional coupling to your model
+Fail to write options with error No model currently active, please import a model!

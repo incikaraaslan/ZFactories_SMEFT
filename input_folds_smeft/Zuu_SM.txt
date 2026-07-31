@@ -1,0 +1,19 @@
+set group_subprocesses False
+generate z > u u~
+add process z > c c~
+display diagrams
+output output_folds/Zuu_SM
+launch
+
+set nevents 10000
+set ebeam1 7000
+set ebeam2 7000
+set pdlabel lhapdf
+set lhaid 315000
+set lpp1 0
+set lpp2 0
+
+launch ./output_folds/Zuu_SM -i
+   print_results --path=./output_folds/Zuu_SM.txt --format=short
+
+quit # quit interactive/advance interface mode for the MYDIRECTOR

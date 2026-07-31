@@ -1,0 +1,15 @@
+import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-Zfac
+
+# Define multiparticle containers for all SM particles
+define sm_fer = e- e+ mu- mu+ ta- ta+ u u~ d d~ c c~ s s~ b b~ t t~ ve ve~ vm vm~ vt vt~
+define sm_bos = a z w+ w- g h
+define sm_all = sm_fer sm_bos
+
+generate xx > sm_all sm_all
+output decay_xx_2body
+launch
+
+# Generate all possible 3-body decays to SM particles
+generate xx > sm_all sm_all sm_all
+output decay_xx_3body
+launch

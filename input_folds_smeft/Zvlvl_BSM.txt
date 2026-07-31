@@ -1,0 +1,26 @@
+import model ~/MG5_aMC_v3_6_3/models/SMEFTsim_general_MwScheme_UFO-SMlimit_Zfac
+
+set group_subprocesses False
+generate z > ve ve~ NP==1 NPcHe<=1
+add process z > vm vm~ NP==1 NPcHe<=1
+add process z > vt vt~ NP==1 NPcHe<=1
+display diagrams
+output output_folds/QcHe_Zvlvl_BSM
+launch
+
+set nevents 10000
+set ebeam1 6500
+set ebeam2 6500
+set pdlabel lhapdf
+set lhaid 315000
+set LambdaSMEFT 1000
+set lpp1 0
+set lpp2 0
+set cHeRe11 1.0
+set cHeRe22 1.0
+set cHeRe33 1.0
+
+launch ./output_folds/QcHe_Zvlvl_BSM -i
+   print_results --path=./output_folds/QcHe_Zvlvl_BSM.txt --format=short
+
+quit # quit interactive/advance interface mode for the MYDIRECTORY

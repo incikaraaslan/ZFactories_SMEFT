@@ -1,0 +1,25 @@
+import model SMEFTsim_general_MwScheme_UFO-SMlimit_Zfac
+
+generate p p > ve~ e- mu+ vm SMHLOOP=0 NP=0
+display diagrams
+output output_folds/SM_ZW
+launch
+
+set nevents 20000
+set ebeam1 6500
+set ebeam2 6500
+set pdlabel lhapdf
+set lhaid 315000
+set LambdaSMEFT 1000
+set lpp1 1
+set lpp2 1
+set ceWRe11 0.0
+set ceWRe12 0.0
+set ceWRe22 0.0
+
+
+
+launch ./output_folds/SM_ZW -i
+   print_results --path=./output_folds/SM_ZW.txt --format=short
+
+quit # quit interactive/advance interface mode for the MYDIRECTORY

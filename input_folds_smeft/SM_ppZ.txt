@@ -1,0 +1,20 @@
+import model sm-lepton_masses
+
+set group_subprocesses False
+generate p p > z
+display diagrams
+output output_folds/SM_ppZ
+launch
+
+set nevents 10000
+set ebeam1 50000
+set ebeam2 50000
+set pdlabel lhapdf
+set lhaid 315000
+set lpp1 1
+set lpp2 1
+
+launch ./output_folds/SM_ppZ -i
+   print_results --path=./output_folds/SM_ppZ.txt --format=short
+
+quit # quit interactive/advance interface mode for the MYDIRECTORY

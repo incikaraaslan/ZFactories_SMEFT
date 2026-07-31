@@ -1,23 +1,22 @@
-import model sm-lepton_masses
-import model ~/SMEFTsim/UFO_models/SMEFTsim_general_MwScheme_UFO-zfac
+import model ~/MG5_aMC_v3_6_3/models/SMEFTsim_general_MwScheme_UFO-SMlimit_Zfac
 
 set group_subprocesses False
-generate z > w+ ve~ e- NPceB=0 NPcHe=0 NPceH=0 NPceW<=1 NPcHl3=0 NPcHl1=0, (w+ > mu+ vm) 
+generate z > w+ ve~ e- NP==1 NPceW<=1, (w+ > mu+ vm) 
 display diagrams
 output output_folds/QeW_ZWvee
 launch
 
 set ebeam 6500
-set pdlabel eva
+set nevents 200000
+# set pdlabel eva
 set lpp1 0
 set lpp2 0
-# set fixed_fac_scale True
-# set dsqrt_shat 500
 set LambdaSMEFT 1000
 
 
 set ceWRe11 1
 set ceWRe12 1
+set ceWRe22 1
 
 launch ./output_folds/QeW_ZWvee -i
    print_results --path=./output_folds/QeW_ZWvee.txt --format=short
