@@ -11,17 +11,17 @@ C
       COMPLEX*16 F2(6)
       REAL*8 P4(0:3)
       COMPLEX*16 S4(*)
-      COMPLEX*16 TMP13
+      COMPLEX*16 TMP24
       COMPLEX*16 V3(*)
       P4(0) = DBLE(S4(1))
       P4(1) = DBLE(S4(2))
       P4(2) = DIMAG(S4(2))
       P4(3) = DIMAG(S4(1))
-      TMP13 = (V3(3)*P4(0)-V3(4)*P4(1)-V3(5)*P4(2)-V3(6)*P4(3))
-      F2(3)= COUP*(-CI )* TMP13*F1(3)*S4(3)
-      F2(4)= COUP*(-CI )* TMP13*F1(4)*S4(3)
-      F2(5)= COUP*(-CI )* TMP13*F1(5)*S4(3)
-      F2(6)= COUP*(-CI )* TMP13*F1(6)*S4(3)
+      TMP24 = (V3(3)*P4(0)-V3(4)*P4(1)-V3(5)*P4(2)-V3(6)*P4(3))
+      F2(3)= COUP*(-CI )* TMP24*F1(3)*S4(3)
+      F2(4)= COUP*(-CI )* TMP24*F1(4)*S4(3)
+      F2(5)= COUP*(-CI )* TMP24*F1(5)*S4(3)
+      F2(6)= COUP*(-CI )* TMP24*F1(6)*S4(3)
       END
 
 

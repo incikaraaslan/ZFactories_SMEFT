@@ -13,9 +13,9 @@ C
       REAL*8 P4(0:3)
       COMPLEX*16 S3(*)
       COMPLEX*16 S4(*)
-      COMPLEX*16 TMP4
-      COMPLEX*16 TMP6
-      COMPLEX*16 TMP8
+      COMPLEX*16 TMP10
+      COMPLEX*16 TMP11
+      COMPLEX*16 TMP12
       COMPLEX*16 TMP9
       COMPLEX*16 V1(6)
       COMPLEX*16 V2(*)
@@ -31,18 +31,18 @@ C
       P4(1) = DBLE(S4(2))
       P4(2) = DIMAG(S4(2))
       P4(3) = DIMAG(S4(1))
-      TMP4 = (V2(3)*P3(0)-V2(4)*P3(1)-V2(5)*P3(2)-V2(6)*P3(3))
-      TMP6 = (V2(3)*P4(0)-V2(4)*P4(1)-V2(5)*P4(2)-V2(6)*P4(3))
-      TMP8 = (P3(0)*P2(0)-P3(1)*P2(1)-P3(2)*P2(2)-P3(3)*P2(3))
-      TMP9 = (P2(0)*P4(0)-P2(1)*P4(1)-P2(2)*P4(2)-P2(3)*P4(3))
-      V1(3)= COUP*S3(3)*S4(3)*(P2(0)*(-1D0)*(+CI*(TMP4+TMP6))+V2(3)*(
-     $ +CI*(TMP8+TMP9)))
-      V1(4)= COUP*S3(3)*S4(3)*(P2(1)*(+CI*(TMP4+TMP6))-V2(4)*(+CI
-     $ *(TMP8+TMP9)))
-      V1(5)= COUP*S3(3)*S4(3)*(P2(2)*(+CI*(TMP4+TMP6))-V2(5)*(+CI
-     $ *(TMP8+TMP9)))
-      V1(6)= COUP*S3(3)*S4(3)*(P2(3)*(+CI*(TMP4+TMP6))-V2(6)*(+CI
-     $ *(TMP8+TMP9)))
+      TMP10 = (V2(3)*P4(0)-V2(4)*P4(1)-V2(5)*P4(2)-V2(6)*P4(3))
+      TMP11 = (P2(0)*P3(0)-P2(1)*P3(1)-P2(2)*P3(2)-P2(3)*P3(3))
+      TMP12 = (P2(0)*P4(0)-P2(1)*P4(1)-P2(2)*P4(2)-P2(3)*P4(3))
+      TMP9 = (V2(3)*P3(0)-V2(4)*P3(1)-V2(5)*P3(2)-V2(6)*P3(3))
+      V1(3)= COUP*S3(3)*S4(3)*(P2(0)*(-1D0)*(+CI*(TMP9+TMP10))+V2(3)*(
+     $ +CI*(TMP11+TMP12)))
+      V1(4)= COUP*S3(3)*S4(3)*(P2(1)*(+CI*(TMP9+TMP10))-V2(4)*(+CI
+     $ *(TMP11+TMP12)))
+      V1(5)= COUP*S3(3)*S4(3)*(P2(2)*(+CI*(TMP9+TMP10))-V2(5)*(+CI
+     $ *(TMP11+TMP12)))
+      V1(6)= COUP*S3(3)*S4(3)*(P2(3)*(+CI*(TMP9+TMP10))-V2(6)*(+CI
+     $ *(TMP11+TMP12)))
       END
 
 

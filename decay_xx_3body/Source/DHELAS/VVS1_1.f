@@ -11,7 +11,7 @@ C
       REAL*8 OM1
       REAL*8 P1(0:3)
       COMPLEX*16 S3(*)
-      COMPLEX*16 TMP21
+      COMPLEX*16 TMP0
       COMPLEX*16 V1(6)
       COMPLEX*16 V2(*)
       REAL*8 W1
@@ -24,13 +24,13 @@ C
       P1(1) = -DBLE(V1(2))
       P1(2) = -DIMAG(V1(2))
       P1(3) = -DIMAG(V1(1))
-      TMP21 = (V2(3)*P1(0)-V2(4)*P1(1)-V2(5)*P1(2)-V2(6)*P1(3))
+      TMP0 = (V2(3)*P1(0)-V2(4)*P1(1)-V2(5)*P1(2)-V2(6)*P1(3))
       DENOM = COUP/(P1(0)**2-P1(1)**2-P1(2)**2-P1(3)**2 - M1 * (M1 -CI
      $ * W1))
-      V1(3)= DENOM*S3(3)*(-CI*(V2(3))+CI*(P1(0)*TMP21*OM1))
-      V1(4)= DENOM*S3(3)*(-CI*(V2(4))+CI*(P1(1)*TMP21*OM1))
-      V1(5)= DENOM*S3(3)*(-CI*(V2(5))+CI*(P1(2)*TMP21*OM1))
-      V1(6)= DENOM*S3(3)*(-CI*(V2(6))+CI*(P1(3)*TMP21*OM1))
+      V1(3)= DENOM*S3(3)*(-CI*(V2(3))+CI*(P1(0)*OM1*TMP0))
+      V1(4)= DENOM*S3(3)*(-CI*(V2(4))+CI*(P1(1)*OM1*TMP0))
+      V1(5)= DENOM*S3(3)*(-CI*(V2(5))+CI*(P1(2)*OM1*TMP0))
+      V1(6)= DENOM*S3(3)*(-CI*(V2(6))+CI*(P1(3)*OM1*TMP0))
       END
 
 

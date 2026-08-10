@@ -1,4 +1,4 @@
-import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-Zfac
+import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-ZfacZero
 
 set group_subprocesses False
 generate p p > z > l+ l- xx VBEFT==1
@@ -9,8 +9,8 @@ launch
 set nevents 20000
 set ebeam1 7000
 set ebeam2 7000
-set pdlabel lhapdf
-set lhaid 315000
+set pdlabel nn23lo1 # lhapdf
+# set lhaid 315000
 set LamX 1000
 set lpp1 1
 set lpp2 1

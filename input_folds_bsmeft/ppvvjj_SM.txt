@@ -1,0 +1,17 @@
+set group_subprocesses False
+generate p p > j j vl vl~
+output output_folds/ppvvjj_SM
+launch
+
+set nevents 10000
+set ebeam1 7000
+set ebeam2 7000
+set pdlabel lhapdf
+set lhaid 315000
+set lpp1 1
+set lpp2 1
+
+launch ./output_folds/ppvvjj_SM -i
+   print_results --path=./output_folds/ppvvjj_SM.txt --format=short
+
+quit # quit interactive/advance interface mode for the MYDIRECTORY

@@ -328,12 +328,14 @@ C     Needed for v4 models
       COMPLEX*16 DUM0,DUM1
       DATA DUM0, DUM1/(0D0, 0D0), (1D0, 0D0)/
 
-      DOUBLE PRECISION FK_MDL_WH
+      DOUBLE PRECISION FK_MDL_WX
       DOUBLE PRECISION FK_MDL_WW
+      DOUBLE PRECISION FK_MDL_WH
       DOUBLE PRECISION FK_MDL_WZ
       DOUBLE PRECISION FK_ZERO
-      SAVE FK_MDL_WH
+      SAVE FK_MDL_WX
       SAVE FK_MDL_WW
+      SAVE FK_MDL_WH
       SAVE FK_MDL_WZ
       SAVE FK_ZERO
 
@@ -377,6 +379,13 @@ C     ----------
      $     *SMALL_WIDTH_TREATMENT)), MDL_WW)
         ELSE
           FK_MDL_WW = 0D0
+        ENDIF
+
+        IF(MDL_WX.NE.0D0) THEN
+          FK_MDL_WX = SIGN(MAX(ABS(MDL_WX), ABS(MDL_MX
+     $     *SMALL_WIDTH_TREATMENT)), MDL_WX)
+        ELSE
+          FK_MDL_WX = 0D0
         ENDIF
 
         IF(MDL_WZ.NE.0D0) THEN

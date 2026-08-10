@@ -23,16 +23,17 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       CALL COUP1()
       CALL COUP2()
       CALL COUP3()
+      CALL COUP4()
       IF (UPDATELOOP) THEN
 
-        CALL COUP4()
+        CALL COUP5()
 
       ENDIF
 
 C     
 couplings needed to be evaluated points by points
 C     
-      CALL COUP5(1)
+      CALL COUP6(1)
 
       RETURN
       END
@@ -80,7 +81,7 @@ C
 couplings needed to be evaluated points by points
 C     
       ALL_G(VECID) = G
-      CALL COUP5(VECID)
+      CALL COUP6(VECID)
 
       RETURN
       END

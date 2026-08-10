@@ -13,10 +13,10 @@ C
       REAL*8 P2(0:3)
       REAL*8 P3(0:3)
       COMPLEX*16 S3(*)
-      COMPLEX*16 TMP24
-      COMPLEX*16 TMP26
-      COMPLEX*16 TMP30
-      COMPLEX*16 TMP5
+      COMPLEX*16 TMP13
+      COMPLEX*16 TMP14
+      COMPLEX*16 TMP32
+      COMPLEX*16 TMP6
       COMPLEX*16 V1(*)
       COMPLEX*16 V2(6)
       REAL*8 W2
@@ -37,20 +37,20 @@ C
       P2(1) = -DBLE(V2(2))
       P2(2) = -DIMAG(V2(2))
       P2(3) = -DIMAG(V2(1))
-      TMP24 = (P3(0)*V1(3)-P3(1)*V1(4)-P3(2)*V1(5)-P3(3)*V1(6))
-      TMP26 = (P3(0)*P1(0)-P3(1)*P1(1)-P3(2)*P1(2)-P3(3)*P1(3))
-      TMP30 = (P2(0)*P1(0)-P2(1)*P1(1)-P2(2)*P1(2)-P2(3)*P1(3))
-      TMP5 = (V1(3)*P2(0)-V1(4)*P2(1)-V1(5)*P2(2)-V1(6)*P2(3))
+      TMP13 = (V1(3)*P3(0)-V1(4)*P3(1)-V1(5)*P3(2)-V1(6)*P3(3))
+      TMP14 = (P1(0)*P3(0)-P1(1)*P3(1)-P1(2)*P3(2)-P1(3)*P3(3))
+      TMP32 = (P1(0)*P2(0)-P1(1)*P2(1)-P1(2)*P2(2)-P1(3)*P2(3))
+      TMP6 = (V1(3)*P2(0)-V1(4)*P2(1)-V1(5)*P2(2)-V1(6)*P2(3))
       DENOM = COUP/(P2(0)**2-P2(1)**2-P2(2)**2-P2(3)**2 - M2 * (M2 -CI
      $ * W2))
-      V2(3)= DENOM*S3(3)*(OM2*P2(0)*(+CI*(TMP24*TMP30)-CI*(TMP5*TMP26))
-     $ +(-CI*(P1(0)*TMP24)+CI*(V1(3)*TMP26)))
-      V2(4)= DENOM*S3(3)*(OM2*P2(1)*(+CI*(TMP24*TMP30)-CI*(TMP5*TMP26))
-     $ +(-CI*(P1(1)*TMP24)+CI*(V1(4)*TMP26)))
-      V2(5)= DENOM*S3(3)*(OM2*P2(2)*(+CI*(TMP24*TMP30)-CI*(TMP5*TMP26))
-     $ +(-CI*(P1(2)*TMP24)+CI*(V1(5)*TMP26)))
-      V2(6)= DENOM*S3(3)*(OM2*P2(3)*(+CI*(TMP24*TMP30)-CI*(TMP5*TMP26))
-     $ +(-CI*(P1(3)*TMP24)+CI*(V1(6)*TMP26)))
+      V2(3)= DENOM*S3(3)*(OM2*P2(0)*(+CI*(TMP13*TMP32)-CI*(TMP6*TMP14))
+     $ +(-CI*(P1(0)*TMP13)+CI*(V1(3)*TMP14)))
+      V2(4)= DENOM*S3(3)*(OM2*P2(1)*(+CI*(TMP13*TMP32)-CI*(TMP6*TMP14))
+     $ +(-CI*(P1(1)*TMP13)+CI*(V1(4)*TMP14)))
+      V2(5)= DENOM*S3(3)*(OM2*P2(2)*(+CI*(TMP13*TMP32)-CI*(TMP6*TMP14))
+     $ +(-CI*(P1(2)*TMP13)+CI*(V1(5)*TMP14)))
+      V2(6)= DENOM*S3(3)*(OM2*P2(3)*(+CI*(TMP13*TMP32)-CI*(TMP6*TMP14))
+     $ +(-CI*(P1(3)*TMP13)+CI*(V1(6)*TMP14)))
       END
 
 

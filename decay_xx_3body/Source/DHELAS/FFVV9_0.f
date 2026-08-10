@@ -9,14 +9,14 @@ C
       COMPLEX*16 COUP
       COMPLEX*16 F1(*)
       COMPLEX*16 F2(*)
-      COMPLEX*16 TMP2
-      COMPLEX*16 TMP3
+      COMPLEX*16 TMP18
+      COMPLEX*16 TMP8
       COMPLEX*16 V3(*)
       COMPLEX*16 V4(*)
       COMPLEX*16 VERTEX
-      TMP2 = (V4(3)*V3(3)-V4(4)*V3(4)-V4(5)*V3(5)-V4(6)*V3(6))
-      TMP3 = (F1(5)*F2(5)+F1(6)*F2(6))
-      VERTEX = COUP*(-CI * TMP2*TMP3)
+      TMP18 = (V3(3)*V4(3)-V3(4)*V4(4)-V3(5)*V4(5)-V3(6)*V4(6))
+      TMP8 = (F2(5)*F1(5)+F2(6)*F1(6))
+      VERTEX = COUP*(-CI * TMP18*TMP8)
       END
 
 

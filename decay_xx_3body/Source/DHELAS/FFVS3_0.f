@@ -11,17 +11,17 @@ C
       COMPLEX*16 F2(*)
       REAL*8 P4(0:3)
       COMPLEX*16 S4(*)
-      COMPLEX*16 TMP13
-      COMPLEX*16 TMP3
+      COMPLEX*16 TMP24
+      COMPLEX*16 TMP8
       COMPLEX*16 V3(*)
       COMPLEX*16 VERTEX
       P4(0) = DBLE(S4(1))
       P4(1) = DBLE(S4(2))
       P4(2) = DIMAG(S4(2))
       P4(3) = DIMAG(S4(1))
-      TMP13 = (V3(3)*P4(0)-V3(4)*P4(1)-V3(5)*P4(2)-V3(6)*P4(3))
-      TMP3 = (F1(5)*F2(5)+F1(6)*F2(6))
-      VERTEX = COUP*(-CI * TMP13*TMP3*S4(3))
+      TMP24 = (V3(3)*P4(0)-V3(4)*P4(1)-V3(5)*P4(2)-V3(6)*P4(3))
+      TMP8 = (F2(5)*F1(5)+F2(6)*F1(6))
+      VERTEX = COUP*(-CI * TMP24*TMP8*S4(3))
       END
 
 

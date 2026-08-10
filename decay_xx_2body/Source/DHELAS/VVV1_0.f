@@ -9,9 +9,9 @@ C
       COMPLEX*16 COUP
       REAL*8 P1(0:3)
       COMPLEX*16 TMP0
-      COMPLEX*16 TMP10
+      COMPLEX*16 TMP1
       COMPLEX*16 TMP2
-      COMPLEX*16 TMP8
+      COMPLEX*16 TMP3
       COMPLEX*16 V1(*)
       COMPLEX*16 V2(*)
       COMPLEX*16 V3(*)
@@ -20,11 +20,11 @@ C
       P1(1) = DBLE(V1(2))
       P1(2) = DIMAG(V1(2))
       P1(3) = DIMAG(V1(1))
-      TMP0 = (V2(3)*P1(0)-V2(4)*P1(1)-V2(5)*P1(2)-V2(6)*P1(3))
-      TMP10 = (P1(0)*V3(3)-P1(1)*V3(4)-P1(2)*V3(5)-P1(3)*V3(6))
-      TMP2 = (V2(3)*V1(3)-V2(4)*V1(4)-V2(5)*V1(5)-V2(6)*V1(6))
-      TMP8 = (V1(3)*V3(3)-V1(4)*V3(4)-V1(5)*V3(5)-V1(6)*V3(6))
-      VERTEX = COUP*(-CI*(TMP2*TMP10)+CI*(TMP0*TMP8))
+      TMP0 = (V3(3)*P1(0)-V3(4)*P1(1)-V3(5)*P1(2)-V3(6)*P1(3))
+      TMP1 = (V2(3)*V1(3)-V2(4)*V1(4)-V2(5)*V1(5)-V2(6)*V1(6))
+      TMP2 = (V3(3)*V1(3)-V3(4)*V1(4)-V3(5)*V1(5)-V3(6)*V1(6))
+      TMP3 = (P1(0)*V2(3)-P1(1)*V2(4)-P1(2)*V2(5)-P1(3)*V2(6))
+      VERTEX = COUP*(-CI*(TMP0*TMP1)+CI*(TMP2*TMP3))
       END
 
 

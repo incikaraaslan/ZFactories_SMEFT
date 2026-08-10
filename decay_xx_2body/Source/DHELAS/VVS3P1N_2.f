@@ -10,7 +10,7 @@ C
       REAL*8 P2(0:3)
       REAL*8 P3(0:3)
       COMPLEX*16 S3(*)
-      COMPLEX*16 TMP5
+      COMPLEX*16 TMP10
       COMPLEX*16 TMP6
       COMPLEX*16 V1(*)
       COMPLEX*16 V2(6)
@@ -24,12 +24,12 @@ C
       P2(1) = -DBLE(V2(2))
       P2(2) = -DIMAG(V2(2))
       P2(3) = -DIMAG(V2(1))
-      TMP5 = (V1(3)*P2(0)-V1(4)*P2(1)-V1(5)*P2(2)-V1(6)*P2(3))
-      TMP6 = (P3(0)*P2(0)-P3(1)*P2(1)-P3(2)*P2(2)-P3(3)*P2(3))
-      V2(3)= COUP*S3(3)*(-CI*(P3(0)*TMP5)+CI*(V1(3)*TMP6))
-      V2(4)= COUP*S3(3)*(+CI*(P3(1)*TMP5)-CI*(V1(4)*TMP6))
-      V2(5)= COUP*S3(3)*(+CI*(P3(2)*TMP5)-CI*(V1(5)*TMP6))
-      V2(6)= COUP*S3(3)*(+CI*(P3(3)*TMP5)-CI*(V1(6)*TMP6))
+      TMP10 = (P2(0)*P3(0)-P2(1)*P3(1)-P2(2)*P3(2)-P2(3)*P3(3))
+      TMP6 = (V1(3)*P2(0)-V1(4)*P2(1)-V1(5)*P2(2)-V1(6)*P2(3))
+      V2(3)= COUP*S3(3)*(-CI*(P3(0)*TMP6)+CI*(V1(3)*TMP10))
+      V2(4)= COUP*S3(3)*(+CI*(P3(1)*TMP6)-CI*(V1(4)*TMP10))
+      V2(5)= COUP*S3(3)*(+CI*(P3(2)*TMP6)-CI*(V1(5)*TMP10))
+      V2(6)= COUP*S3(3)*(+CI*(P3(3)*TMP6)-CI*(V1(6)*TMP10))
       END
 
 

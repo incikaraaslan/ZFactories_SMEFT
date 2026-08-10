@@ -11,10 +11,10 @@ C
       COMPLEX*16 F1(*)
       COMPLEX*16 F2(*)
       REAL*8 P4(0:3)
-      COMPLEX*16 TMP13
-      COMPLEX*16 TMP2
-      COMPLEX*16 TMP34
-      COMPLEX*16 TMP35
+      COMPLEX*16 TMP18
+      COMPLEX*16 TMP23
+      COMPLEX*16 TMP24
+      COMPLEX*16 TMP25
       COMPLEX*16 V3(*)
       COMPLEX*16 V4(*)
       COMPLEX*16 VERTEX
@@ -22,13 +22,13 @@ C
       P4(1) = DBLE(V4(2))
       P4(2) = DIMAG(V4(2))
       P4(3) = DIMAG(V4(1))
-      TMP13 = (V3(3)*P4(0)-V3(4)*P4(1)-V3(5)*P4(2)-V3(6)*P4(3))
-      TMP2 = (V4(3)*V3(3)-V4(4)*V3(4)-V4(5)*V3(5)-V4(6)*V3(6))
-      TMP34 = (F1(5)*(F2(3)*(P4(0)-P4(3))-F2(4)*(P4(1)+CI*(P4(2))))
+      TMP18 = (V3(3)*V4(3)-V3(4)*V4(4)-V3(5)*V4(5)-V3(6)*V4(6))
+      TMP23 = (F1(5)*(F2(3)*(P4(0)-P4(3))-F2(4)*(P4(1)+CI*(P4(2))))
      $ +F1(6)*(F2(3)*(-P4(1)+CI*(P4(2)))+F2(4)*(P4(0)+P4(3))))
-      TMP35 = (F1(5)*(F2(3)*(V4(3)-V4(6))-F2(4)*(V4(4)+CI*(V4(5))))
+      TMP24 = (V3(3)*P4(0)-V3(4)*P4(1)-V3(5)*P4(2)-V3(6)*P4(3))
+      TMP25 = (F1(5)*(F2(3)*(V4(3)-V4(6))-F2(4)*(V4(4)+CI*(V4(5))))
      $ +F1(6)*(F2(3)*(-V4(4)+CI*(V4(5)))+F2(4)*(V4(3)+V4(6))))
-      VERTEX = COUP*(+CI*(TMP2*TMP34)-CI*(TMP13*TMP35))
+      VERTEX = COUP*(+CI*(TMP18*TMP23)-CI*(TMP24*TMP25))
       END
 
 

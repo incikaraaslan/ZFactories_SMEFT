@@ -2,7 +2,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 c      written by the UFO converter
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
-      WRITE(*,*)  ' Couplings of VectorSinglet_d6_UFO_HC_extended-Zfac'
+      WRITE(*,*)  ' Couplings of VectorSinglet_d6_UFO_HC_extended'
       WRITE(*,*)  ' ---------------------------------'
       WRITE(*,*)  ' '
       WRITE(*,2) 'GC_179 = ', GC_179

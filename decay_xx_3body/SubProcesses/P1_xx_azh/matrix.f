@@ -292,12 +292,14 @@ C     Needed for v4 models
       COMPLEX*16 DUM0,DUM1
       DATA DUM0, DUM1/(0D0, 0D0), (1D0, 0D0)/
 
+      DOUBLE PRECISION FK_MDL_WX
+      DOUBLE PRECISION FK_ZERO
       DOUBLE PRECISION FK_MDL_WH
       DOUBLE PRECISION FK_MDL_WZ
-      DOUBLE PRECISION FK_ZERO
+      SAVE FK_MDL_WX
+      SAVE FK_ZERO
       SAVE FK_MDL_WH
       SAVE FK_MDL_WZ
-      SAVE FK_ZERO
 
       LOGICAL FIRST
       DATA FIRST /.TRUE./
@@ -334,6 +336,13 @@ C     ----------
           FK_MDL_WH = 0D0
         ENDIF
 
+        IF(MDL_WX.NE.0D0) THEN
+          FK_MDL_WX = SIGN(MAX(ABS(MDL_WX), ABS(MDL_MX
+     $     *SMALL_WIDTH_TREATMENT)), MDL_WX)
+        ELSE
+          FK_MDL_WX = 0D0
+        ENDIF
+
         IF(MDL_WZ.NE.0D0) THEN
           FK_MDL_WZ = SIGN(MAX(ABS(MDL_WZ), ABS(MDL_MZ
      $     *SMALL_WIDTH_TREATMENT)), MDL_WZ)
@@ -347,10 +356,10 @@ C     ----------
       CALL VXXXXX(P(0,2),ZERO,NHEL(2),+1*IC(2),W(1,2))
       CALL VXXXXX(P(0,3),MDL_MZ,NHEL(3),+1*IC(3),W(1,3))
       CALL SXXXXX(P(0,4),+1*IC(4),W(1,4))
-      CALL VVV1_2(W(1,2),W(1,3),GC_246,MDL_MX, FK_ZERO,W(1,5))
+      CALL VVV1_2(W(1,2),W(1,3),GC_246,MDL_MX, FK_MDL_WX,W(1,5))
 C     Amplitude(s) for diagram number 1
       CALL VVS4_0(W(1,5),W(1,1),W(1,4),GC_180,AMP(1))
-      CALL VVS2_2(W(1,2),W(1,4),GC_179,MDL_MX, FK_ZERO,W(1,5))
+      CALL VVS2_2(W(1,2),W(1,4),GC_179,MDL_MX, FK_MDL_WX,W(1,5))
 C     Amplitude(s) for diagram number 2
       CALL VVV2_0(W(1,5),W(1,1),W(1,3),GC_247,AMP(2))
       CALL VVS1_1(W(1,3),W(1,4),GC_243,MDL_MZ, FK_MDL_WZ,W(1,5))

@@ -8,8 +8,8 @@ C
       PARAMETER (CI=(0D0,1D0))
       COMPLEX*16 COUP
       REAL*8 P1(0:3)
-      COMPLEX*16 TMP10
-      COMPLEX*16 TMP8
+      COMPLEX*16 TMP0
+      COMPLEX*16 TMP2
       COMPLEX*16 V1(*)
       COMPLEX*16 V2(6)
       COMPLEX*16 V3(*)
@@ -17,12 +17,12 @@ C
       P1(1) = DBLE(V1(2))
       P1(2) = DIMAG(V1(2))
       P1(3) = DIMAG(V1(1))
-      TMP10 = (P1(0)*V3(3)-P1(1)*V3(4)-P1(2)*V3(5)-P1(3)*V3(6))
-      TMP8 = (V1(3)*V3(3)-V1(4)*V3(4)-V1(5)*V3(5)-V1(6)*V3(6))
-      V2(3)= COUP*(-CI*(V1(3)*TMP10)+CI*(P1(0)*TMP8))
-      V2(4)= COUP*(+CI*(V1(4)*TMP10)-CI*(P1(1)*TMP8))
-      V2(5)= COUP*(+CI*(V1(5)*TMP10)-CI*(P1(2)*TMP8))
-      V2(6)= COUP*(+CI*(V1(6)*TMP10)-CI*(P1(3)*TMP8))
+      TMP0 = (V3(3)*P1(0)-V3(4)*P1(1)-V3(5)*P1(2)-V3(6)*P1(3))
+      TMP2 = (V3(3)*V1(3)-V3(4)*V1(4)-V3(5)*V1(5)-V3(6)*V1(6))
+      V2(3)= COUP*(-CI*(V1(3)*TMP0)+CI*(P1(0)*TMP2))
+      V2(4)= COUP*(+CI*(V1(4)*TMP0)-CI*(P1(1)*TMP2))
+      V2(5)= COUP*(+CI*(V1(5)*TMP0)-CI*(P1(2)*TMP2))
+      V2(6)= COUP*(+CI*(V1(6)*TMP0)-CI*(P1(3)*TMP2))
       END
 
 

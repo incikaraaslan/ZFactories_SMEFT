@@ -9,14 +9,14 @@ C
       COMPLEX*16 COUP
       COMPLEX*16 F1(*)
       COMPLEX*16 F2(6)
-      COMPLEX*16 TMP2
+      COMPLEX*16 TMP18
       COMPLEX*16 V3(*)
       COMPLEX*16 V4(*)
-      TMP2 = (V4(3)*V3(3)-V4(4)*V3(4)-V4(5)*V3(5)-V4(6)*V3(6))
+      TMP18 = (V3(3)*V4(3)-V3(4)*V4(4)-V3(5)*V4(5)-V3(6)*V4(6))
       F2(3)= COUP*0D0
       F2(4)= COUP*0D0
-      F2(5)= COUP*(-CI )* TMP2*F1(5)
-      F2(6)= COUP*(-CI )* TMP2*F1(6)
+      F2(5)= COUP*(-CI )* TMP18*F1(5)
+      F2(6)= COUP*(-CI )* TMP18*F1(6)
       END
 
 

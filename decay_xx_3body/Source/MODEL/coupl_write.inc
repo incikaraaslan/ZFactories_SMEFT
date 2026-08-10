@@ -2,12 +2,13 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 c      written by the UFO converter
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
-      WRITE(*,*)  ' Couplings of VectorSinglet_d6_UFO_HC_extended-Zfac'
+      WRITE(*,*)  ' Couplings of VectorSinglet_d6_UFO_HC_extended'
       WRITE(*,*)  ' ---------------------------------'
       WRITE(*,*)  ' '
       WRITE(*,2) 'GC_1 = ', GC_1
       WRITE(*,2) 'GC_2 = ', GC_2
       WRITE(*,2) 'GC_3 = ', GC_3
+      WRITE(*,2) 'GC_4 = ', GC_4
       WRITE(*,2) 'GC_39 = ', GC_39
       WRITE(*,2) 'GC_40 = ', GC_40
       WRITE(*,2) 'GC_49 = ', GC_49
@@ -15,6 +16,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       WRITE(*,2) 'GC_52 = ', GC_52
       WRITE(*,2) 'GC_53 = ', GC_53
       WRITE(*,2) 'GC_107 = ', GC_107
+      WRITE(*,2) 'GC_108 = ', GC_108
       WRITE(*,2) 'GC_109 = ', GC_109
       WRITE(*,2) 'GC_126 = ', GC_126
       WRITE(*,2) 'GC_127 = ', GC_127
@@ -32,6 +34,8 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       WRITE(*,2) 'GC_182 = ', GC_182
       WRITE(*,2) 'GC_183 = ', GC_183
       WRITE(*,2) 'GC_184 = ', GC_184
+      WRITE(*,2) 'GC_185 = ', GC_185
+      WRITE(*,2) 'GC_186 = ', GC_186
       WRITE(*,2) 'GC_188 = ', GC_188
       WRITE(*,2) 'GC_189 = ', GC_189
       WRITE(*,2) 'GC_190 = ', GC_190
@@ -44,11 +48,25 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       WRITE(*,2) 'GC_197 = ', GC_197
       WRITE(*,2) 'GC_198 = ', GC_198
       WRITE(*,2) 'GC_199 = ', GC_199
+      WRITE(*,2) 'GC_200 = ', GC_200
+      WRITE(*,2) 'GC_201 = ', GC_201
+      WRITE(*,2) 'GC_202 = ', GC_202
+      WRITE(*,2) 'GC_203 = ', GC_203
+      WRITE(*,2) 'GC_204 = ', GC_204
+      WRITE(*,2) 'GC_205 = ', GC_205
+      WRITE(*,2) 'GC_206 = ', GC_206
+      WRITE(*,2) 'GC_207 = ', GC_207
+      WRITE(*,2) 'GC_208 = ', GC_208
+      WRITE(*,2) 'GC_209 = ', GC_209
+      WRITE(*,2) 'GC_210 = ', GC_210
+      WRITE(*,2) 'GC_211 = ', GC_211
       WRITE(*,2) 'GC_212 = ', GC_212
       WRITE(*,2) 'GC_213 = ', GC_213
+      WRITE(*,2) 'GC_214 = ', GC_214
       WRITE(*,2) 'GC_215 = ', GC_215
       WRITE(*,2) 'GC_216 = ', GC_216
       WRITE(*,2) 'GC_217 = ', GC_217
+      WRITE(*,2) 'GC_218 = ', GC_218
       WRITE(*,2) 'GC_219 = ', GC_219
       WRITE(*,2) 'GC_220 = ', GC_220
       WRITE(*,2) 'GC_221 = ', GC_221
@@ -57,6 +75,17 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       WRITE(*,2) 'GC_224 = ', GC_224
       WRITE(*,2) 'GC_225 = ', GC_225
       WRITE(*,2) 'GC_226 = ', GC_226
+      WRITE(*,2) 'GC_227 = ', GC_227
+      WRITE(*,2) 'GC_228 = ', GC_228
+      WRITE(*,2) 'GC_229 = ', GC_229
+      WRITE(*,2) 'GC_230 = ', GC_230
+      WRITE(*,2) 'GC_231 = ', GC_231
+      WRITE(*,2) 'GC_232 = ', GC_232
+      WRITE(*,2) 'GC_233 = ', GC_233
+      WRITE(*,2) 'GC_234 = ', GC_234
+      WRITE(*,2) 'GC_235 = ', GC_235
+      WRITE(*,2) 'GC_236 = ', GC_236
+      WRITE(*,2) 'GC_237 = ', GC_237
       WRITE(*,2) 'GC_238 = ', GC_238
       WRITE(*,2) 'GC_239 = ', GC_239
       WRITE(*,2) 'GC_241 = ', GC_241
@@ -82,6 +111,30 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       WRITE(*,2) 'GC_279 = ', GC_279
       WRITE(*,2) 'GC_280 = ', GC_280
       WRITE(*,2) 'GC_281 = ', GC_281
+      WRITE(*,2) 'GC_290 = ', GC_290
+      WRITE(*,2) 'GC_291 = ', GC_291
+      WRITE(*,2) 'GC_292 = ', GC_292
+      WRITE(*,2) 'GC_293 = ', GC_293
+      WRITE(*,2) 'GC_302 = ', GC_302
+      WRITE(*,2) 'GC_303 = ', GC_303
+      WRITE(*,2) 'GC_304 = ', GC_304
+      WRITE(*,2) 'GC_305 = ', GC_305
+      WRITE(*,2) 'GC_314 = ', GC_314
+      WRITE(*,2) 'GC_315 = ', GC_315
+      WRITE(*,2) 'GC_316 = ', GC_316
+      WRITE(*,2) 'GC_317 = ', GC_317
+      WRITE(*,2) 'GC_326 = ', GC_326
+      WRITE(*,2) 'GC_327 = ', GC_327
+      WRITE(*,2) 'GC_328 = ', GC_328
+      WRITE(*,2) 'GC_329 = ', GC_329
+      WRITE(*,2) 'GC_339 = ', GC_339
+      WRITE(*,2) 'GC_340 = ', GC_340
+      WRITE(*,2) 'GC_341 = ', GC_341
+      WRITE(*,2) 'GC_342 = ', GC_342
+      WRITE(*,2) 'GC_351 = ', GC_351
+      WRITE(*,2) 'GC_352 = ', GC_352
+      WRITE(*,2) 'GC_353 = ', GC_353
+      WRITE(*,2) 'GC_354 = ', GC_354
       WRITE(*,2) 'GC_363 = ', GC_363
       WRITE(*,2) 'GC_364 = ', GC_364
       WRITE(*,2) 'GC_365 = ', GC_365
@@ -90,11 +143,24 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       WRITE(*,2) 'GC_11 = ', GC_11
       WRITE(*,2) 'GC_12 = ', GC_12
       WRITE(*,2) 'GC_13 = ', GC_13
+      WRITE(*,2) 'GC_14 = ', GC_14
+      WRITE(*,2) 'GC_15 = ', GC_15
+      WRITE(*,2) 'GC_16 = ', GC_16
+      WRITE(*,2) 'GC_17 = ', GC_17
+      WRITE(*,2) 'GC_18 = ', GC_18
+      WRITE(*,2) 'GC_19 = ', GC_19
+      WRITE(*,2) 'GC_20 = ', GC_20
+      WRITE(*,2) 'GC_21 = ', GC_21
+      WRITE(*,2) 'GC_22 = ', GC_22
+      WRITE(*,2) 'GC_23 = ', GC_23
+      WRITE(*,2) 'GC_24 = ', GC_24
+      WRITE(*,2) 'GC_25 = ', GC_25
       WRITE(*,2) 'GC_26 = ', GC_26
       WRITE(*,2) 'GC_27 = ', GC_27
       WRITE(*,2) 'GC_29 = ', GC_29
       WRITE(*,2) 'GC_30 = ', GC_30
       WRITE(*,2) 'GC_31 = ', GC_31
+      WRITE(*,2) 'GC_32 = ', GC_32
       WRITE(*,2) 'GC_33 = ', GC_33
       WRITE(*,2) 'GC_34 = ', GC_34
       WRITE(*,2) 'GC_35 = ', GC_35
@@ -103,5 +169,18 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       WRITE(*,2) 'GC_261 = ', GC_261
       WRITE(*,2) 'GC_272 = ', GC_272
       WRITE(*,2) 'GC_273 = ', GC_273
+      WRITE(*,2) 'GC_284 = ', GC_284
+      WRITE(*,2) 'GC_285 = ', GC_285
+      WRITE(*,2) 'GC_296 = ', GC_296
+      WRITE(*,2) 'GC_297 = ', GC_297
+      WRITE(*,2) 'GC_308 = ', GC_308
+      WRITE(*,2) 'GC_309 = ', GC_309
+      WRITE(*,2) 'GC_320 = ', GC_320
+      WRITE(*,2) 'GC_321 = ', GC_321
+      WRITE(*,2) 'GC_330 = ', GC_330
+      WRITE(*,2) 'GC_331 = ', GC_331
+      WRITE(*,2) 'GC_334 = ', GC_334
+      WRITE(*,2) 'GC_345 = ', GC_345
+      WRITE(*,2) 'GC_346 = ', GC_346
       WRITE(*,2) 'GC_357 = ', GC_357
       WRITE(*,2) 'GC_358 = ', GC_358

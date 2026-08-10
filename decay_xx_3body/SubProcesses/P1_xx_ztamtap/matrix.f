@@ -310,12 +310,14 @@ C     Needed for v4 models
       COMPLEX*16 DUM0,DUM1
       DATA DUM0, DUM1/(0D0, 0D0), (1D0, 0D0)/
 
+      DOUBLE PRECISION FK_MDL_WX
+      DOUBLE PRECISION FK_ZERO
       DOUBLE PRECISION FK_MDL_WH
       DOUBLE PRECISION FK_MDL_WZ
-      DOUBLE PRECISION FK_ZERO
+      SAVE FK_MDL_WX
+      SAVE FK_ZERO
       SAVE FK_MDL_WH
       SAVE FK_MDL_WZ
-      SAVE FK_ZERO
 
       LOGICAL FIRST
       DATA FIRST /.TRUE./
@@ -352,6 +354,13 @@ C     ----------
           FK_MDL_WH = 0D0
         ENDIF
 
+        IF(MDL_WX.NE.0D0) THEN
+          FK_MDL_WX = SIGN(MAX(ABS(MDL_WX), ABS(MDL_MX
+     $     *SMALL_WIDTH_TREATMENT)), MDL_WX)
+        ELSE
+          FK_MDL_WX = 0D0
+        ENDIF
+
         IF(MDL_WZ.NE.0D0) THEN
           FK_MDL_WZ = SIGN(MAX(ABS(MDL_WZ), ABS(MDL_MZ
      $     *SMALL_WIDTH_TREATMENT)), MDL_WZ)
@@ -376,8 +385,8 @@ C     Amplitude(s) for diagram number 2
 C     Amplitude(s) for diagram number 3
       CALL VVV3_0(W(1,1),W(1,2),W(1,5),GC_248,AMP(3))
 C     Amplitude(s) for diagram number 4
-      CALL FFVV11_15_19_8_110_0(W(1,4),W(1,3),W(1,1),W(1,2),GC_216
-     $ ,GC_217,GC_131,GC_133,GC_215,AMP(4))
+      CALL FFVV10_11_15_17_19_8_0(W(1,4),W(1,3),W(1,1),W(1,2),GC_215
+     $ ,GC_216,GC_217,GC_218,GC_131,GC_133,AMP(4))
 C     JAMPs contributing to orders ALL_ORDERS=1
       JAMP(1,1) = (-1.000000000000000D+00)*AMP(1)+(-1.000000000000000D
      $ +00)*AMP(2)+(-1.000000000000000D+00)*AMP(3)+(

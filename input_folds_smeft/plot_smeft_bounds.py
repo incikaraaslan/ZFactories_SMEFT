@@ -19,7 +19,7 @@ operators = [
 bar_values = [12.9, 7905, 10.54, 10, 10, 5.77]
 
 # --- HL-LHC Projections (Orange) ---
-hllhc_lines = [1.99, 2.01, 1.91, 2.04, 2.04, 1.97]
+hllhc_lines = np.asarray([1.99, 2.01, 1.91, 2.04, 2.04, 1.97])**2
 hllhc_labels = [
     r"$Z\rightarrow l_p \bar{l}_p$", 
     r"$Z\rightarrow l_p \bar{l}_p$", 
@@ -31,7 +31,7 @@ hllhc_labels = [
 
 # --- FCC-hh Projections (Teal) ---
 # [!] Swap these placeholders with your actual computed FCC-hh values
-fcchh_lines = [2.22, 2.25, 2.13, 2.29, 2.29, 2.20]  
+fcchh_lines = np.asarray([2.22, 2.25, 2.13, 2.29, 2.29, 2.20])**2  
 fcchh_labels = [
     r"$Z\rightarrow l_p \bar{l}_p$", 
     r"$Z\rightarrow l_p \bar{l}_p$", 
@@ -77,7 +77,7 @@ for i in range(len(operators)):
 # --- Benchmarking Labels (Top Right Legend-Style Text) ---
 ax.text(0.98, 0.92, r"$\mathrm{HL-LHC}: 14\ \mathrm{TeV},\ 3 \times 10^6\ \mathrm{pb}^{-1}$", 
         transform=ax.transAxes, color=orange_color, fontsize=11, ha='right', va='top')
-ax.text(0.98, 0.84, r"$\mathrm{FCC-hh}: 100\ \mathrm{TeV},\ 3 \times 10^7\ \mathrm{pb}^{-1}$", 
+ax.text(0.98, 0.84, r"$\mathrm{FCC-hh}: 100\ \mathrm{TeV},\ 3 \times 10^6\ \mathrm{pb}^{-1}$", 
         transform=ax.transAxes, color=teal_color, fontsize=11, ha='right', va='top')
 
 # --- Axes Formatting ---

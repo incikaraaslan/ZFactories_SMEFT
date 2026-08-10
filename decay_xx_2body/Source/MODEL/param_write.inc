@@ -75,17 +75,21 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       WRITE(*,*) 'mdl_WZ = ', MDL_WZ
       WRITE(*,*) 'mdl_WW = ', MDL_WW
       WRITE(*,*) 'mdl_WH = ', MDL_WH
+      WRITE(*,*) 'mdl_WX = ', MDL_WX
       WRITE(*,*)  ' Internal Params'
       WRITE(*,*)  ' ---------------------------------'
       WRITE(*,*)  ' '
-      WRITE(*,*) 'mdl_CKM3x3 = ', MDL_CKM3X3
-      WRITE(*,*) 'mdl_conjg__CKM3x3 = ', MDL_CONJG__CKM3X3
       WRITE(*,*) 'mdl_cos__cabi = ', MDL_COS__CABI
       WRITE(*,*) 'mdl_CKM1x1 = ', MDL_CKM1X1
       WRITE(*,*) 'mdl_sin__cabi = ', MDL_SIN__CABI
       WRITE(*,*) 'mdl_CKM1x2 = ', MDL_CKM1X2
+      WRITE(*,*) 'mdl_CKM1x3 = ', MDL_CKM1X3
       WRITE(*,*) 'mdl_CKM2x1 = ', MDL_CKM2X1
       WRITE(*,*) 'mdl_CKM2x2 = ', MDL_CKM2X2
+      WRITE(*,*) 'mdl_CKM2x3 = ', MDL_CKM2X3
+      WRITE(*,*) 'mdl_CKM3x1 = ', MDL_CKM3X1
+      WRITE(*,*) 'mdl_CKM3x2 = ', MDL_CKM3X2
+      WRITE(*,*) 'mdl_CKM3x3 = ', MDL_CKM3X3
       WRITE(*,*) 'mdl_MZ__exp__2 = ', MDL_MZ__EXP__2
       WRITE(*,*) 'mdl_MZ__exp__4 = ', MDL_MZ__EXP__4
       WRITE(*,*) 'mdl_sqrt__2 = ', MDL_SQRT__2
@@ -94,8 +98,13 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       WRITE(*,*) 'mdl_LamX__exp__2 = ', MDL_LAMX__EXP__2
       WRITE(*,*) 'mdl_conjg__CKM1x1 = ', MDL_CONJG__CKM1X1
       WRITE(*,*) 'mdl_conjg__CKM1x2 = ', MDL_CONJG__CKM1X2
+      WRITE(*,*) 'mdl_conjg__CKM1x3 = ', MDL_CONJG__CKM1X3
       WRITE(*,*) 'mdl_conjg__CKM2x1 = ', MDL_CONJG__CKM2X1
       WRITE(*,*) 'mdl_conjg__CKM2x2 = ', MDL_CONJG__CKM2X2
+      WRITE(*,*) 'mdl_conjg__CKM2x3 = ', MDL_CONJG__CKM2X3
+      WRITE(*,*) 'mdl_conjg__CKM3x1 = ', MDL_CONJG__CKM3X1
+      WRITE(*,*) 'mdl_conjg__CKM3x2 = ', MDL_CONJG__CKM3X2
+      WRITE(*,*) 'mdl_conjg__CKM3x3 = ', MDL_CONJG__CKM3X3
       WRITE(*,*) 'mdl_aEW = ', MDL_AEW
       WRITE(*,*) 'mdl_MW = ', MDL_MW
       WRITE(*,*) 'mdl_sqrt__aEW = ', MDL_SQRT__AEW

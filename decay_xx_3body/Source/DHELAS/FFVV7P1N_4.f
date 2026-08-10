@@ -11,22 +11,22 @@ C
       COMPLEX*16 F1(*)
       COMPLEX*16 F2(*)
       REAL*8 P3(0:3)
-      COMPLEX*16 TMP10
-      COMPLEX*16 TMP12
+      COMPLEX*16 TMP17
+      COMPLEX*16 TMP30
       COMPLEX*16 V3(*)
       COMPLEX*16 V4(6)
       P3(0) = DBLE(V3(1))
       P3(1) = DBLE(V3(2))
       P3(2) = DIMAG(V3(2))
       P3(3) = DIMAG(V3(1))
-      TMP10 = (F1(3)*(F2(5)*(P3(0)+P3(3))+F2(6)*(P3(1)+CI*(P3(2))))
+      TMP17 = (F1(3)*(F2(5)*(P3(0)+P3(3))+F2(6)*(P3(1)+CI*(P3(2))))
      $ +F1(4)*(F2(5)*(P3(1)-CI*(P3(2)))+F2(6)*(P3(0)-P3(3))))
-      TMP12 = (F1(3)*(F2(5)*(V3(3)+V3(6))+F2(6)*(V3(4)+CI*(V3(5))))
+      TMP30 = (F1(3)*(F2(5)*(V3(3)+V3(6))+F2(6)*(V3(4)+CI*(V3(5))))
      $ +F1(4)*(F2(5)*(V3(4)-CI*(V3(5)))+F2(6)*(V3(3)-V3(6))))
-      V4(3)= COUP*(+CI*(V3(3)*TMP10)-CI*(P3(0)*TMP12))
-      V4(4)= COUP*(-CI*(V3(4)*TMP10)+CI*(P3(1)*TMP12))
-      V4(5)= COUP*(-CI*(V3(5)*TMP10)+CI*(P3(2)*TMP12))
-      V4(6)= COUP*(-CI*(V3(6)*TMP10)+CI*(P3(3)*TMP12))
+      V4(3)= COUP*(+CI*(V3(3)*TMP17)-CI*(P3(0)*TMP30))
+      V4(4)= COUP*(-CI*(V3(4)*TMP17)+CI*(P3(1)*TMP30))
+      V4(5)= COUP*(-CI*(V3(5)*TMP17)+CI*(P3(2)*TMP30))
+      V4(6)= COUP*(-CI*(V3(6)*TMP17)+CI*(P3(3)*TMP30))
       END
 
 

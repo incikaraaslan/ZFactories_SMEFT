@@ -301,10 +301,10 @@ C     Needed for v4 models
       COMPLEX*16 DUM0,DUM1
       DATA DUM0, DUM1/(0D0, 0D0), (1D0, 0D0)/
 
+      DOUBLE PRECISION FK_MDL_WX
       DOUBLE PRECISION FK_MDL_WZ
-      DOUBLE PRECISION FK_ZERO
+      SAVE FK_MDL_WX
       SAVE FK_MDL_WZ
-      SAVE FK_ZERO
 
       LOGICAL FIRST
       DATA FIRST /.TRUE./
@@ -333,7 +333,13 @@ C     BEGIN CODE
 C     ----------
       IF (FIRST) THEN
         FIRST=.FALSE.
-        FK_ZERO = 0D0
+        IF(MDL_WX.NE.0D0) THEN
+          FK_MDL_WX = SIGN(MAX(ABS(MDL_WX), ABS(MDL_MX
+     $     *SMALL_WIDTH_TREATMENT)), MDL_WX)
+        ELSE
+          FK_MDL_WX = 0D0
+        ENDIF
+
         IF(MDL_WZ.NE.0D0) THEN
           FK_MDL_WZ = SIGN(MAX(ABS(MDL_WZ), ABS(MDL_MZ
      $     *SMALL_WIDTH_TREATMENT)), MDL_WZ)

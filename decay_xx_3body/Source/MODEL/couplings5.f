@@ -2,10 +2,10 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 c      written by the UFO converter
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
-      SUBROUTINE COUP5( VECID)
+      SUBROUTINE COUP5( )
 
       IMPLICIT NONE
-      INTEGER VECID
+
       INCLUDE 'model_functions.inc'
       INCLUDE '../vector.inc'
 

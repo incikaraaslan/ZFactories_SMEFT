@@ -1,3 +1,4 @@
+import model sm-lepton_masses
 set group_subprocesses False
 generate p p > vl vl~ l+ l-
 display diagrams
@@ -7,8 +8,8 @@ launch
 set nevents 20000
 set ebeam1 7000
 set ebeam2 7000
-set pdlabel lhapdf
-set lhaid 315000
+set pdlabel nn23lo1 #lhapdf
+# set lhaid 315000
 set lpp1 1
 set lpp2 1
 

@@ -11,10 +11,10 @@ C
       COMPLEX*16 F1(*)
       COMPLEX*16 F2(*)
       REAL*8 P3(0:3)
-      COMPLEX*16 TMP10
-      COMPLEX*16 TMP11
-      COMPLEX*16 TMP12
-      COMPLEX*16 TMP2
+      COMPLEX*16 TMP17
+      COMPLEX*16 TMP18
+      COMPLEX*16 TMP29
+      COMPLEX*16 TMP30
       COMPLEX*16 V3(*)
       COMPLEX*16 V4(*)
       COMPLEX*16 VERTEX
@@ -22,13 +22,13 @@ C
       P3(1) = DBLE(V3(2))
       P3(2) = DIMAG(V3(2))
       P3(3) = DIMAG(V3(1))
-      TMP10 = (F1(3)*(F2(5)*(P3(0)+P3(3))+F2(6)*(P3(1)+CI*(P3(2))))
+      TMP17 = (F1(3)*(F2(5)*(P3(0)+P3(3))+F2(6)*(P3(1)+CI*(P3(2))))
      $ +F1(4)*(F2(5)*(P3(1)-CI*(P3(2)))+F2(6)*(P3(0)-P3(3))))
-      TMP11 = (V4(3)*P3(0)-V4(4)*P3(1)-V4(5)*P3(2)-V4(6)*P3(3))
-      TMP12 = (F1(3)*(F2(5)*(V3(3)+V3(6))+F2(6)*(V3(4)+CI*(V3(5))))
+      TMP18 = (V3(3)*V4(3)-V3(4)*V4(4)-V3(5)*V4(5)-V3(6)*V4(6))
+      TMP29 = (P3(0)*V4(3)-P3(1)*V4(4)-P3(2)*V4(5)-P3(3)*V4(6))
+      TMP30 = (F1(3)*(F2(5)*(V3(3)+V3(6))+F2(6)*(V3(4)+CI*(V3(5))))
      $ +F1(4)*(F2(5)*(V3(4)-CI*(V3(5)))+F2(6)*(V3(3)-V3(6))))
-      TMP2 = (V4(3)*V3(3)-V4(4)*V3(4)-V4(5)*V3(5)-V4(6)*V3(6))
-      VERTEX = COUP*(+CI*(TMP2*TMP10)-CI*(TMP11*TMP12))
+      VERTEX = COUP*(+CI*(TMP17*TMP18)-CI*(TMP29*TMP30))
       END
 
 

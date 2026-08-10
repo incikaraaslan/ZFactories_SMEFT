@@ -1,4 +1,4 @@
-import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-Zfac
+import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended
 
 # Define multiparticle containers for all SM particles
 define sm_fer = e- e+ mu- mu+ ta- ta+ u u~ d d~ c c~ s s~ b b~ t t~ ve ve~ vm vm~ vt vt~
@@ -13,3 +13,5 @@ launch
 generate xx > sm_all sm_all sm_all
 output decay_xx_3body
 launch
+
+set MX 10.0
