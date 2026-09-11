@@ -1,0 +1,90 @@
+import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-ZfacZero
+
+set group_subprocesses False
+
+define f = e- mu- ta- ve vm vt u d s c t b
+define f~ = e+ mu+ ta+ ve~ vm~ vt~ u~ d~ s~ c~ t~ b~
+
+generate xx > f f~ l+ l- VBEFT==1
+
+display diagrams
+
+output output_folds/cdhieslx_XZll_BSMEFT_lamscan2_15
+
+launch output_folds/cdhieslx_XZll_BSMEFT_lamscan2_15
+
+set nevents 20000
+set ebeam1 7000
+set ebeam2 7000
+set pdlabel nn23lo1
+set lpp1 0
+set lpp2 0
+set LamX 10
+set cdhieslx 1.0
+set cdhieslxi 1.0
+
+set MX 15.0
+
+launch
+
+set LamX 20
+
+launch
+
+set LamX 30
+
+launch
+
+set LamX 50
+
+launch
+
+set LamX 70
+
+launch
+
+set LamX 100
+
+launch
+
+set LamX 200
+
+launch
+
+set LamX 300
+
+launch
+
+set LamX 500
+
+launch
+
+set LamX 700
+
+launch
+
+set LamX 1000
+
+launch
+
+set LamX 2000
+
+launch
+
+set LamX 3000
+
+launch
+
+set LamX 5000
+
+launch
+
+set LamX 7000
+
+launch
+
+set LamX 10000
+
+launch -i output_folds/cdhieslx_XZll_BSMEFT_lamscan2_15 -i
+    print_results --path=./output_folds/cdhieslx_XZll_BSMEFT_lamscan2_15_results.txt --format=short
+quit

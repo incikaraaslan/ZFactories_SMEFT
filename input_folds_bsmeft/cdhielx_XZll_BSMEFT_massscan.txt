@@ -1,0 +1,129 @@
+import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-ZfacZero
+
+set group_subprocesses False
+
+generate xx > all all l+ l- VBEFT==1
+
+output output_folds/cdhielx_XZll_BSMEFT_massscan
+
+launch output_folds/cdhielx_XZll_BSMEFT_massscan
+
+set nevents 20000
+set ebeam1 7000
+set ebeam2 7000
+set pdlabel nn23lo1
+set lpp1 0
+set lpp2 0
+set LamX 1000
+set cdhielx 1.0
+set cdhielxi 1.0
+
+set MX 10.0
+
+launch
+
+set MX 12.0
+
+launch
+
+set MX 15.0
+
+launch
+
+set MX 20.0
+
+launch
+
+set MX 25.0
+
+launch
+
+set MX 30.0
+
+launch
+
+set MX 40.0
+
+launch
+
+set MX 50.0
+
+launch
+
+set MX 60.0
+
+launch
+
+set MX 70.0
+
+launch
+
+set MX 80.0
+
+launch
+
+set MX 90.0
+
+launch
+
+set MX 100.0
+
+launch
+
+set MX 150.0
+
+launch
+
+set MX 200.0
+
+launch
+
+set MX 250.0
+
+launch
+
+set MX 300.0
+
+launch
+
+set MX 350.0
+
+launch
+
+set MX 400.0
+
+launch
+
+set MX 450.0
+
+launch
+
+set MX 500.0
+
+launch
+
+set MX 550.0
+
+launch
+
+set MX 600.0
+
+launch
+
+set MX 650.0
+
+launch
+
+set MX 700.0
+
+launch
+
+set MX 1000.0
+
+launch
+
+set MX 2000.0
+
+launch -i output_folds/cdhielx_XZll_BSMEFT_massscan -i
+    print_results --path=./output_folds/cdhielx_XZll_BSMEFT_massscan_results.txt --format=short
+quit

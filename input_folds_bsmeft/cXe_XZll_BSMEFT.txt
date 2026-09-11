@@ -3,26 +3,24 @@ import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-
 set group_subprocesses False
 define f = e- mu- ta- ve vm vt u d s c t b
 define f~ = e+ mu+ ta+ ve~ vm~ vt~ u~ d~ s~ c~ t~ b~
-# generate p p > z > l+ l- xx VBEFT==1
-# generate p p > z, (z > xx all all VBEFT<=1)
-generate p p > xx all all VBEFT==1 / a
+
+generate xx > f f~ l+ l- VBEFT==1
 display diagrams
-output output_folds/cXe_ppZXll_BSMEFT
+output output_folds/cXe_XZll_BSMEFT
 launch
-# xx > all all l+ l- 
 
 set nevents 20000
 set ebeam1 7000
 set ebeam2 7000
 set pdlabel nn23lo1 # lhapdf
 # set lhaid 315000
-set LamX 1000
-set lpp1 1
-set lpp2 1
+set LamX 10
+set lpp1 0
+set lpp2 0
 set cxe 1.0
 set MX 10.0
 
-launch ./output_folds/cXe_ppZXll_BSMEFT -i
-   print_results --path=./output_folds/cXe_ppZXll_BSMEFT.txt --format=short
+launch ./output_folds/cXe_XZll_BSMEFT -i
+   print_results --path=./output_folds/cXe_XZll_BSMEFT.txt --format=short
 
 quit # quit interactive/advance interface mode for the MYDIRECTORY

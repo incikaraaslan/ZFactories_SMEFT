@@ -1,0 +1,77 @@
+import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-ZfacZero
+
+set group_subprocesses False
+
+# 3-body decays
+generate p p > xx  VBEFT==1
+
+output output_folds/cXe_ppX_BSMEFT_lamscan_15
+launch
+
+set nevents 20000
+set ebeam1 7000
+set ebeam2 7000
+set pdlabel nn23lo1 # lhapdf
+# set lhaid 315000
+set LamX 1000
+set lpp1 1
+set lpp2 1
+set MX 15.0
+
+
+launch
+
+set LamX 2000
+
+launch
+
+set LamX 3000
+
+launch
+
+set LamX 5000
+
+launch
+
+set LamX 7000
+
+launch
+
+set LamX 10000
+
+launch
+
+set LamX 12000
+
+launch
+
+set LamX 15000
+
+launch
+
+set LamX 17000
+
+launch
+
+set LamX 20000
+
+launch
+
+set LamX 22000
+
+launch
+
+set LamX 25000
+
+launch
+
+set LamX 27000
+
+launch
+
+set LamX 30000
+
+launch -i output_folds/cXe_ppX_BSMEFT_lamscan_15 -i
+    print_results --path=./output_folds/cXe_ppX_BSMEFT_lamscan_15_results.txt --format=short
+
+quit

@@ -1,0 +1,85 @@
+import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-ZfacZero
+
+# Generate process with grouped subprocesses active
+
+define f = e- mu- ta- ve vm vt u d s c t b
+define f~ = e+ mu+ ta+ ve~ vm~ vt~ u~ d~ s~ c~ t~ b~
+define my_final = ve vm vt ve~ vm~ vt~ u c t d s b u~ c~ t~ d~ s~ b~ z w+ h xx w- e- mu- ta- e+ mu+ ta+
+
+generate xx > all all all VBEFT==1
+
+output output_folds/cXe_Xall_BSMEFT_lamscan_10_3b_noga
+display diagrams
+launch
+
+set nevents 20000
+set unweighted False
+set decay 9000002 auto
+set ebeam1 7000
+set ebeam2 7000
+set pdlabel nn23lo1 # lhapdf
+# set lhaid 315000
+set LamX 1000
+set lpp1 0
+set lpp2 0
+set cxe 1.0
+set MX 10.0
+set sde_strategy 2
+set hard_survey 1
+
+launch
+
+set LamX 2000
+
+launch
+
+set LamX 3000
+
+launch
+
+set LamX 5000
+
+launch
+
+set LamX 7000
+
+launch
+
+set LamX 10000
+
+launch
+
+set LamX 12000
+
+launch
+
+set LamX 15000
+
+launch
+
+set LamX 17000
+
+launch
+
+set LamX 20000
+
+launch
+
+set LamX 22000
+
+launch
+
+set LamX 25000
+
+launch
+
+set LamX 27000
+
+launch
+
+set LamX 30000
+
+launch -i output_folds/cXe_Xall_BSMEFT_lamscan_10_3b_noga -i
+    print_results --path=./output_folds/cXe_Xall_BSMEFT_lamscan_10_3b_noga_results.txt --format=short
+
+quit

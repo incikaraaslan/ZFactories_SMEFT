@@ -33,7 +33,7 @@ set default_unset_couplings 99
 set max_t_for_channel 99
 set zerowidth_tchannel True
 set nlo_mixed_expansion True
-import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-Zfac
+import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-ZfacZero
 define p = g u c d s u~ c~ d~ s~
 define j = g u c d s u~ c~ d~ s~
 define l+ = e+ mu+
@@ -41,7 +41,11 @@ define l- = e- mu-
 define vl = ve vm vt
 define vl~ = ve~ vm~ vt~
 set group_subprocesses False
-generate z > a xx, (xx > e- e+ z) VBEFT==1
+define f = e- mu- ta- ve vm vt u d s c t b
+define f~ = e+ mu+ ta+ ve~ vm~ vt~ u~ d~ s~ c~ t~ b~
+define my_final = ve vm vt ve~ vm~ vt~ u c t d s b u~ c~ t~ d~ s~ b~ z w+ h xx w- e- mu- ta- e+ mu+ ta+
+generate p p > xx my_final my_final VBEFT==1 / z a
+add process p p > xx z VBEFT==1, (z > all all)
 Traceback (most recent call last):
   File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/extended_cmd.py", line 1548, in onecmd
     return self.onecmd_orig(line, **opt)
@@ -57,10 +61,6 @@ Traceback (most recent call last):
     stop = Cmd.onecmd_orig(current_interface, line, **opt)
   File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/extended_cmd.py", line 1497, in onecmd_orig
     return func(arg, **opt)
-  File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/master_interface.py", line 278, in do_generate
-    return self.cmd.do_generate(self, line, *args, **opts)
-  File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/madgraph_interface.py", line 4738, in do_generate
-    self.do_add(" ".join(args))
   File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/master_interface.py", line 229, in do_add
     return  self.cmd.do_add(self, line, *args, **opts)
   File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/madgraph_interface.py", line 3221, in do_add
