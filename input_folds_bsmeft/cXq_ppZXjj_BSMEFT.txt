@@ -4,11 +4,11 @@ set group_subprocesses False
 define f = e- mu- ta- ve vm vt u d s c t b
 define f~ = e+ mu+ ta+ ve~ vm~ vt~ u~ d~ s~ c~ t~ b~
 define my_final = ve vm vt ve~ vm~ vt~ u c t d s b u~ c~ t~ d~ s~ b~ z w+ h xx w- e- mu- ta- e+ mu+ ta+
-
-generate p p > xx my_final my_final VBEFT==1 / z a
-add process p p > xx z, (z > f f~) VBEFT<=1
-add process p p > xx a, (a > f f~) VBEFT<=1
-display diagrams
+generate p p > xx my_final my_final VBEFT==1 
+# generate p p > xx my_final my_final VBEFT==1 / z a
+# add process p p > xx z, (z > f f~) VBEFT<=1
+# add process p p > xx a, (a > f f~) VBEFT<=1
+#display diagrams
 
 output output_folds/cXq_ppZXjj_BSMEFT
 launch

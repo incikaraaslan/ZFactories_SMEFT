@@ -44,8 +44,8 @@ set group_subprocesses False
 define f = e- mu- ta- ve vm vt u d s c t b
 define f~ = e+ mu+ ta+ ve~ vm~ vt~ u~ d~ s~ c~ t~ b~
 define my_final = ve vm vt ve~ vm~ vt~ u c t d s b u~ c~ t~ d~ s~ b~ z w+ h xx w- e- mu- ta- e+ mu+ ta+
-generate p p > xx my_final my_final VBEFT==1 / z a
-add process p p > xx z VBEFT==1, (z > all all)
+generate p p > xx my_final my_final VBEFT==1
+output output_folds/cXq_ppZXjj_BSMEFT
 Traceback (most recent call last):
   File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/extended_cmd.py", line 1548, in onecmd
     return self.onecmd_orig(line, **opt)
@@ -61,11 +61,16 @@ Traceback (most recent call last):
     stop = Cmd.onecmd_orig(current_interface, line, **opt)
   File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/extended_cmd.py", line 1497, in onecmd_orig
     return func(arg, **opt)
-  File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/master_interface.py", line 229, in do_add
-    return  self.cmd.do_add(self, line, *args, **opts)
-  File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/madgraph_interface.py", line 3221, in do_add
-    raise MadGraph5Error("Decay processes cannot specify "+\
-madgraph.MadGraph5Error: Decay processes cannot specify squared orders constraints.
+  File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/master_interface.py", line 299, in do_output
+    self.cmd.do_output(self, line, *args, **opts)
+  File "/home/incik/MG5_aMC_v3_6_3/madgraph/interface/madgraph_interface.py", line 8349, in do_output
+    shutil.rmtree(self._export_dir)
+  File "/home/incik/miniconda3/envs/mg5/lib/python3.10/shutil.py", line 731, in rmtree
+    onerror(os.rmdir, path, sys.exc_info())
+  File "/home/incik/miniconda3/envs/mg5/lib/python3.10/shutil.py", line 729, in rmtree
+    os.rmdir(path)
+OSError: [Errno 39] Directory not empty: '/home/incik/ZFactories_SMEFT/output_folds/cXq_ppZXjj_BSMEFT'
+Related File: /home/incik/ZFactories_SMEFT/output_folds/cXq_ppZXjj_BSMEFT
                           MadGraph5_aMC@NLO Options    
                           ----------------    
         complex_mass_scheme 	:	False

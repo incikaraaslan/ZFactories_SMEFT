@@ -4,11 +4,9 @@ set group_subprocesses False
 
 define f = e- mu- ta- ve vm vt u d s c t b
 define f~ = e+ mu+ ta+ ve~ vm~ vt~ u~ d~ s~ c~ t~ b~
-
-# Resonant Production
 generate p p > z, (z > xx f f~ VBEFT<=1)
 
-output output_folds/cXq_R_ppZXll_BSMEFT_lamscan2_15
+output output_folds/cXu_R_ppZXll_BSMEFT_lamscan2_15
 launch
 
 set nevents 20000
@@ -80,7 +78,7 @@ launch
 
 set LamX 10000
 
-launch -i output_folds/cXq_R_ppZXll_BSMEFT_lamscan2_15 -i
-    print_results --path=./output_folds/cXq_R_ppZXll_BSMEFT_lamscan2_15_results.txt --format=short
+launch -i output_folds/cXu_R_ppZXll_BSMEFT_lamscan2_15 -i
+    print_results --path=./output_folds/cXu_R_ppZXll_BSMEFT_lamscan2_15_results.txt --format=short
 
 quit

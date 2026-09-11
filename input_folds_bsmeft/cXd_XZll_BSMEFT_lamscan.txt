@@ -18,7 +18,7 @@ set pdlabel nn23lo1
 set lpp1 0
 set lpp2 0
 set LamX 10
-set cxq 1.0
+set cxd 1.0
 
 set MX 15.0
 

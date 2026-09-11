@@ -1,23 +1,25 @@
-import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-ZfacZero
+import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-ZfacZerocopy
 
 set group_subprocesses False
 
 define f = e- mu- ta- ve vm vt u d s c t b
 define f~ = e+ mu+ ta+ ve~ vm~ vt~ u~ d~ s~ c~ t~ b~
 
-# Resonant Production
-generate p p > z, (z > xx f f~ VBEFT<=1)
+generate xx > f f~ f f~ VBEFT==1
 
-output output_folds/cXq_R_ppZXll_BSMEFT_lamscan2_15
-launch
+output output_folds/cdhidsqx_XZll_BSMEFT_lamscan2_15
+
+launch output_folds/cdhidsqx_XZll_BSMEFT_lamscan2_15
 
 set nevents 20000
 set ebeam1 7000
 set ebeam2 7000
 set pdlabel nn23lo1
+set lpp1 0
+set lpp2 0
 set LamX 10
-set lpp1 1
-set lpp2 1
+set cdhidsqx 1.0
+set cdhidsqxi 1.0
 set MX 15.0
 
 launch
@@ -80,7 +82,6 @@ launch
 
 set LamX 10000
 
-launch -i output_folds/cXq_R_ppZXll_BSMEFT_lamscan2_15 -i
-    print_results --path=./output_folds/cXq_R_ppZXll_BSMEFT_lamscan2_15_results.txt --format=short
-
+launch -i output_folds/cdhidsqx_XZll_BSMEFT_lamscan2_15 -i
+    print_results --path=./output_folds/cdhidsqx_XZll_BSMEFT_lamscan2_15_results.txt --format=short
 quit

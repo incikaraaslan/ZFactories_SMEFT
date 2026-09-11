@@ -75,6 +75,24 @@ partial_widths_cdhieslx_15, partial_width_errors_cdhieslx_15 = read_partial_widt
 file_path_cxq_15 = "./output_folds/cXq_XZll_BSMEFT_lamscan2_15_results.txt"
 partial_widths_cxq_15, partial_width_errors_cxq_15 = read_partial_widths(file_path_cxq_15)
 
+file_path_cxd_15 = "./output_folds/cXd_XZll_BSMEFT_lamscan2_15_results.txt"
+partial_widths_cxd_15, partial_width_errors_cxd_15 = read_partial_widths(file_path_cxd_15)
+
+file_path_cxu_15 = "./output_folds/cXu_XZll_BSMEFT_lamscan2_15_results.txt"
+partial_widths_cxu_15, partial_width_errors_cxu_15 = read_partial_widths(file_path_cxu_15)
+
+file_path_cdhidqx_15 = "./output_folds/cdhidqx_XZll_BSMEFT_lamscan2_15_results.txt"
+partial_widths_cdhidqx_15, partial_width_errors_cdhidqx_15 = read_partial_widths(file_path_cdhidqx_15)
+
+file_path_cdhidsqx_15 = "./output_folds/cdhidsqx_XZll_BSMEFT_lamscan2_15_results.txt"
+partial_widths_cdhidsqx_15, partial_width_errors_cdhidsqx_15 = read_partial_widths(file_path_cdhidsqx_15)
+
+file_path_cdhiqux_15 = "./output_folds/cdhiqux_XZll_BSMEFT_lamscan2_15_results.txt"
+partial_widths_cdhiqux_15, partial_width_errors_cdhiqux_15 = read_partial_widths(file_path_cdhiqux_15)
+
+file_path_cdhiqsux_15 = "./output_folds/cdhiqsux_XZll_BSMEFT_lamscan2_15_results.txt"
+partial_widths_cdhiqsux_15, partial_width_errors_cdhiqsux_15 = read_partial_widths(file_path_cdhiqsux_15)
+
 # X AXIS: Calculate Lifetime c*tau
 ctau_cxe_15 = HBAR_C / partial_widths_cxe_15  # in meters
 ctau_cxl_15 = HBAR_C / partial_widths_cxl_15  # in meters
@@ -82,6 +100,12 @@ ctau_cdhielx_15 = HBAR_C / partial_widths_cdhielx_15  # in meters
 ctau_cdhieslx_15 = HBAR_C / partial_widths_cdhieslx_15  # in meters
 
 ctau_cxq_15 = HBAR_C / partial_widths_cxq_15  # in meters
+ctau_cxd_15 = HBAR_C / partial_widths_cxd_15  # in meters
+ctau_cxu_15 = HBAR_C / partial_widths_cxu_15  # in meters
+ctau_cdhidqx_15 = HBAR_C / partial_widths_cdhidqx_15  # in meters
+ctau_cdhidsqx_15 = HBAR_C / partial_widths_cdhidsqx_15  # in meters
+ctau_cdhiqux_15 = HBAR_C / partial_widths_cdhiqux_15  # in meters
+ctau_cdhiqsux_15 = HBAR_C / partial_widths_cdhiqsux_15  # in meters
 
 # Y AXIS: to Compare to ATLAS searches, expect zero background events ($B = 0$) and detector observes 0 events ($k = 0$),
 
@@ -93,7 +117,12 @@ events_dir_cdhielx_15 = "./output_folds/cdhielx_ppZXll_BSMEFT_lamscan2_15/Events
 events_dir_cdhieslx_15 = "./output_folds/cdhieslx_ppZXll_BSMEFT_lamscan2_15/Events/"
 
 events_dir_cxq_15 = "./output_folds/cXq_R_ppZXll_BSMEFT_lamscan2_15/Events/"
-
+events_dir_cxd_15 = "./output_folds/cXd_R_ppZXll_BSMEFT_lamscan2_15/Events/"
+events_dir_cxu_15 = "./output_folds/cXu_R_ppZXll_BSMEFT_lamscan2_15/Events/"
+events_dir_cdhidqx_15 = "./output_folds/cdhidqx_R_ppZXll_BSMEFT_lamscan2_15/Events/"
+events_dir_cdhidsqx_15 = "./output_folds/cdhidsqx_R_ppZXll_BSMEFT_lamscan2_15/Events/"
+events_dir_cdhiqux_15 = "./output_folds/cdhiqux_R_ppZXll_BSMEFT_lamscan2_15/Events/"
+events_dir_cdhiqsux_15 = "./output_folds/cdhiqsux_R_ppZXll_BSMEFT_lamscan2_15/Events/"
 
 run_paths_cxe_15 = sorted(
     glob.glob(f"{events_dir_cxe_15}/run_*"),
@@ -120,6 +149,32 @@ run_paths_cxq_15 = sorted(
     key=lambda x: int(os.path.basename(x).split("_")[-1])
 )
 
+run_paths_cxd_15 = sorted(
+    glob.glob(f"{events_dir_cxd_15}/run_*"),
+    key=lambda x: int(os.path.basename(x).split("_")[-1])
+)
+
+run_paths_cxu_15 = sorted(
+    glob.glob(f"{events_dir_cxu_15}/run_*"),
+    key=lambda x: int(os.path.basename(x).split("_")[-1])
+)
+run_paths_cdhidqx_15 = sorted(
+    glob.glob(f"{events_dir_cdhidqx_15}/run_*"),
+    key=lambda x: int(os.path.basename(x).split("_")[-1])
+)
+run_paths_cdhidsqx_15 = sorted(
+    glob.glob(f"{events_dir_cdhidsqx_15}/run_*"),
+    key=lambda x: int(os.path.basename(x).split("_")[-1])
+)
+run_paths_cdhiqux_15 = sorted(
+    glob.glob(f"{events_dir_cdhiqux_15}/run_*"),
+    key=lambda x: int(os.path.basename(x).split("_")[-1])
+)
+run_paths_cdhiqsux_15 = sorted(
+    glob.glob(f"{events_dir_cdhiqsux_15}/run_*"),
+    key=lambda x: int(os.path.basename(x).split("_")[-1])
+)
+
 
 p_max_list_cxe_15 = []
 p_avg_list_cxe_15 = []
@@ -132,6 +187,18 @@ p_avg_list_cdhieslx_15 = []
 
 p_max_list_cxq_15 = []
 p_avg_list_cxq_15 = []
+p_max_list_cxd_15 = []
+p_avg_list_cxd_15 = []
+p_max_list_cxu_15 = []
+p_avg_list_cxu_15 = []
+p_max_list_cdhidqx_15 = []
+p_avg_list_cdhidqx_15 = []
+p_max_list_cdhidsqx_15 = []
+p_avg_list_cdhidsqx_15 = []
+p_max_list_cdhiqux_15 = []
+p_avg_list_cdhiqux_15 = []
+p_max_list_cdhiqsux_15 = []
+p_avg_list_cdhiqsux_15 = []
 
 def get_pavgs(paths, p_max_list_from_distrib, p_avg_list_from_distrib):
     
@@ -201,6 +268,12 @@ cross_cdhielx_15, cross_errors_cdhielx_15 = read_partial_widths("./output_folds/
 cross_cdhieslx_15, cross_errors_cdhieslx_15 = read_partial_widths("./output_folds/cdhieslx_ppZXll_BSMEFT_lamscan2_15_results.txt")
 
 cross_cxq_15, cross_errors_cxq_15 = read_partial_widths("./output_folds/cXq_R_ppZXll_BSMEFT_lamscan2_15_results.txt")
+cross_cxd_15, cross_errors_cxd_15 = read_partial_widths("./output_folds/cXd_R_ppZXll_BSMEFT_lamscan2_15_results.txt")
+cross_cxu_15, cross_errors_cxu_15 = read_partial_widths("./output_folds/cXu_R_ppZXll_BSMEFT_lamscan2_15_results.txt")
+cross_cdhidqx_15, cross_errors_cdhidqx_15 = read_partial_widths("./output_folds/cdhidqx_R_ppZXll_BSMEFT_lamscan2_15_results.txt")
+cross_cdhidsqx_15, cross_errors_cdhidsqx_15 = read_partial_widths("./output_folds/cdhidsqx_R_ppZXll_BSMEFT_lamscan2_15_results.txt")
+cross_cdhiqux_15, cross_errors_cdhiqux_15 = read_partial_widths("./output_folds/cdhiqux_R_ppZXll_BSMEFT_lamscan2_15_results.txt")
+cross_cdhiqsux_15, cross_errors_cdhiqsux_15 = read_partial_widths("./output_folds/cdhiqsux_R_ppZXll_BSMEFT_lamscan2_15_results.txt")
 
 Lumi = 3.0e6  # pb^-1
 N95 = -np.log(0.05)
@@ -210,20 +283,34 @@ cbr95_cdhielx_15 = N95/ (Lumi * get_pdecay(run_paths_cdhielx_15,  ctau_cdhielx_1
 cbr95_cdhieslx_15= N95/ (Lumi * get_pdecay(run_paths_cdhieslx_15,  ctau_cdhieslx_15, mx=15))
 
 cbr95_cxq_15 = N95/ (Lumi * get_pdecay(run_paths_cxq_15, ctau_cxq_15, mx=15))
+cbr95_cxd_15 = N95/ (Lumi * get_pdecay(run_paths_cxd_15, ctau_cxd_15, mx=15))
+cbr95_cxu_15 = N95/ (Lumi * get_pdecay(run_paths_cxu_15, ctau_cxu_15, mx=15))
+cbr95_cdhidqx_15 = N95/ (Lumi * get_pdecay(run_paths_cdhidqx_15, ctau_cdhidqx_15, mx=15))
+cbr95_cdhidsqx_15 = N95/ (Lumi * get_pdecay(run_paths_cdhidsqx_15, ctau_cdhidsqx_15, mx=15))
+cbr95_cdhiqux_15 = N95/ (Lumi * get_pdecay(run_paths_cdhiqux_15, ctau_cdhiqux_15, mx=15))
+cbr95_cdhiqsux_15 = N95/ (Lumi * get_pdecay(run_paths_cdhiqsux_15, ctau_cdhiqsux_15, mx=15))
 
 br95_cxe_15 = cbr95_cxe_15/ cross_cxe_15
 br95_cxl_15 = cbr95_cxl_15/ cross_cxl_15
 br95_cdhielx_15  =cbr95_cdhielx_15 / cross_cdhielx_15
 br95_cdhieslx_15 =cbr95_cdhieslx_15/ cross_cdhieslx_15
+br95_cdhiqux_15 =cbr95_cdhiqux_15/ cross_cdhiqux_15
+br95_cdhiqsux_15 =cbr95_cdhiqsux_15/ cross_cdhiqsux_15
 
 br95_cxq_15 =cbr95_cxq_15/cross_cxq_15
+br95_cxd_15 =cbr95_cxd_15/cross_cxd_15
+br95_cxu_15 =cbr95_cxu_15/cross_cxu_15
+br95_cdhidqx_15 =cbr95_cdhidqx_15/cross_cdhidqx_15
+br95_cdhidsqx_15 =cbr95_cdhidsqx_15/cross_cdhidsqx_15
+br95_cdhiqux_15 =cbr95_cdhiqux_15/cross_cdhiqux_15
+br95_cdhiqsux_15 =cbr95_cdhiqsux_15/cross_cdhiqsux_15
 
 # Compare to ATLAS
-file_path_exot = "./ATLASEXOT-2022-17_ZDff_data.txt"
+"""file_path_exot = "./ATLASEXOT-2022-17_ZDff_data.txt"
 decaylength_EXOT, brcs_ATLAS_EXOT = read_partial_widths(file_path_exot)
 
 file_path_cern = "./ATLASCERN-EP-2025-293_ZDff_data.txt"
-decaylength_cern, brcs_ATLAS_CERN = read_partial_widths(file_path_cern)
+decaylength_cern, brcs_ATLAS_CERN = read_partial_widths(file_path_cern)"""
 
 
 # ============================================================
@@ -241,16 +328,21 @@ line_cdhielx, = plt.plot(ctau_cdhielx_15, br95_cdhielx_15, "o-", color="#E03C31"
 line_cdhieslx, = plt.plot(ctau_cdhieslx_15, br95_cdhieslx_15, "o-", color="#FA8072", linewidth=2, label=r"$(cdhieslx) m_X = 15$ GeV")
 
 line_cxq, = plt.plot(ctau_cxq_15, br95_cxq_15, "o-", color="#6A0DAD", linewidth=2, label=r"$(cXq) m_X = 15$ GeV")
-
+line_cxd, = plt.plot(ctau_cxd_15, br95_cxd_15, "o-", color="#873DBD", linewidth=2, label=r"$(cXd) m_X = 15$ GeV")
+line_cxu, = plt.plot(ctau_cxu_15, br95_cxu_15, "o-", color="#A56DCD", linewidth=2, label=r"$(cXu) m_X = 15$ GeV")
+line_cdhidqx, = plt.plot(ctau_cdhidqx_15, br95_cdhidqx_15, "o-", color="#C39EDE", linewidth=2, label=r"$(cdhidqx) m_X = 15$ GeV")
+line_cdhidsqx, = plt.plot(ctau_cdhidsqx_15, br95_cdhidsqx_15, "o-", color="#E1CEEE", linewidth=2, label=r"$(cdhidsqx) m_X = 15$ GeV")
+line_cdhiqux, = plt.plot(ctau_cdhiqux_15, br95_cdhiqux_15, "o-", color="#4a0979", linewidth=2, label=r"$(cdhiqux) m_X = 15$ GeV")
+line_cdhiqsux, = plt.plot(ctau_cdhiqsux_15, br95_cdhiqsux_15, "o-", color="#2a0545", linewidth=2, label=r"$(cdhiqsux) m_X = 15$ GeV")
 
 handles = [
     header_leptonic, line_cxe, line_cxl, line_cdhielx, line_cdhieslx,
-    header_hadronic, line_cxq
+    header_hadronic, line_cxq, line_cxd, line_cxu, line_cdhidqx, line_cdhidsqx, line_cdhiqux, line_cdhiqsux
 ]
 
 labels = [
     r"$\bf{Leptonic\ Operators:}$", r"$(cXe) m_X = 15$ GeV", r"$(cXl) m_X = 15$ GeV", r"$(cdhielx) m_X = 15$ GeV", r"$(cdhieslx) m_X = 15$ GeV",
-    r"$\bf{Hadronic\ Operators:}$", r"$(cXq) m_X = 15$ GeV"
+    r"$\bf{Hadronic\ Operators:}$", r"$(cXq) m_X = 15$ GeV", r"$(cXd) m_X = 15$ GeV", r"$(cXu) m_X = 15$ GeV", r"$(cdhidqx) m_X = 15$ GeV", r"$(cdhidsqx) m_X = 15$ GeV", r"$(cdhiqux) m_X = 15$ GeV", r"$(cdhiqsux) m_X = 15$ GeV"
 ]
 
 plt.legend(handles, labels, loc='best', frameon=True, fontsize=10)
