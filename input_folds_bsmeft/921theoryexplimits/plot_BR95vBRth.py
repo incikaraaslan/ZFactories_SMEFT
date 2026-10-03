@@ -61,6 +61,56 @@ def read_partial_widths(filepath):
 
 ################################### THEORY LIMIT, GET MG BR FOR ALL LAMBDA SCANNED ###################################
 # Leptonic Operators: cxe, cxl, cdhielx, cdhieslx
+file_path_cxe_15 = "../../output_folds/cXe_XZll_BSMEFT_lamscan_15_cuts_results.txt"
+partial_widths_cxe_15, partial_width_errors_cxe_15 = read_partial_widths(file_path_cxe_15)
+
+file_path_cxl_15 = "../../output_folds/cXl_XZll_BSMEFT_lamscan_15_results.txt"
+partial_widths_cxl_15, partial_width_errors_cxl_15 = read_partial_widths(file_path_cxl_15)
+
+file_path_cdhielx_15 = "../../output_folds/cdhielx_XZll_BSMEFT_lamscan_15_results.txt"
+partial_widths_cdhielx_15, partial_width_errors_cdhielx_15 = read_partial_widths(file_path_cdhielx_15)
+
+file_path_cdhieslx_15 = "../../output_folds/cdhieslx_XZll_BSMEFT_lamscan_15_results.txt"
+partial_widths_cdhieslx_15, partial_width_errors_cdhieslx_15 = read_partial_widths(file_path_cdhieslx_15)
+
+# Hadronic Operators: cxe, cxl, cdhielx, cdhieslx
+file_path_cxq_15 = "../../output_folds/cXq_XZll_BSMEFT_lamscan_15_results.txt"
+partial_widths_cxq_15, partial_width_errors_cxq_15 = read_partial_widths(file_path_cxq_15)
+
+file_path_cxd_15 = "../../output_folds/cXd_XZll_BSMEFT_lamscan_15_results.txt"
+partial_widths_cxd_15, partial_width_errors_cxd_15 = read_partial_widths(file_path_cxd_15)
+
+file_path_cxu_15 = "../../output_folds/cXu_XZll_BSMEFT_lamscan_15_results.txt"
+partial_widths_cxu_15, partial_width_errors_cxu_15 = read_partial_widths(file_path_cxu_15)
+
+file_path_cdhidqx_15 = "../../output_folds/cdhidqx_XZll_BSMEFT_lamscan_15_results.txt"
+partial_widths_cdhidqx_15, partial_width_errors_cdhidqx_15 = read_partial_widths(file_path_cdhidqx_15)
+
+file_path_cdhidsqx_15 = "../../output_folds/cdhidsqx_XZll_BSMEFT_lamscan_15_results.txt"
+partial_widths_cdhidsqx_15, partial_width_errors_cdhidsqx_15 = read_partial_widths(file_path_cdhidsqx_15)
+
+file_path_cdhiqux_15 = "../../output_folds/cdhiqux_XZll_BSMEFT_lamscan_15_results.txt"
+partial_widths_cdhiqux_15, partial_width_errors_cdhiqux_15 = read_partial_widths(file_path_cdhiqux_15)
+
+file_path_cdhiqsux_15 = "../../output_folds/cdhiqsux_XZll_BSMEFT_lamscan_15_results.txt"
+partial_widths_cdhiqsux_15, partial_width_errors_cdhiqsux_15 = read_partial_widths(file_path_cdhiqsux_15)
+
+# X AXIS: Calculate Lifetime c*tau
+ctau_th_cxe_15 = HBAR_C / partial_widths_cxe_15  # in meters
+ctau_th_cxl_15 = HBAR_C / partial_widths_cxl_15  # in meters
+ctau_th_cdhielx_15 = HBAR_C / partial_widths_cdhielx_15  # in meters
+ctau_th_cdhieslx_15 = HBAR_C / partial_widths_cdhieslx_15  # in meters
+
+ctau_th_cxq_15 = HBAR_C / partial_widths_cxq_15  # in meters
+ctau_th_cxd_15 = HBAR_C / partial_widths_cxd_15  # in meters
+ctau_th_cxu_15 = HBAR_C / partial_widths_cxu_15  # in meters
+ctau_th_cdhidqx_15 = HBAR_C / partial_widths_cdhidqx_15  # in meters
+ctau_th_cdhidsqx_15 = HBAR_C / partial_widths_cdhidsqx_15  # in meters
+ctau_th_cdhiqux_15 = HBAR_C / partial_widths_cdhiqux_15  # in meters
+ctau_th_cdhiqsux_15 = HBAR_C / partial_widths_cdhiqsux_15  # in meters
+
+
+# Leptonic Operators: cxe, cxl, cdhielx, cdhieslx
 file_path_cxe_15 = "../../output_folds/cXe_ZXll_BSMEFT_lamscan_15_results.txt"
 partial_widths_cxe_15, partial_width_errors_cxe_15 = read_partial_widths(file_path_cxe_15)
 
@@ -94,20 +144,6 @@ partial_widths_cdhiqux_15, partial_width_errors_cdhiqux_15 = read_partial_widths
 
 file_path_cdhiqsux_15 = "../../output_folds/cdhiqsux_ZXll_BSMEFT_lamscan_15_results.txt"
 partial_widths_cdhiqsux_15, partial_width_errors_cdhiqsux_15 = read_partial_widths(file_path_cdhiqsux_15)
-
-# X AXIS: Calculate Lifetime c*tau
-ctau_th_cxe_15 = HBAR_C / partial_widths_cxe_15  # in meters
-ctau_th_cxl_15 = HBAR_C / partial_widths_cxl_15  # in meters
-ctau_th_cdhielx_15 = HBAR_C / partial_widths_cdhielx_15  # in meters
-ctau_th_cdhieslx_15 = HBAR_C / partial_widths_cdhieslx_15  # in meters
-
-ctau_th_cxq_15 = HBAR_C / partial_widths_cxq_15  # in meters
-ctau_th_cxd_15 = HBAR_C / partial_widths_cxd_15  # in meters
-ctau_th_cxu_15 = HBAR_C / partial_widths_cxu_15  # in meters
-ctau_th_cdhidqx_15 = HBAR_C / partial_widths_cdhidqx_15  # in meters
-ctau_th_cdhidsqx_15 = HBAR_C / partial_widths_cdhidsqx_15  # in meters
-ctau_th_cdhiqux_15 = HBAR_C / partial_widths_cdhiqux_15  # in meters
-ctau_th_cdhiqsux_15 = HBAR_C / partial_widths_cdhiqsux_15  # in meters
 
 # Y AXIS: BR wrt to Z_tot
 partial_width_Z_tot = 2.495 # GeV
@@ -525,7 +561,6 @@ handles = [
     line_cdhiqux_th,
     line_cdhiqsux_th,
 ]
-
 labels = [
     r"$\bf{Leptonic\ Operators\ EXP:}$",
     r"$(cXe)\ m_X = 15$ GeV",
@@ -581,5 +616,5 @@ ax.legend(
 )
 
 plt.tight_layout()
-plt.savefig("plotBR95VBRth.png", dpi=300, bbox_inches="tight")
+plt.savefig("plotBR95VBRthcxecut.png", dpi=300, bbox_inches="tight")
 plt.show()

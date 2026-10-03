@@ -1,4 +1,4 @@
-import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-ZfacZerocopy
+import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-Zfac
 
 set group_subprocesses False
 
@@ -7,9 +7,9 @@ define f~ = e+ mu+ ta+ ve~ vm~ vt~ u~ d~ s~ c~ t~ b~
 
 generate xx > f f~ f f~ VBEFT==1
 
-output output_folds/cdhiqsux_XZll_BSMEFT_lamscan2_15
+output output_folds/cXe_XZll_BSMEFT_lamscan_15_cuts
 
-launch output_folds/cdhiqsux_XZll_BSMEFT_lamscan2_15
+launch output_folds/cXe_XZll_BSMEFT_lamscan_15_cuts
 
 set nevents 20000
 set ebeam1 7000
@@ -18,8 +18,16 @@ set pdlabel nn23lo1
 set lpp1 0
 set lpp2 0
 set LamX 10
-set cdhiqsux 1.0
-set cdhiqsuxi 1.0
+set cxe 1.0
+set ptl 0
+set etal -1
+
+set ptj 0
+set etaj -1
+
+set drll 0
+set drjl 0
+set drjj 0
 set MX 15.0
 
 launch
@@ -82,6 +90,6 @@ launch
 
 set LamX 10000
 
-launch -i output_folds/cdhiqsux_XZll_BSMEFT_lamscan2_15 -i
-    print_results --path=./output_folds/cdhiqsux_XZll_BSMEFT_lamscan2_15_results.txt --format=short
+launch -i output_folds/cXe_XZll_BSMEFT_lamscan_15_cuts -i
+    print_results --path=./output_folds/cXe_XZll_BSMEFT_lamscan_15_cuts_results.txt --format=short
 quit
