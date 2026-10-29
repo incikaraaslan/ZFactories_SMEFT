@@ -61,7 +61,7 @@ def read_partial_widths(filepath):
 
 ################################### THEORY LIMIT, GET MG BR FOR ALL LAMBDA SCANNED ###################################
 # Leptonic Operators: cxe, cxl, cdhielx, cdhieslx
-file_path_cxe_15 = "../../output_folds/cXe_XZll_BSMEFT_lamscan_15_cuts_results.txt"
+file_path_cxe_15 = "../../output_folds/cXe_XZll_BSMEFT_lamscan_15_results.txt"
 partial_widths_cxe_15, partial_width_errors_cxe_15 = read_partial_widths(file_path_cxe_15)
 
 file_path_cxl_15 = "../../output_folds/cXl_XZll_BSMEFT_lamscan_15_results.txt"
@@ -302,9 +302,6 @@ br95_cdhidqx_15 = N95 / (Lumi * sigma_ppZ * pdecay_cdhidqx)
 br95_cdhidsqx_15= N95 / (Lumi * sigma_ppZ * pdecay_cdhidsqx)
 br95_cdhiqux_15 = N95 / (Lumi * sigma_ppZ * pdecay_cdhiqux)
 br95_cdhiqsux_15= N95 / (Lumi * sigma_ppZ * pdecay_cdhiqsux)
-import matplotlib.patches as mpatches
-import matplotlib.pyplot as plt
-import numpy as np
 
 # ============================================================
 # PLOT N95/PDecay vs. c*tau
@@ -616,5 +613,5 @@ ax.legend(
 )
 
 plt.tight_layout()
-plt.savefig("plotBR95VBRthcxecut.png", dpi=300, bbox_inches="tight")
+plt.savefig("plotBR95VBRth.png", dpi=300, bbox_inches="tight")
 plt.show()

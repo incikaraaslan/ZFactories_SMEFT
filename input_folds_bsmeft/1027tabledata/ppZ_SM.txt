@@ -1,0 +1,19 @@
+import model sm-lepton_masses
+
+# 3-body decays
+generate p p > z
+
+output output_folds/ppZ_SM
+launch
+
+set nevents 20000
+set ebeam1 7000
+set ebeam2 7000
+set pdlabel nn23lo1
+set lpp1 1
+set lpp2 1
+
+launch -i output_folds/ppZ_SM -i
+    print_results --path=./output_folds/ppZ_SM_results.txt --format=short
+
+quit

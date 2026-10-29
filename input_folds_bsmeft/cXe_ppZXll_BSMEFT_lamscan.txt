@@ -1,22 +1,25 @@
-import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-ZfacZero_copy
+import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-Zfac
 
 set group_subprocesses False
 
 # 3-body decays
-generate p p > z > xx l+ l- VBEFT==1
+# generate p p > z > xx l+ l- VBEFT==1
+define f = e- mu- ta- ve vm vt u d s c t b
+define f~ = e+ mu+ ta+ ve~ vm~ vt~ u~ d~ s~ c~ t~ b~
+generate p p > z, (z > xx f f~ VBEFT<=1)
 
-output output_folds/cXe_ppZXll_BSMEFT_lamscan2_200
+output output_folds/cXe_ppZXll_BSMEFT_lamscan2_15
 launch
 
 set nevents 20000
 set ebeam1 7000
 set ebeam2 7000
-set pdlabel nn23lo1 # lhapdf
-# set lhaid 315000
+set pdlabel nn23lo1
 set LamX 10
 set lpp1 1
 set lpp2 1
-set MX 200.0
+set MX 15
+set cxe 1.0
 
 launch
 
@@ -78,7 +81,7 @@ launch
 
 set LamX 10000
 
-launch -i output_folds/cXe_ppZXll_BSMEFT_lamscan2_200 -i
-    print_results --path=./output_folds/cXe_ppZXll_BSMEFT_lamscan2_200_results.txt --format=short
+launch -i output_folds/cXe_ppZXll_BSMEFT_lamscan2_15 -i
+    print_results --path=./output_folds/cXe_ppZXll_BSMEFT_lamscan2_15_results.txt --format=short
 
 quit

@@ -1,0 +1,28 @@
+import model /home/incik/MG5_aMC_v3_6_3/models/VectorSinglet_d6_UFO_HC_extended-Zfac
+
+define vl = ve vm vt
+define vl~ = ve~ vm~ vt~
+
+generate p p > z, (z > xx vl vl~ VBEFT<=1)
+
+output output_folds/cXl_ppZXvlvl_BSMEFT_15
+launch
+
+set nevents 20000
+set ebeam1 7000
+set ebeam2 7000
+set pdlabel nn23lo1
+set LamX 10000
+set lpp1 1
+set lpp2 1
+set MX 15.0
+set cxl 1.0
+
+# Make no cuts to not mess up the cut efficiency later
+set ptl 0
+set etal -1
+set drll 0
+
+launch -i output_folds/cXl_ppZXvlvl_BSMEFT_15 -i
+    print_results --path=./input_folds_bsmeft/1027tabledata/output_folds/cXl_ppZXvlvl_BSMEFT_15_results.txt --format=short
+quit
