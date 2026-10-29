@@ -31,7 +31,7 @@ Z_VETO_NWIDTHS = 15.0
 
 # folder tag -> final-state label
 # Event folders used for P_decay: exactly <operator>_<tag>_BSMEFT_<MX>, nothing after.
-RES_EVENT_TAGS = {"ppZXll": "ll", "ppZXvlvl": "vlvl", "ppZXqq": "qq"}   # pp > z, z > x ...  (resonant rows)
+RES_EVENT_TAGS = {"ppZXll": "ll", "ppZXvlvl": "vlvl", "ppZXqq": "qq", "ppZXg": "a"}   # pp > z, z > x ...  (resonant rows)
 DIR_EVENT_TAGS = {"ppXll": "ll", "ppXvlvl": "vlvl", "ppXqq": "qq"}     # pp > x ...        (direct rows)
 
 # X width: result files of the X-decay runs, <op>_<tag>_..._<MX>_results.txt
@@ -42,8 +42,8 @@ DIR_EVENT_TAGS = {"ppXll": "ll", "ppXvlvl": "vlvl", "ppXqq": "qq"}     # pp > x 
 # Both the results folder and the events folder are searched.
 # NB: ZXll / ZXvlvl / ZXqq files hold Gamma(Z -> X + ...) (used for the BR), not
 # Gamma_X. Only add those tags here if those files really contain the X width.
-XWIDTH_TAGS = ["XZll", "XZvlvl", "XZqq"]
-XWIDTH_BY_FS = {"ll": "XZll", "vlvl": "XZvlvl", "qq": "XZqq"}   # tried first for a row of that final state
+XWIDTH_TAGS = ["XZll", "XZvlvl", "XZqq", "XZg"]
+XWIDTH_BY_FS = {"ll": "XZll", "vlvl": "XZvlvl", "qq": "XZqq", "a": "XZg"}   # tried first for a row of that final state
 XWIDTH_TAG = XWIDTH_TAGS[0]   # kept for imports
 LAMBDA_FILE_GEV = 10000.0   # Lambda the X-width files were generated at
 LAMBDA_BENCH_GEV = 10000.0  # Lambda of your tables; Gamma_X is rescaled by (LAMBDA_FILE/LAMBDA_BENCH)**4

@@ -43,6 +43,10 @@ DIRECT_TAGS = {            # inclusive pp -> X + ... runs (cross section in pb)
     "ppXqq": "qq",
 }
 
+# final states that have no direct-production (ppX...) run: the row is resonant-only,
+# the direct columns stay blank and N_total = N_res
+RES_ONLY_FS = {"a"}
+
 PB_TO_FB = 1000.0
 SIG_DIGITS = 3             # significant digits in the LaTeX numbers
 LUMI_FB = 3.0e3            # integrated luminosity in fb^-1 (3 ab^-1, HL-LHC)
@@ -143,27 +147,31 @@ def main():
         if fs not in res.get((op, mass), {}):
             print(f"[warn] {op} MX={mass} {fs}: missing Z-decay file; row skipped")
             continue
-        if fs not in direct.get((op, mass), {}):
+        has_direct = fs in direct.get((op, mass), {})
+        if not has_direct and fs not in RES_ONLY_FS:
             print(f"[warn] {op} MX={mass} {fs}: missing direct-production file; row skipped")
             continue
 
         gam, err_gam = res[(op, mass)][fs]
-        s_incl_pb, e_incl_pb = direct[(op, mass)][fs]
 
         br = gam / GAMMA_Z
         s_res = sig_ppz * br * PB_TO_FB
         e_res = s_res * math.hypot(rel(err_ppz, sig_ppz), rel(err_gam, gam))
 
-        s_incl = s_incl_pb * PB_TO_FB
-        e_incl = e_incl_pb * PB_TO_FB
+        if has_direct:
+            s_incl_pb, e_incl_pb = direct[(op, mass)][fs]
+            s_incl = s_incl_pb * PB_TO_FB
+            e_incl = e_incl_pb * PB_TO_FB
 
-        s_non = s_incl - s_res
-        e_non = math.hypot(e_incl, e_res)
-        if s_non < 0:
-            print(f"[warn] {op} MX={mass} {fs}: non-resonant sigma is negative "
-                  f"({s_non:.3e} fb); check the inputs or MC noise")
-
-        s_tot = s_res + s_non
+            s_non = s_incl - s_res
+            e_non = math.hypot(e_incl, e_res)
+            if s_non < 0:
+                print(f"[warn] {op} MX={mass} {fs}: non-resonant sigma is negative "
+                      f"({s_non:.3e} fb); check the inputs or MC noise")
+            s_tot = s_res + s_non
+        else:
+            s_incl = e_incl = s_non = e_non = None
+            s_tot = s_res          # resonant only
         out_rows.append([
             op, mass, fs,
             sig_ppz * PB_TO_FB, gam, br,
@@ -189,8 +197,12 @@ def main():
     for r in out_rows:
         s_res_fb, s_non_fb, p_res, p_dir = r[6], r[10], r[14], r[15]
         n_res = LUMI_FB * EPSILON * s_res_fb * p_res if p_res is not None else None
-        n_non = LUMI_FB * EPSILON * s_non_fb * p_dir if p_dir is not None else None
-        n_tot = n_res + n_non if (n_res is not None and n_non is not None) else None
+        n_non = (LUMI_FB * EPSILON * s_non_fb * p_dir
+                 if (p_dir is not None and s_non_fb is not None) else None)
+        if r[2] in RES_ONLY_FS:
+            n_tot = n_res          # no direct-production run for this final state
+        else:
+            n_tot = n_res + n_non if (n_res is not None and n_non is not None) else None
         if n_tot is not None:
             n_all[(r[0], r[1])] += n_tot
         r += [n_res, n_non, n_tot]
